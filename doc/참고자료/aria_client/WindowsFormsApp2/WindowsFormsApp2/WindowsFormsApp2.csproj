@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A75D0AA-24C8-468E-9CA1-D67F2DEC884C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsApp2</RootNamespace>
+    <AssemblyName>WindowsFormsApp2</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.17.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class_login\Aria_user.cs" />
+    <Compile Include="Class_login\CMES_Com.cs" />
+    <Compile Include="Class_lot\Aria_lot.cs" />
+    <Compile Include="Class_lot\Aria_lot_line.cs" />
+    <Compile Include="Class_Model\Aria_model.cs" />
+    <Compile Include="Class_Model\Aria_model_fail.cs" />
+    <Compile Include="Fail_prod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fail_prod.Designer.cs">
+      <DependentUpon>Fail_prod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Finish_m.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finish_m.Designer.cs">
+      <DependentUpon>Finish_m.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hw_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hw_list.Designer.cs">
+      <DependentUpon>Hw_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Line_set.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Line_set.Designer.cs">
+      <DependentUpon>Line_set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MES Server Comm\ServerComm.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lot_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lot_list.Designer.cs">
+      <DependentUpon>Lot_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\User_call_by_rf.cs" />
+    <Compile Include="User_set.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User_set.Designer.cs">
+      <DependentUpon>User_set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model_set.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model_set.Designer.cs">
+      <DependentUpon>Model_set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Line.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Line.Designer.cs">
+      <DependentUpon>Line.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmMainMenu.Designer.cs">
+      <DependentUpon>fmMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lot_direct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lot_direct.Designer.cs">
+      <DependentUpon>Lot_direct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Fail_prod.resx">
+      <DependentUpon>Fail_prod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finish_m.resx">
+      <DependentUpon>Finish_m.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Hw_list.resx">
+      <DependentUpon>Hw_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Line_set.resx">
+      <DependentUpon>Line_set.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lot_list.resx">
+      <DependentUpon>Lot_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User_set.resx">
+      <DependentUpon>User_set.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model_set.resx">
+      <DependentUpon>Model_set.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Line.resx">
+      <DependentUpon>Line.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmMainMenu.resx">
+      <DependentUpon>fmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lot_direct.resx">
+      <DependentUpon>Lot_direct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P20190531_161957389_0A91BB07-5575-4619-9BEF-8DB869B91863.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_power_settings_new_black_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
