@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2675 -->
+<html lang="ko-KR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://www.hardcopyworld.com/ngine/aduino/xmlrpc.php">
+
+<title>ESP8266 - ARDUINO IDE 예제 (WiFi 통신) | Hard Copy Arduino</title>
+
+<!-- All in One SEO Pack 2.7.2 by Michael Torbert of Semper Fi Web Design[269,342] -->
+<link rel="author" href="https://plus.google.com/u/0/communities/108409051233337234814">
+<meta name="keywords" content="통신 모듈">
+
+<link rel="canonical" href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2675">
+			<script type="text/javascript">
+				window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+				ga('create', 'UA-45609223-1', 'auto');
+				// Plugins
+				
+				ga('send', 'pageview');
+			</script>
+			<script async="" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/analytics.js.다운로드"></script>
+			<!-- /all in one seo pack -->
+<link rel="dns-prefetch" href="http://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Hard Copy Arduino » 피드" href="http://www.hardcopyworld.com/ngine/aduino/index.php/feed">
+<link rel="alternate" type="application/rss+xml" title="Hard Copy Arduino » 댓글 피드" href="http://www.hardcopyworld.com/ngine/aduino/index.php/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="Hard Copy Arduino » ESP8266 – ARDUINO IDE 예제 (WiFi 통신) 댓글 피드" href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2675/feed">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.hardcopyworld.com\/ngine\/aduino\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.9"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/wp-emoji-release.min.js.다운로드" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="crayon-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/crayon.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-theme-classic-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/classic.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-monaco-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/monaco.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/fontawesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdm-bootstrap-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/bootstrap.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdm-front-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/front.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/dashicons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="post-views-counter-frontend-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/frontend.css" type="text/css" media="all">
+<link rel="stylesheet" id="islemag-bootstrap-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="islemag-style-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="islemag-fontawesome-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="islemag-fonts-css" href="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/css" type="text/css" media="all">
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/jquery.js.다운로드"></script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/jquery-migrate.min.js.다운로드"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"http:\/\/www.hardcopyworld.com\/ngine\/aduino\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"%s\ub85c \ubcf5\uc0ac, %s\ub85c \ubd99\uc5ec\ub123\uae30","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/crayon.min.js.다운로드"></script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/bootstrap.min.js.다운로드"></script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/front.js.다운로드"></script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/chosen.jquery.min.js.다운로드"></script>
+<meta name="generator" content="WordPress Download Manager 2.9.76">
+<link rel="https://api.w.org/" href="http://www.hardcopyworld.com/ngine/aduino/index.php/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.hardcopyworld.com/ngine/aduino/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.hardcopyworld.com/ngine/aduino/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="ESP8266 – Arduino IDE 예제 (GPIO 제어)" href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670">
+<link rel="next" title="Home-Assistant 설치와 활용" href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2685">
+<link rel="shortlink" href="http://www.hardcopyworld.com/ngine/aduino/?p=2675">
+<link rel="alternate" type="application/json+oembed" href="http://www.hardcopyworld.com/ngine/aduino/index.php/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.hardcopyworld.com%2Fngine%2Faduino%2Findex.php%2Farchives%2F2675">
+<link rel="alternate" type="text/xml+oembed" href="http://www.hardcopyworld.com/ngine/aduino/index.php/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.hardcopyworld.com%2Fngine%2Faduino%2Findex.php%2Farchives%2F2675&amp;format=xml">
+
+        <script>
+            var wpdm_site_url = 'http://www.hardcopyworld.com/ngine/aduino/';
+            var wpdm_home_url = 'http://www.hardcopyworld.com/ngine/aduino/';
+            var ajax_url = 'http://www.hardcopyworld.com/ngine/aduino/wp-admin/admin-ajax.php';
+            var wpdm_ajax_url = 'http://www.hardcopyworld.com/ngine/aduino/wp-admin/admin-ajax.php';
+            var wpdm_ajax_popup = '0';
+        </script>
+
+
+        <style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url("http://www.hardcopyworld.com/ngine/aduino/wp-content/themes/islemag/img/islemag-background.jpg"); background-position: center top; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
+</style>
+<style type="text/css">.title-border span { color: #454545 }.post .entry-title, .post h1, .post h2, .post h3, .post h4, .post h5, .post h6, .post h1 a, .post h2 a, .post h3 a, .post h4 a, .post h5 a, .post h6 a { color: #454545 }.page-header h1 { color: #454545 }.sidebar .widget li a, .islemag-content-right, .islemag-content-right a, .post .entry-content, .post .entry-content p,
+		 .post .entry-cats, .post .entry-cats a, .post .entry-comments.post .entry-separator, .post .entry-footer a,
+		 .post .entry-footer span, .post .entry-footer .entry-cats, .post .entry-footer .entry-cats a, .author-content { color: ##454545}.islemag-top-container .entry-block .entry-overlay-meta .entry-title a { color: #ffffff }.islemag-top-container .entry-overlay-meta .entry-overlay-date { color: #ffffff }.islemag-top-container .entry-overlay-meta .entry-separator { color: #ffffff }.islemag-top-container .entry-overlay-meta > a { color: #ffffff }.home.blog .islemag-content-left .entry-title a, .blog-related-carousel .entry-title a { color: #454545 }.islemag-content-left .entry-meta, .islemag-content-left .blog-related-carousel .entry-content p,
+		.islemag-content-left .blog-related-carousel .entry-cats .entry-label, .islemag-content-left .blog-related-carousel .entry-cats a,
+		.islemag-content-left .blog-related-carousel > a, .islemag-content-left .blog-related-carousel .entry-footer > a { color: #454545 }.islemag-content-left .entry-meta .entry-separator { color: #454545 }.islemag-content-left .entry-meta a { color: #454545 }.islemag-content-left .islemag-template3 .col-sm-6 .entry-overlay p { color: #454545 }</style></head>
+
+<body class="post-template-default single single-post postid-2675 single-format-standard custom-background group-blog">
+		<div id="wrapper" class="boxed">
+
+		<header id="header" class="site-header" role="banner">
+						<div class="navbar-top container-fluid">
+								<div class="navbar-left social-icons">
+									</div>
+
+				<button type="button" class="navbar-btn"><i class="fa fa-search"></i></button>
+
+				<div class="navbar-right">
+					<div id="navbar" class="navbar">
+						<nav id="top-navigation" class="navigation top-navigation" role="navigation">
+							<button class="menu-toggle">메뉴</button>
+							<a class="screen-reader-text skip-link" href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2675#content" title="콘텐츠로 건너뛰기">콘텐츠로 건너뛰기</a>
+							<div id="primary-menu" class="nav-menu"><ul>
+<li class="page_item page-item-52"><a href="http://www.hardcopyworld.com/ngine/aduino/">Home page</a></li>
+</ul></div>
+						</nav><!-- #site-navigation -->
+					</div><!-- #navbar -->
+				</div>
+				<div class="navbar-white top" id="header-search-form" style="margin-top: 15px;">
+					
+<form class="navbar-form" role="search" action="http://www.hardcopyworld.com/ngine/aduino/">
+	<span class="screen-reader-text">검색:</span>
+	<input type="search" id="s" name="s" class="form-control" placeholder="여기서 검색..." title="검색:">
+	<button type="submit" title="Search"><i class="fa fa-search"></i></button>
+</form>
+				</div><!-- End #header-search-form -->
+							</div>
+
+			<div class="header-content clearfix">
+								<div class="col-md-3 col-sm-3 col-xs-12 navbar-brand">
+					<div class="header-logo-wrap text-header"><p itemprop="headline" id="site-title" class="site-title"><a href="http://www.hardcopyworld.com/ngine/aduino/" title="Hard Copy Arduino" rel="home">Hard Copy Arduino</a></p><p itemprop="description" id="site-description" class="site-description"></p></div>				</div>
+
+				<div class="col-md-9 col-sm-9 col-xs-12 islemag-banner">
+					<div id="media_image-3" class="widget widget_media_image"><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_offline"><img width="250" height="150" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/workshop_banner_250_150.jpg" class="image wp-image-3039  attachment-full size-full" alt="" style="max-width: 100%; height: auto;" srcset="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2018/07/workshop_banner_250_150.jpg 250w, http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2018/07/workshop_banner_250_150-110x66.jpg 110w" sizes="(max-width: 250px) 100vw, 250px"></a></div>				</div>
+							</div>
+
+									<div id="navbar" class="navbar     islemag-sticky sticky-menu">
+				<nav id="site-navigation" class="navigation main-navigation" role="navigation">
+					<button class="menu-toggle">메뉴</button>
+					<a class="screen-reader-text skip-link" href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2675#content" title="콘텐츠로 건너뛰기">콘텐츠로 건너뛰기</a>
+					<div class="menu-top-navigation-container"><ul id="primary-menu" class="nav-menu"><li id="menu-item-55" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-55"><a href="http://www.hardcopyworld.com/">Home</a></li>
+<li id="menu-item-3037" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-3037"><a href="http://www.hardcopyworld.com/ngine/aduino/">아두이노, 사물인터넷</a></li>
+<li id="menu-item-3038" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3038"><a href="http://www.hardcopyworld.com/ngine/android/">안드로이드</a></li>
+<li id="menu-item-2074" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2074"><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=qna">QnA 게시판</a></li>
+<li id="menu-item-3019" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3019"><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_offline">오프라인 강좌</a></li>
+</ul></div>				</nav><!-- #site-navigation -->
+			</div><!-- #navbar -->
+			
+
+		</header><!-- End #header -->
+				<div id="content" class="site-content">
+
+		<div id="primary" class="content-area">
+						<div class="islemag-content-left col-md-9">
+				<main id="main" class="site-main" role="main">
+
+				
+<div class="row">
+	<div class="col-md-12">
+
+		<article id="post-2675" class="entry single post-2675 post type-post status-publish format-standard has-post-thumbnail hentry category-communication">
+								<div class="entry-media">
+						<figure>
+							<img width="390" height="200" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/esp8266_title.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/01/esp8266_title.jpg 390w, http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/01/esp8266_title-300x154.jpg 300w" sizes="(max-width: 390px) 100vw, 390px">						</figure>
+					</div><!-- End .entry-media -->
+					
+					<span class="entry-date">10			<span>2̛�</span></span>
+					<h1 class="entry-title">ESP8266 – ARDUINO IDE 예제 (WiFi 통신)</h1>
+			<div class="entry-content">
+				<p>&nbsp;</p>
+<p>본 문서는 아두이노 개발환경(IDE)를 이용해서 ESP8266 모듈을 다루는 예제들을 포함하고 있습니다.</p>
+<ul>
+<li><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_esp&amp;wr_id=32" target="_blank">ESP8266 – ARDUINO IDE 개발환경 설치</a></li>
+<li><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_esp&amp;wr_id=43" target="_blank">ESP8266 – ARDUINO IDE 예제 (GPIO 제어)</a></li>
+<li><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_esp&amp;wr_id=44" target="_blank">ESP8266 – ARDUINO IDE 예제 (WiFi 통신)</a></li>
+<li><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_esp&amp;wr_id=54" target="_blank">ESP8266 – ARDUINO IDE 예제 (MQTT)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>ESP8266 Arduino IDE 는 ESP8266 모듈의 펌웨어를 제작하는 가장 간단한 방법입니다.&nbsp;ESP8266 Arduino IDE 개발환경을 설치하는 방법은 아래 문서를 참고하세요.</p>
+<ul>
+<li><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_esp&amp;wr_id=32" target="_blank">http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_esp&amp;wr_id=32</a></li>
+</ul>
+<p>ESP8266을 위한 다양한 예제가 이미 갖추어져 있습니다. [Arduino IDE – File – Examples – ESP8266xxx] 예제들을 보면 다양한 기능들을 구현하는 방법이 나옵니다. 여기서 소개하는 예제는 NodeMCU V1 (ESP12E 기반) 보드에서 동작 테스트를 한 예제들입니다. 그리고 소개를 위해 예제 코드에 약간의 변형이 가해졌습니다.</p>
+<p>NodeMCU 보드는 아래와 같이 핀이 배치되어 있으며, 펌웨어 업로드를 위해 필요한 FTDI 모듈을 내장하고 있어서 PC에 USB 연결만 하면 사용할 수 있습니다.</p>
+<p><a href="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/02/Node-MCU-Pin-Out-Diagram1.png"><img class="alignnone size-medium wp-image-2631" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/Node-MCU-Pin-Out-Diagram1-300x199.png" alt="Node-MCU-Pin-Out-Diagram1" width="300" height="199" srcset="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/02/Node-MCU-Pin-Out-Diagram1-300x199.png 300w, http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/02/Node-MCU-Pin-Out-Diagram1-1024x678.png 1024w, http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/02/Node-MCU-Pin-Out-Diagram1-90x60.png 90w, http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/02/Node-MCU-Pin-Out-Diagram1.png 1060w" sizes="(max-width: 300px) 100vw, 300px"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>WiFi 통신 기본</h2>
+<p>&nbsp;</p>
+<p>WiFi 통신을 위한 기초 예제입니다. 아래에서 소스코드를 구하실 수 있습니다.</p>
+<ul>
+<li><a href="https://github.com/godstale/ESP8266_Arduino_IDE_Example/blob/master/example/WiFiClientEvents/WiFiClientEvents.ino" target="_blank">https://github.com/godstale/ESP8266_Arduino_IDE_Example/blob/master/example/WiFiClientEvents/WiFiClientEvents.ino</a></li>
+</ul>
+<p>이 소스코드는 단순히 ESP8266 모듈을 공유기에 연결만 시킵니다. 그리고 그 과정에서 발생되는 WiFi 이벤트를 받아서 처리하는 방법을 설명합니다.</p>
+<p>테스트를 위해서는 파일 상단에 공유기(AP)의 SSID, 비밀번호를 지정해줘야 합니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35b65474146616" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">const char *ssid = "your_ssid";
+const char *password = "your_pass";</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35b65474146616-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b65474146616-2">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35b65474146616-1"><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-v">ssid</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"your_ssid"</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b65474146616-2"><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-v">password</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"your_pass"</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0019 seconds] -->
+<p>소스코드의 setup() 초기화 함수를 보겠습니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35b76474455781" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void setup() {
+    Serial.begin(115200);
+
+    // delete old config
+    WiFi.disconnect(true);
+    delay(1000);
+    WiFi.onEvent(WiFiEvent);
+    WiFi.begin(ssid, password);
+    Serial.println("Wait for WiFi... ");
+}</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35b76474455781-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b76474455781-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35b76474455781-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b76474455781-4">4</div><div class="crayon-num" data-line="crayon-5c14978d35b76474455781-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b76474455781-6">6</div><div class="crayon-num" data-line="crayon-5c14978d35b76474455781-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b76474455781-8">8</div><div class="crayon-num" data-line="crayon-5c14978d35b76474455781-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b76474455781-10">10</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35b76474455781-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">setup</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b76474455781-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">begin</span><span class="crayon-sy">(</span><span class="crayon-cn">115200</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35b76474455781-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b76474455781-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">// delete old config</span></div><div class="crayon-line" id="crayon-5c14978d35b76474455781-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WiFi</span><span class="crayon-sy">.</span><span class="crayon-e">disconnect</span><span class="crayon-sy">(</span><span class="crayon-t">true</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b76474455781-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">delay</span><span class="crayon-sy">(</span><span class="crayon-cn">1000</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35b76474455781-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WiFi</span><span class="crayon-sy">.</span><span class="crayon-e">onEvent</span><span class="crayon-sy">(</span><span class="crayon-v">WiFiEvent</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b76474455781-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WiFi</span><span class="crayon-sy">.</span><span class="crayon-e">begin</span><span class="crayon-sy">(</span><span class="crayon-v">ssid</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">password</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35b76474455781-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-s">"Wait for WiFi... "</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b76474455781-10"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0033 seconds] -->
+<p>WiFi 가 ESP8266 core에서 제공하는 통신 기능들에 접근할 수 있는&nbsp;인스턴스입니다. WiFi.onEvent() 함수를 이용해 이벤트가 발생했을 때 실행될 콜백함수를 지정할 수 있습니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35b81244245277" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">WiFi.onEvent(WiFiEvent);</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35b81244245277-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35b81244245277-1"><span class="crayon-v">WiFi</span><span class="crayon-sy">.</span><span class="crayon-e">onEvent</span><span class="crayon-sy">(</span><span class="crayon-v">WiFiEvent</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0008 seconds] -->
+<p>위 처럼 지정되어 있으므로 이벤트가 발생하면&nbsp;WiFiEvent() 함수가 호출됩니다. 이벤트가 발생했을 때 하고 싶은 작업을 WiFiEvent() 함수에 구현하면 됩니다.</p>
+<p>사용가능한 함수는 ESP8266WiFiType.h 에서 확인하실 수 있습니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35b8a245000869" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;"> typedef enum {
+    WIFI_EVENT_STAMODE_CONNECTED = 0,
+    WIFI_EVENT_STAMODE_DISCONNECTED,
+    WIFI_EVENT_STAMODE_AUTHMODE_CHANGE,
+    WIFI_EVENT_STAMODE_GOT_IP,
+    WIFI_EVENT_STAMODE_DHCP_TIMEOUT,
+    WIFI_EVENT_SOFTAPMODE_STACONNECTED,
+    WIFI_EVENT_SOFTAPMODE_STADISCONNECTED,
+    WIFI_EVENT_SOFTAPMODE_PROBEREQRECVED,
+    WIFI_EVENT_MAX
+} WiFiEvent_t;</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35b8a245000869-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b8a245000869-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35b8a245000869-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b8a245000869-4">4</div><div class="crayon-num" data-line="crayon-5c14978d35b8a245000869-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b8a245000869-6">6</div><div class="crayon-num" data-line="crayon-5c14978d35b8a245000869-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b8a245000869-8">8</div><div class="crayon-num" data-line="crayon-5c14978d35b8a245000869-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b8a245000869-10">10</div><div class="crayon-num" data-line="crayon-5c14978d35b8a245000869-11">11</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35b8a245000869-1"><span class="crayon-h"> </span><span class="crayon-r">typedef</span><span class="crayon-h"> </span><span class="crayon-t">enum</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b8a245000869-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WIFI_EVENT_STAMODE_CONNECTED</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5c14978d35b8a245000869-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WIFI_EVENT_STAMODE_DISCONNECTED</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b8a245000869-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WIFI_EVENT_STAMODE_AUTHMODE_CHANGE</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5c14978d35b8a245000869-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WIFI_EVENT_STAMODE_GOT_IP</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b8a245000869-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WIFI_EVENT_STAMODE_DHCP_TIMEOUT</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5c14978d35b8a245000869-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WIFI_EVENT_SOFTAPMODE_STACONNECTED</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b8a245000869-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WIFI_EVENT_SOFTAPMODE_STADISCONNECTED</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5c14978d35b8a245000869-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WIFI_EVENT_SOFTAPMODE_PROBEREQRECVED</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b8a245000869-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WIFI_EVENT</span><span class="crayon-sy">_</span>MAX</div><div class="crayon-line" id="crayon-5c14978d35b8a245000869-11"><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-v">WiFiEvent_t</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0028 seconds] -->
+<p>보시다시피 AP에 연결된 후 IP를 받아오는 과정까지 이벤트를 발생합니다.</p>
+<p>SSID, 패스워드를 이용해&nbsp;AP에 연결하는 함수는 setup() 안에 있는&nbsp;WiFi.<span class="pl-c1">begin</span>() 입니다.</p>
+<ul>
+<li>WiFi.<span class="pl-c1">begin</span>(ssid, password);</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>WiFi Client (HTTP Request)</h2>
+<p>&nbsp;</p>
+<p>이번 예제는 ESP8266 모듈을 공유기에 연결하고, 외부의 HTTP 서버에 요청을 보내서 결과(HTML 또는 파일)를 받아오는 예제입니다.</p>
+<ul>
+<li><a href="https://github.com/godstale/ESP8266_Arduino_IDE_Example/blob/master/example/WiFiClient/WiFiClient.ino" target="_blank">https://github.com/godstale/ESP8266_Arduino_IDE_Example/blob/master/example/WiFiClient/WiFiClient.ino</a></li>
+</ul>
+<p>이 문서의 예제들은 모두 아래 SSID, 패스워드를 자신의 환경에 맞게 지정해줘야 동작합니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35b94698165201" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">const char *ssid = "your_ssid";
+const char *password = "your_pass";</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35b94698165201-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35b94698165201-2">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35b94698165201-1"><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-v">ssid</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"your_ssid"</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35b94698165201-2"><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-v">password</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"your_pass"</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0014 seconds] -->
+<p>이번 예제에서 HTTP 통신을 통해 받아올 서버도 미리 지정해주세요.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35b9d796087883" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">const char* host = "hardcopyworld.com";</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35b9d796087883-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35b9d796087883-1"><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-v">host</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"hardcopyworld.com"</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0009 seconds] -->
+<p>&nbsp;</p>
+<p>먼저 setup() 함수의 내용부터 보겠습니다. 주요 내용만 뽑아내면 아래와 같습니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35ba6746446932" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void setup() {
+  ......
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  ......
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35ba6746446932-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35ba6746446932-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35ba6746446932-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35ba6746446932-4">4</div><div class="crayon-num" data-line="crayon-5c14978d35ba6746446932-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35ba6746446932-6">6</div><div class="crayon-num" data-line="crayon-5c14978d35ba6746446932-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35ba6746446932-8">8</div><div class="crayon-num" data-line="crayon-5c14978d35ba6746446932-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35ba6746446932-10">10</div><div class="crayon-num" data-line="crayon-5c14978d35ba6746446932-11">11</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35ba6746446932-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">setup</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35ba6746446932-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5c14978d35ba6746446932-3"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">WiFi</span><span class="crayon-sy">.</span><span class="crayon-e">begin</span><span class="crayon-sy">(</span><span class="crayon-v">ssid</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">password</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35ba6746446932-4"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">while</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">WiFi</span><span class="crayon-sy">.</span><span class="crayon-e">status</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">!=</span><span class="crayon-h"> </span><span class="crayon-v">WL_CONNECTED</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5c14978d35ba6746446932-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">delay</span><span class="crayon-sy">(</span><span class="crayon-cn">500</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35ba6746446932-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">print</span><span class="crayon-sy">(</span><span class="crayon-s">"."</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35ba6746446932-7"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35ba6746446932-8"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5c14978d35ba6746446932-9"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-s">"IP address: "</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35ba6746446932-10"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-v">WiFi</span><span class="crayon-sy">.</span><span class="crayon-e">localIP</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35ba6746446932-11"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0044 seconds] -->
+<p>WiFi.<span class="pl-c1">begin</span>(ssid, password) 함수를 이용해서 공유기에 연결합니다. 이후 이어지는 while() 반복문은 공유기에 접속할 때까지 기다리기 위해 사용했습니다.</p>
+<p>공유기에 접속되면 아래 코드처럼 Serial 통신으로 할당받은 IP를 출력해 주는 것이 편리합니다.</p>
+<ul>
+<li>Serial.<span class="pl-c1">println</span>(WiFi.<span class="pl-c1">localIP</span>());</li>
+</ul>
+<p>&nbsp;</p>
+<p>loop() 반복함수에서 주기적으로(약 5초 간격) HTTP 요청을 서버로 보냅니다. 그리고 받은 결과를 Serial 통신으로 출력해줍니다. 주요 코드만 발췌하면 아래와 같습니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35bb0176986480" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void loop() {
+  delay(5000);
+  ......
+  // Use WiFiClient class to create TCP connections
+  WiFiClient client;
+  const int httpPort = 80;
+  if (!client.connect(host, httpPort)) {
+    Serial.println("connection failed");
+    return;
+  }
+  // We now create a URI for the request
+  String url = "/";
+  // This will send the request to the server
+  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+               "Host: " + host + "\r\n" + 
+               "Connection: close\r\n\r\n");
+  int timeout = millis() + 5000;
+  while (client.available() == 0) {
+    if (timeout - millis() &lt; 0) {
+      Serial.println("&gt;&gt;&gt; Client Timeout !");
+      client.stop();
+      return;
+    }
+  }
+  
+  // Read all the lines of the reply from server and print them to Serial
+  while(client.available()){
+    String line = client.readStringUntil('\r');
+    Serial.print(line);
+  }
+}</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-4">4</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-6">6</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-8">8</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-10">10</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-12">12</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-14">14</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-16">16</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-18">18</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-20">20</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-22">22</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-24">24</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-26">26</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-28">28</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-29">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bb0176986480-30">30</div><div class="crayon-num" data-line="crayon-5c14978d35bb0176986480-31">31</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35bb0176986480-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">loop</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">delay</span><span class="crayon-sy">(</span><span class="crayon-cn">5000</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-3"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-4"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-c">// Use WiFiClient class to create TCP connections</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-5"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">WiFiClient </span><span class="crayon-v">client</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-6"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">httpPort</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">80</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-7"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-o">!</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">connect</span><span class="crayon-sy">(</span><span class="crayon-v">host</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">httpPort</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-s">"connection failed"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-10"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-11"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-c">// We now create a URI for the request</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-12"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-t">String</span><span class="crayon-h"> </span><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"/"</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-13"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-c">// This will send the request to the server</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-14"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">print</span><span class="crayon-sy">(</span><span class="crayon-t">String</span><span class="crayon-sy">(</span><span class="crayon-s">"GET "</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-s">" HTTP/1.1\r\n"</span><span class="crayon-h"> </span><span class="crayon-o">+</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-s">"Host: "</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-v">host</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-s">"\r\n"</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-s">"Connection: close\r\n\r\n"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-17"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">timeout</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">millis</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-cn">5000</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-18"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">while</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">available</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">==</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">timeout</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-h"> </span><span class="crayon-e">millis</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&lt;</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-20"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-s">"&gt;&gt;&gt; Client Timeout !"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">stop</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-23"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-24"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-25"><span class="crayon-h">&nbsp;&nbsp;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-26"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-c">// Read all the lines of the reply from server and print them to Serial</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-27"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">while</span><span class="crayon-sy">(</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">available</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-28"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">String</span><span class="crayon-h"> </span><span class="crayon-v">line</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">readStringUntil</span><span class="crayon-sy">(</span><span class="crayon-s">'\r'</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-29"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">print</span><span class="crayon-sy">(</span><span class="crayon-v">line</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bb0176986480-30"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5c14978d35bb0176986480-31"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0113 seconds] -->
+<p>&nbsp;</p>
+<p>가장 먼저 나오는 WiFiClient 클래스는 TCP 연결을 만들기 위해 사용합니다. host와 port 를 지정하면 해당 서버에 TCP 연결을 만듭니다. 이때 사용되는 host 변수에는 도메인 이름 [hardcopyworld.com] 이 사용되어야 합니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35bba040762820" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">  WiFiClient client;
+  const int httpPort = 80;
+  if (!client.connect(host, httpPort)) {
+    Serial.println("connection failed");
+    return;
+  }</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35bba040762820-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bba040762820-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35bba040762820-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bba040762820-4">4</div><div class="crayon-num" data-line="crayon-5c14978d35bba040762820-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bba040762820-6">6</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35bba040762820-1"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">WiFiClient </span><span class="crayon-v">client</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bba040762820-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">httpPort</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">80</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bba040762820-3"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-o">!</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">connect</span><span class="crayon-sy">(</span><span class="crayon-v">host</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">httpPort</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bba040762820-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-s">"connection failed"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bba040762820-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bba040762820-6"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0026 seconds] -->
+<p>&nbsp;</p>
+<p>TCP 연결이 성공하면 HTTP Request 형식에 맞게 내용을 작성해서 전송하면 됩니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35bc3574128221" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+               "Host: " + host + "\r\n" + 
+               "Connection: close\r\n\r\n");</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35bc3574128221-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bc3574128221-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35bc3574128221-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35bc3574128221-1"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">print</span><span class="crayon-sy">(</span><span class="crayon-t">String</span><span class="crayon-sy">(</span><span class="crayon-s">"GET "</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-s">" HTTP/1.1\r\n"</span><span class="crayon-h"> </span><span class="crayon-o">+</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bc3574128221-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-s">"Host: "</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-v">host</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-s">"\r\n"</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c14978d35bc3574128221-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-s">"Connection: close\r\n\r\n"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0021 seconds] -->
+<p>여기서 url 변수는 host 도메인 내부에서 내가 원하는 리소스까지의 경로입니다. 만약 [http://www.google.com/my/resource.html] 에 요청을 보내고 싶다면 host는&nbsp;[http://www.google.com] 이 됩니다. url 은&nbsp;[/my/resource.html] 로 지정해줘야 합니다.</p>
+<p>만약 http://google.com 메인 페이지의 내용을 얻고 싶다면 host는 [http://google.com], url은 [/] 로 지정해주면 됩니다.</p>
+<p>&nbsp;</p>
+<p>client.print() 함수를 이용해서 요청이 전송되면 일정 시간 후 응답이 옵니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35bcd199057034" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">  while (client.available() == 0) {
+    if (timeout - millis() &lt; 0) {
+      Serial.println("&gt;&gt;&gt; Client Timeout !");
+      client.stop();
+      return;
+    }
+  }</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35bcd199057034-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bcd199057034-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35bcd199057034-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bcd199057034-4">4</div><div class="crayon-num" data-line="crayon-5c14978d35bcd199057034-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bcd199057034-6">6</div><div class="crayon-num" data-line="crayon-5c14978d35bcd199057034-7">7</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35bcd199057034-1"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">while</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">available</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">==</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bcd199057034-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">timeout</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-h"> </span><span class="crayon-e">millis</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&lt;</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5c14978d35bcd199057034-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-s">"&gt;&gt;&gt; Client Timeout !"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bcd199057034-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">stop</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bcd199057034-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bcd199057034-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5c14978d35bcd199057034-7"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0031 seconds] -->
+<p>client 의 상태를 체크해서 응답이 왔는지 확인한 코드입니다.</p>
+<p>&nbsp;</p>
+<p>HTTP Response가 도착하면 아래 코드로 한 라인씩 읽어 Serial 통신으로 출력할 수 있습니다. 특별한 기능을 만들고 싶을 때 이 부분을 적절히 수정하면 됩니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35bd7360059306" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">  while(client.available()){
+    String line = client.readStringUntil('\r');
+    Serial.print(line);
+  }</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35bd7360059306-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bd7360059306-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35bd7360059306-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bd7360059306-4">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35bd7360059306-1"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-st">while</span><span class="crayon-sy">(</span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">available</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bd7360059306-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-t">String</span><span class="crayon-h"> </span><span class="crayon-v">line</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">client</span><span class="crayon-sy">.</span><span class="crayon-e">readStringUntil</span><span class="crayon-sy">(</span><span class="crayon-s">'\r'</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bd7360059306-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Serial</span><span class="crayon-sy">.</span><span class="crayon-e">print</span><span class="crayon-sy">(</span><span class="crayon-v">line</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bd7360059306-4"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0020 seconds] -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Web server</h2>
+<p>&nbsp;</p>
+<p>이번에는 ESP8266 모듈을 웹 서버로 만드는 방법입니다. 이 방법을 사용하면 외부 장치에서 브라우저로 ESP8266 모듈에 접속해서 HTML 페이지를 볼 수 있습니다. 소스코드는 아래에서…</p>
+<ul>
+<li><a href="https://github.com/godstale/ESP8266_Arduino_IDE_Example/blob/master/example/AdvancedWebServer/AdvancedWebServer.ino" target="_blank">https://github.com/godstale/ESP8266_Arduino_IDE_Example/blob/master/example/AdvancedWebServer/AdvancedWebServer.ino</a></li>
+</ul>
+<p>테스트 전 GPIO13 (D7) 핀에 LED를 하나 연결해두세요. 외부에서 접속 요청이 오면 LED가 켜지도록 만들겁니다.</p>
+<p>&nbsp;</p>
+<p>파일 상단에서 공유기 설정을 해줘야 합니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35bf4585963848" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">const char *ssid = "your_ssid";
+const char *password = "your_pass";
+ESP8266WebServer server ( 80 );
+const int led = 13;</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35bf4585963848-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bf4585963848-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35bf4585963848-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bf4585963848-4">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35bf4585963848-1"><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-v">ssid</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"your_ssid"</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bf4585963848-2"><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-v">password</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"your_pass"</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bf4585963848-3"><span class="crayon-e">ESP8266WebServer </span><span class="crayon-e">server</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-cn">80</span><span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bf4585963848-4"><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-v">led</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">13</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0023 seconds] -->
+<p>ESP8266WebServer 클래스에 웹 서버로 동작하기 위한 기능들이 들어 있습니다. 80번 포트로 HTTP 통신을 하도록 지정되어 있습니다. 일반적인 웹 서버의 통신 포트로 브라우저에서 특별히 지정하지 않으면 80번&nbsp;포트를 사용합니다.</p>
+<p>&nbsp;</p>
+<p>setup 함수의 주요 코드부터 보겠습니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35bff030817344" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void setup ( void ) {
+	......
+	WiFi.begin ( ssid, password );
+	......
+	server.on ( "/", handleRoot );
+	server.on ( "/test.svg", drawGraph );
+	server.on ( "/inline", []() {
+		server.send ( 200, "text/plain", "this works as well" );
+	} );
+	server.onNotFound ( handleNotFound );
+	......
+	server.begin();
+	......
+}</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35bff030817344-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bff030817344-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35bff030817344-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bff030817344-4">4</div><div class="crayon-num" data-line="crayon-5c14978d35bff030817344-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bff030817344-6">6</div><div class="crayon-num" data-line="crayon-5c14978d35bff030817344-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bff030817344-8">8</div><div class="crayon-num" data-line="crayon-5c14978d35bff030817344-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bff030817344-10">10</div><div class="crayon-num" data-line="crayon-5c14978d35bff030817344-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bff030817344-12">12</div><div class="crayon-num" data-line="crayon-5c14978d35bff030817344-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35bff030817344-14">14</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35bff030817344-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">setup</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bff030817344-2"><span class="crayon-h">	</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5c14978d35bff030817344-3"><span class="crayon-h">	</span><span class="crayon-v">WiFi</span><span class="crayon-sy">.</span><span class="crayon-e">begin</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">ssid</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">password</span><span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bff030817344-4"><span class="crayon-h">	</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5c14978d35bff030817344-5"><span class="crayon-h">	</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">on</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-s">"/"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">handleRoot</span><span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bff030817344-6"><span class="crayon-h">	</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">on</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-s">"/test.svg"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">drawGraph</span><span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bff030817344-7"><span class="crayon-h">	</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">on</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-s">"/inline"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bff030817344-8"><span class="crayon-h">		</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">send</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-cn">200</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"text/plain"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"this works as well"</span><span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bff030817344-9"><span class="crayon-h">	</span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bff030817344-10"><span class="crayon-h">	</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">onNotFound</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-i">handleNotFound</span><span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bff030817344-11"><span class="crayon-h">	</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bff030817344-12"><span class="crayon-h">	</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">begin</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35bff030817344-13"><span class="crayon-h">	</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35bff030817344-14"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0069 seconds] -->
+<p>WiFi.begin() 함수로 공유기에 접속합니다. 이후 공유기 접속을 기다리고 할당받은 IP 주소를 Serial 통신으로 출력해줍니다.</p>
+<p>sever.on() 함수부터 본격적인 서버설정 코드입니다. 코드에서는 3개의 URL에 대한 콜백함수를 지정해 줬습니다.</p>
+<ul>
+<li>http://192.168.x.x/ : 서버의 루트[/] 경로에 대한 요청은 handleRoot() 콜백함수가 처리</li>
+<li>http://192.168.x.x/inline : [/inline] 경로에 대한 요청은 인라인 함수가 처리 – [this works as well] 메시지를 전달</li>
+<li>http://192.168.x.x/test.svg : [/test.svg] 경로에 대한 접근은 drawGraph 콜백함수가 처리</li>
+</ul>
+<p>만약 위 경로에 해당되지 않는 요청이 올 경우는 handleNotFound() 콜백함수가 처리하도록 지정되어 있습니다.</p>
+<p>이상 서버 설정이 끝나면 아래 코드로 서버를 시작합니다.</p>
+<ul>
+<li>server.<span class="pl-c1">begin</span>();</li>
+</ul>
+<p>&nbsp;</p>
+<p>loop() 함수에서는 외부에서 접속 요청이 오는지 모니터링 하는 코드가 들어 있을 뿐입니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35c0b201005925" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void loop ( void ) {
+	server.handleClient();
+}</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35c0b201005925-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c0b201005925-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35c0b201005925-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35c0b201005925-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">loop</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c0b201005925-2"><span class="crayon-h">	</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">handleClient</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35c0b201005925-3"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0013 seconds] -->
+<p>&nbsp;</p>
+<p>요청이 들어오면 해당되는 콜백함수가 실행됩니다.&nbsp;<span class="pl-en">handleRoot</span>() 함수를 보시면 HTML 문자열을 client에게 전송하는 방법을 알 수 있습니다.</p>
+<p>조금 특이한게 drawGraph() 콜백함수인데,&nbsp;[/test.svg] 파일에 대한 요청이 오면 처리해주는 함수입니다. svg 는 벡터 이미지를 생성하기 위한 XML 파일입니다. svg 파일은 이미지 파일이 아니라 벡터 이미지를 그리기 위한 정보를 XML 텍스트로 담고 있습니다. 이 파일을 브라우저가 받으면 해당 정보대로 이미지를 그려 보여주기 때문에 마치 이미지 파일처럼 쓸 수 있습니다.</p>
+<p>그래서 drawGraph() 콜백함수는 일련의 XML 데이터를 문자열로 만들어 전송해줍니다. 브라우저에서&nbsp;[http://x.x.x.x/test.svg] 경로에 접속해보면 이미지가 보일껍니다.</p>
+<p>앞서 handleRoot() 콜백함수가 생성하는 HTML 코드에도&nbsp;[/test.svg] 이미지가 포함되어 있습니다. 따라서 브라우저는&nbsp;[/test.svg] 에 대한 요청도 추가로 해서 벡터 이미지가 포함된 화면을 그려줍니다.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Web Socket (server)</h2>
+<p>&nbsp;</p>
+<p>앞선 예제처럼 웹 서버는 외부에서의 요청이 있을때마다 HTML 페이지를 응답으로 보내줍니다. 그럼 브라우저는 HTML 페이지를 화면에 그려줍니다. 이 방식은 전통적인 웹의 동작 방식이지만 화면 혹은 서버에 데이터 변화가 있는지 확인하기 위해 주기적으로 웹 서버에 (같은 URL 주소에) 요청을 다시 보내고 화면을 다시 그려야 합니다. 그보다는 백그라운드로 서버와 브라우저가 연결되어 양방향으로 통신을 할 수 있다면 불필요한 HTTP 요청을 없애고 화면 일부만 업데이트가 가능할 것입니다.</p>
+<p>Web Socket 이 이런 자유로운 통신 방식을 제공해줍니다. HTML5에 포함된 Web Socket은 웹 서버와 클라이언트(브라우저의 JavaScript) 간 TCP/IP 연결을 유지하게 해 줌으로써 양방향 데이터 전송도 지원합니다. 브라우저가 업데이트를 확인하기위해 계속 서버를 체크하지 않고도 서버에서 오는 알림에 반응할 수 있는 push가 가능합니다.</p>
+<p>다만, 이 기능을 사용하기 위해서는 비교적 최신의 브라우저를 사용해야 하는 제약이 있습니다.&nbsp;그리고 당연히 서버에는 WebSocket 통신을 위한 준비가 되어 있어야 합니다. 이번 예제는 ESP8266 모듈에 웹 서버 + 웹 소켓 기능을 심을겁니다.</p>
+<p>&nbsp;</p>
+<p>웹 소켓 사용을 위해서는 라이브러리를 추가로 설치해줘야 합니다.</p>
+<ul>
+<li><a href="https://github.com/Links2004/arduinoWebSockets" target="_blank">https://github.com/Links2004/arduinoWebSockets</a></li>
+</ul>
+<p>그리고 불행히도, 현재(2016, 01 기준) 아두이노 IDE – 패키지 매니저로 배포되는 ESP8266 core 에는 라이브러리 지원에 필요한 코드가 일부 빠져있어서 에러가 발생합니다. 따라서 이번 예제를 테스트하기 위해서는 최신 ESP8266 core for Arduino 코드를 받아 수동으로 업데이트 해줘야 합니다.</p>
+<ul>
+<li><a href="https://github.com/esp8266/Arduino" target="_blank">https://github.com/esp8266/Arduino</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>웹 소켓 테스트 예제는 아래 링크에 있습니다.</p>
+<ul>
+<li><a href="https://github.com/godstale/ESP8266_Arduino_IDE_Example/tree/master/example/WebSocketServer_LEDcontrol" target="_blank">https://github.com/godstale/ESP8266_Arduino_IDE_Example/tree/master/example/WebSocketServer_LEDcontrol</a></li>
+</ul>
+<p>ino 스케치 파일의 상단에 보면 웹 서버, 웹 소켓을 위한 인스턴스가 선언되어 있습니다. 코드를 보면 아실 수 있듯 웹 서버와 웹소켓은 각각 80번, 81번 포트를 사용합니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35c19864402894" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; z-index: 4;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">ESP8266WebServer server = ESP8266WebServer(80);
+WebSocketsServer webSocket = WebSocketsServer(81);</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35c19864402894-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c19864402894-2">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35c19864402894-1"><span class="crayon-e">ESP8266WebServer </span><span class="crayon-v">server</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">ESP8266WebServer</span><span class="crayon-sy">(</span><span class="crayon-cn">80</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c19864402894-2"><span class="crayon-e">WebSocketsServer </span><span class="crayon-v">webSocket</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">WebSocketsServer</span><span class="crayon-sy">(</span><span class="crayon-cn">81</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0015 seconds] -->
+<p>setup() 함수부터 보겠습니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35c23321385522" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void setup() {
+    ......
+    WiFiMulti.addAP("your_ssid", "your_pass");
+    ......
+    webSocket.begin();
+    webSocket.onEvent(webSocketEvent);
+    ......
+    // handle index
+    server.on("/", []() {
+        // send index.html
+        server.send(200, "text/html", html_string);
+    });
+    server.begin();
+    ......
+}</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35c23321385522-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c23321385522-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35c23321385522-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c23321385522-4">4</div><div class="crayon-num" data-line="crayon-5c14978d35c23321385522-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c23321385522-6">6</div><div class="crayon-num" data-line="crayon-5c14978d35c23321385522-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c23321385522-8">8</div><div class="crayon-num" data-line="crayon-5c14978d35c23321385522-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c23321385522-10">10</div><div class="crayon-num" data-line="crayon-5c14978d35c23321385522-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c23321385522-12">12</div><div class="crayon-num" data-line="crayon-5c14978d35c23321385522-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c23321385522-14">14</div><div class="crayon-num" data-line="crayon-5c14978d35c23321385522-15">15</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35c23321385522-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">setup</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c23321385522-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5c14978d35c23321385522-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">WiFiMulti</span><span class="crayon-sy">.</span><span class="crayon-e">addAP</span><span class="crayon-sy">(</span><span class="crayon-s">"your_ssid"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"your_pass"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c23321385522-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5c14978d35c23321385522-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">webSocket</span><span class="crayon-sy">.</span><span class="crayon-e">begin</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c23321385522-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">webSocket</span><span class="crayon-sy">.</span><span class="crayon-e">onEvent</span><span class="crayon-sy">(</span><span class="crayon-v">webSocketEvent</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35c23321385522-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c23321385522-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">// handle index</span></div><div class="crayon-line" id="crayon-5c14978d35c23321385522-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">on</span><span class="crayon-sy">(</span><span class="crayon-s">"/"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c23321385522-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">// send index.html</span></div><div class="crayon-line" id="crayon-5c14978d35c23321385522-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">send</span><span class="crayon-sy">(</span><span class="crayon-cn">200</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"text/html"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">html_string</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c23321385522-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35c23321385522-13"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">server</span><span class="crayon-sy">.</span><span class="crayon-e">begin</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c23321385522-14"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5c14978d35c23321385522-15"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0054 seconds] -->
+<p>앞선 예제와는 조금 다르게 WiFiMulti.addAP() 함수로 공유기엔 연결 했습니다. 별 차이 없습니다만, 여러개의 AP를 등록해서 자동 연결되도록 관리해주는 방법입니다.</p>
+<p>이어서 웹 소켓을 초기화하고 웹 소켓 관련 이벤트(연결, 데이터수신, 종료)가 발생하면 처래해 줄 콜백 함수 webSocketEvent()를 등록 했습니다.</p>
+<p>웹 서버는 [http://192.168.x.x] 처럼 루트[/] 경로에 대한 요청이 올 때 html_string 텍스트를 전달하도록 해뒀습니다. html_string은 html.h 파일에 들어있는 HTML 코드입니다.</p>
+<p>HTML 코드에는 같은 서버의 81번 포트에 웹 소켓으로 연결하도록 자바스크립트 코드가 들어가 있습니다. 그리고 웹 소켓으로&nbsp;RGB LED 밝기를 조절하기 위한 코드가 들어가 있습니다.</p>
+<p>&nbsp;</p>
+<p>즉, 브라우저로 ESP8266 모듈에&nbsp;[http://192.168.x.x] 경로로 접속하면 HTML 코드를 다운로드 받아 브라우저가 화면을 그려줍니다. 그리고 백그라운드로 웹 소켓을&nbsp;ESP8266 모듈과 연결해둡니다. 브라우저 화면에는 3개의 슬라이드 바가 있는데, 바를 움직이면 웹 소켓으로&nbsp;ESP8266 모듈에 데이터를 전송합니다. 그럼&nbsp;ESP8266 모듈이 데이터를 받아 RGB LED 색상을 조절합니다.</p>
+<p>ESP8266 모듈이 데이터를 받으면 앞서 등록한&nbsp;webSocketEvent() 콜백 함수가 호출됩니다.</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-5c14978d35c2e281184407" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important; height: 18px !important; line-height: 18px !important; margin-top: -18px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="줄 번호 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="일반 코드 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="줄 바꿈 토글"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="코드를 펼쳐서 보기" style="display: none;"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="복사"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="새 창에서 보기"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t lenght) {
+    switch(type) {
+        case WStype_DISCONNECTED:
+            break;
+        case WStype_CONNECTED: {
+            ......
+            webSocket.sendTXT(num, "Connected");
+        }
+            break;
+        case WStype_TEXT:
+            USE_SERIAL.printf("[%u] get Text: %s\n", num, payload);
+            if(payload[0] == '#') {
+                // decode rgb data
+                uint32_t rgb = (uint32_t) strtol((const char *) &amp;payload[1], NULL, 16);
+                analogWrite(LED_RED,    ((rgb &gt;&gt; 16) &amp; 0xFF));
+                analogWrite(LED_GREEN,  ((rgb &gt;&gt; 8) &amp; 0xFF));
+                analogWrite(LED_BLUE,   ((rgb &gt;&gt; 0) &amp; 0xFF));
+            }
+            break;
+    }
+}</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-2">2</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-4">4</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-6">6</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-8">8</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-10">10</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-12">12</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-14">14</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-16">16</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-18">18</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-5c14978d35c2e281184407-20">20</div><div class="crayon-num" data-line="crayon-5c14978d35c2e281184407-21">21</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c14978d35c2e281184407-1"><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">webSocketEvent</span><span class="crayon-sy">(</span><span class="crayon-e">uint8_t </span><span class="crayon-v">num</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-e">WStype_t </span><span class="crayon-v">type</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-e ">uint8_t *</span><span class="crayon-h"> </span><span class="crayon-v">payload</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-e">size_t </span><span class="crayon-v">lenght</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">switch</span><span class="crayon-sy">(</span><span class="crayon-v">type</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">case</span><span class="crayon-h"> </span><span class="crayon-v">WStype_DISCONNECTED</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">break</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">case</span><span class="crayon-h"> </span><span class="crayon-v">WStype_CONNECTED</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">webSocket</span><span class="crayon-sy">.</span><span class="crayon-e">sendTXT</span><span class="crayon-sy">(</span><span class="crayon-v">num</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"Connected"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">break</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">case</span><span class="crayon-h"> </span><span class="crayon-v">WStype_TEXT</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">USE_SERIAL</span><span class="crayon-sy">.</span><span class="crayon-e">printf</span><span class="crayon-sy">(</span><span class="crayon-s">"[%u] get Text: %s\n"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">num</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">payload</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-v">payload</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">==</span><span class="crayon-h"> </span><span class="crayon-s">'#'</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-13"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c">// decode rgb data</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-14"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">uint32_t </span><span class="crayon-v">rgb</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">uint32_t</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-e">strtol</span><span class="crayon-sy">(</span><span class="crayon-sy">(</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-t">char</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-v">payload</span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">NULL</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">16</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">analogWrite</span><span class="crayon-sy">(</span><span class="crayon-v">LED_RED</span><span class="crayon-sy">,</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">(</span><span class="crayon-sy">(</span><span class="crayon-v">rgb</span><span class="crayon-h"> </span><span class="crayon-o">&gt;&gt;</span><span class="crayon-h"> </span><span class="crayon-cn">16</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-h"> </span><span class="crayon-cn">0xFF</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">analogWrite</span><span class="crayon-sy">(</span><span class="crayon-v">LED_GREEN</span><span class="crayon-sy">,</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">(</span><span class="crayon-sy">(</span><span class="crayon-v">rgb</span><span class="crayon-h"> </span><span class="crayon-o">&gt;&gt;</span><span class="crayon-h"> </span><span class="crayon-cn">8</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-h"> </span><span class="crayon-cn">0xFF</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">analogWrite</span><span class="crayon-sy">(</span><span class="crayon-v">LED_BLUE</span><span class="crayon-sy">,</span><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-sy">(</span><span class="crayon-sy">(</span><span class="crayon-v">rgb</span><span class="crayon-h"> </span><span class="crayon-o">&gt;&gt;</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-h"> </span><span class="crayon-cn">0xFF</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">break</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5c14978d35c2e281184407-20"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5c14978d35c2e281184407-21"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0106 seconds] -->
+<p>웹 소켓 연결 요청이 와서 연결되면&nbsp;<span class="pl-k">case</span> WStype_CONNECTED: 부분이 실행됩니다. 여기 코드를 보시면 웹 소켓으로 데이터를 보내는 방법을 알 수 있습니다. 아래 함수를 이용해서 상대방(브라우저)에게 데이터를 보냅니다.</p>
+<ul>
+<li>webSocket.<span class="pl-c1">sendTXT</span>(num, <span class="pl-s"><span class="pl-pds">“</span>Connected<span class="pl-pds">“</span></span>);</li>
+</ul>
+<p>위 함수는 특정 상대방에게 데이터를 보내는 방법입니다. 연결된 장치들 모두에게 데이터를 보낼 때는 아래 함수를 사용하면 됩니다.</p>
+<ul>
+<li>webSocket.<span class="pl-c1">broadcastTXT</span>(<span class="pl-s"><span class="pl-pds">“</span>Message from ESP8266!!<span class="pl-pds">“</span></span>);</li>
+</ul>
+<p><span class="pl-k">case</span> WStype_CONNECTED: 여기에 적힌 코드들은 웹 소켓으로 데이터를 받았을 때를 위한 것입니다. 데이터를 분석해서 RGB 색상값을 얻은 뒤, RGB LED 색을 조절하겠죠.</p>
+<p>&nbsp;</p>
+<p>이 외에도 2대의 ESP8266 모듈을 이용해 재밌는 실험을 해볼 수 있습니다. 하나의 ESP8266 모듈은 웹 소켓 서버로 만들고, 다른 한 대는 웹 소켓 클라이언트로 만들어서 두 대의&nbsp;ESP8266 모듈이 웹 소켓 통신을 하도록 하는겁니다.</p>
+<p>이 방법은 아래의 두 예제 파일을 참고해서 직접 만들어 보시길 바랍니다.</p>
+<ul>
+<li><a href="https://github.com/godstale/ESP8266_Arduino_IDE_Example/tree/master/example/WebSocketServer" target="_blank">ESP8266 웹 소켓 서버 예제</a></li>
+<li><a href="https://github.com/godstale/ESP8266_Arduino_IDE_Example/tree/master/example/WebSocketClient" target="_blank">ESP8266 웹 소켓 클라이언트 예제</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>HTTP 서버, 클라이언트 기능을 모두 활용하는 아래 예제도 참고하세요.</p>
+<ul>
+<li>https://github.com/amiravni/ESP8266-Water-Heater-Control/blob/master/TheDude.ino</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>PS.</strong></p>
+<ul>
+<li>ESP8266 Arduino IDE 안에는 WiFi 통신 관련된 다양한 예제가 마련되어 있습니다. [File – Example] 메뉴에서 예제를 불러와 테스트 해볼 수 있습니다. 하지만 최신 ESP8266 core 로 업데이트 한 이후, 많은 예제들이 오동작 하는 문제가 있었습니다.</li>
+<li>예제들의 동작이 확인 되면 문서에 추가하겠습니다.</li>
+<li>보다 파워풀한 WiFi 통신 기능을 테스트하고 싶다면 Sming framework 을 추천합니다. 개발환경 구축과정이 조금 복잡해도 아두이노 개발환경보다 더 안정적이고 유용합니다.</li>
+<li><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_esp&amp;wr_id=38" target="_blank">Sming framework 구축방법</a>, <a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_esp&amp;wr_id=43" target="_blank">Sming 을 이용한 예제들</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="post-views post-2675 entry-meta">
+			<span class="post-views-icon dashicons dashicons-chart-bar"></span>
+			<span class="post-views-label">Post Views: </span>
+			<span class="post-views-count">4,644</span>
+			</div>							</div><!-- End .entry-content -->
+
+			<footer class="entry-footer clearfix">
+								<span class="entry-cats">
+						<span class="entry-label">
+							<i class="fa fa-tag"></i> 카테고리:						</span>
+					<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>					</span><!-- End .entry-tags -->
+								<span class="entry-separator">/</span>
+				<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2675#" class="entry-comments">반응 없음</a>
+								<span class="entry-separator">/</span>
+				  <a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/author/tortuga" class="entry-author">TORTUGA</a>
+				<time class="date updated published" datetime="2016-02-10T20:31:25+09:00">2016년 2월 10일</time>
+			</footer>
+
+						<div class="about-author author vcard clearfix
+					">
+				<h3 class="title-underblock custom">Post Author: <a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/author/tortuga" class="fn">TORTUGA</a></h3>
+									<figure class="pull-left">
+						<img src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/tortuga_profile_image-100x100.jpg" width="96" height="96" alt="TORTUGA" class="avatar avatar-96 wp-user-avatar wp-user-avatar-96 alignnone photo">					</figure>
+									<div class="author-content">
+					궁금하신 점은 새로 개편한 홈페이지의 QnA 게시판을 이용해주세요!!!!!!!
+http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=qna				</div><!-- End .author-content -->
+			</div><!-- End .about-author -->
+		</article>
+
+				<h3 class="mb30 title-underblock custom blog-related-carousel-title
+						">관련 글</h3>
+		<div class="blog-related-carousel owl-carousel small-nav owl-loaded owl-drag">
+								
+										
+										
+										
+										
+							<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-885px, 0px, 0px); transition: all 0s ease 0s; width: 3245px;"><div class="owl-item cloned" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/01/esp8266_title.jpg" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/esp8266_title.jpg" style="opacity: 1;">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">07								<span>2̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670">ESP8266 – Arduino IDE 예제 (GPIO 제어)</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; 본 문서는 아두이노 개발환경(IDE)를 이용해서 ESP8266 모듈을 다루는 예제들을 포함하고...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item cloned" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2657">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/01/esp8266_title.jpg">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">04								<span>2̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2657">ESP8266 – Sming 예제 (웹)</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; Sming framework은 가장 진보되고 생산성 높은 ESP8266&nbsp;개발환경을 제공합니다. ESP8266 - Sming framework...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2657" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item cloned" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2647">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/01/esp8266_title.jpg">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">03								<span>2̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2647">ESP8266 – Sming 예제 (네트워크)</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; Sming framework은 가장 진보되고 생산성 높은 ESP8266&nbsp;개발환경을 제공합니다. ESP8266 - Sming framework...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2647" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item active" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3008">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2018/07/HTB1SmrcbLBNTKJjSszbq6yFrFXaY-248x138.jpg" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/HTB1SmrcbLBNTKJjSszbq6yFrFXaY-248x138.jpg" style="opacity: 1;">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">09								<span>7̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3008">ESP32 모듈(BT+WiFi) 개발환경 아두이노 IDE에 설치하기</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; ESP32 칩은 ESP8266 WiFi 모듈로 유명한 Espressif 에서 개발한 BLE + WiFi 지원 칩입니다. ESP8266 보다는...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3008" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item active" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2804">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/05/20160502_153030.jpg" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/20160502_153030.jpg" style="opacity: 1;">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">03								<span>5̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2804">ESP8266 – ARDUINO IDE 예제 (MQTT)</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; 본 문서는 아두이노 개발환경(IDE)를 이용해서 ESP8266 모듈을 다루는 예제들을 포함하고...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2804" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item active" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/01/esp8266_title.jpg" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/esp8266_title.jpg" style="opacity: 1;">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">07								<span>2̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670">ESP8266 – Arduino IDE 예제 (GPIO 제어)</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; 본 문서는 아두이노 개발환경(IDE)를 이용해서 ESP8266 모듈을 다루는 예제들을 포함하고...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2657">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/01/esp8266_title.jpg">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">04								<span>2̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2657">ESP8266 – Sming 예제 (웹)</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; Sming framework은 가장 진보되고 생산성 높은 ESP8266&nbsp;개발환경을 제공합니다. ESP8266 - Sming framework...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2657" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2647">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/01/esp8266_title.jpg">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">03								<span>2̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2647">ESP8266 – Sming 예제 (네트워크)</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; Sming framework은 가장 진보되고 생산성 높은 ESP8266&nbsp;개발환경을 제공합니다. ESP8266 - Sming framework...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2647" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item cloned" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3008">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2018/07/HTB1SmrcbLBNTKJjSszbq6yFrFXaY-248x138.jpg" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/HTB1SmrcbLBNTKJjSszbq6yFrFXaY-248x138.jpg" style="opacity: 1;">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">09								<span>7̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3008">ESP32 모듈(BT+WiFi) 개발환경 아두이노 IDE에 설치하기</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; ESP32 칩은 ESP8266 WiFi 모듈로 유명한 Espressif 에서 개발한 BLE + WiFi 지원 칩입니다. ESP8266 보다는...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3008" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item cloned" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2804">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/05/20160502_153030.jpg" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/20160502_153030.jpg" style="opacity: 1;">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">03								<span>5̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2804">ESP8266 – ARDUINO IDE 예제 (MQTT)</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; 본 문서는 아두이노 개발환경(IDE)를 이용해서 ESP8266 모듈을 다루는 예제들을 포함하고...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2804" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div><div class="owl-item cloned" style="width: 280px; margin-right: 15px;"><article class="entry entry-box">
+						<div class="entry-media">
+							<div class="entry-media">
+								<figure>
+									<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670">
+										<img class="owl-lazy" data-src="http://www.hardcopyworld.com/ngine/aduino/wp-content/uploads/sites/3/2016/01/esp8266_title.jpg" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/esp8266_title.jpg" style="opacity: 1;">									</a>
+								</figure>
+							</div><!-- End .entry-media -->
+						</div><!-- End .entry-media -->
+
+						<div class="entry-content-wrapper">
+							<span class="entry-date">07								<span>2̛�</span></span>
+																						<h2 class="entry-title"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670">ESP8266 – Arduino IDE 예제 (GPIO 제어)</a>
+								</h2>
+														<div class="entry-content">
+								<p>&nbsp; 본 문서는 아두이노 개발환경(IDE)를 이용해서 ESP8266 모듈을 다루는 예제들을 포함하고...</p>
+							</div><!-- End .entry-content -->
+						</div><!-- End .entry-content-wrapper -->
+
+						<footer class="entry-footer clearfix">
+														<span class="entry-cats">
+								<span class="entry-label"><i class="fa fa-tag"></i></span>
+								<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication">통신 모듈</a>								</span><!-- End .entry-tags -->
+
+							<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2670" class="entry-readmore text-right">더보기<i class="fa fa-angle-right"></i></a>
+						</footer>
+					</article></div></div></div><div class="owl-nav"><div class="owl-prev"><i class="fa fa-angle-left"></i></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots disabled"></div></div><!-- End .blog-related-carousel -->
+	</div><!-- End .col-md-12 -->
+</div><!-- End .row -->
+<div class="mb20"></div><!-- space -->
+
+	<div id="comments" class="comments-area">
+
+		
+		
+			<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">댓글 남기기 <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/2675#respond" style="display:none;">댓글 취소</a></small></h3>			<form action="http://www.hardcopyworld.com/ngine/aduino/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+				<p class="comment-notes"><span id="email-notes">이메일은 공개되지 않습니다.</span></p><div class="row"><div class="col-sm-4">
+			    <div class="form-group">
+				    <label for="author" class="input-desc">이름</label> <input id="author" class="form-control" placeholder="이름" name="author" type="text" value="" size="30">
+				</div>
+			</div>
+<div class="col-sm-4">
+                <div class="form-group">
+                    <label for="email" class="input-desc">이메일</label> <input id="email" class="form-control" placeholder="이메일" name="email" type="text" value="" size="30">
+                </div>
+			 </div>
+<div class="col-sm-4">
+			    <div class="form-group">
+			        <label for="url" class="input-desc">웹사이트</label><input id="url" class="form-control" placeholder="웹사이트" name="url" type="text" value="" size="30">
+			    </div>
+			</div></div>
+<div class="form-group"><label for="comment" class="input-desc">댓글</label><textarea class="form-control" id="comment" name="comment" aria-required="true" placeholder="메시지"></textarea></div><p class="form-submit"><input name="submit" type="submit" id="submit" class="btn btn-dark" value="댓글 작성"> <input type="hidden" name="comment_post_ID" value="2675" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="807a4f5dcf"></p><p style="display: none;"></p>			<input type="hidden" id="ak_js" name="ak_js" value="1544853395208"></form>
+			</div><!-- #respond -->
+	
+	</div><!-- #comments -->
+
+				</main><!-- #main -->
+			</div><!-- #primary -->
+		</div><!-- #primary -->
+
+
+
+<aside class="col-md-3 sidebar islemag-content-right" role="complementary">
+	<div id="text-8" class="widget widget_text"><h3 class="title-border dkgreen title-bg-line"><span>질문과 답변!!</span></h3>			<div class="textwidget"><b>현재 보시는 페이지는 하드카피월드의 백업 자료(아카이브) 페이지입니다. QnA를 원하시면 반드시 아래 게시판으로 이동하셔서 글을 올려주세요.</b><br>
+<a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=qna" target="_blank">QnA 게시판 바로가기</a></div>
+		</div><div id="custom_html-6" class="widget_text widget widget_custom_html"><h3 class="title-border dkgreen title-bg-line"><span>Notice</span></h3><div class="textwidget custom-html-widget"><a href="http://www.hardcopyworld.com/gnuboard5/bbs/board.php?bo_table=lecture_iot" target="_blank"><img src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/banner_iot.jpg" width="250"></a>
+<br><br>
+<a href="http://www.hardcopyworld.com/arduino101.html" target="_blank"><img src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/arduino101.jpg" width="250"></a></div></div><div id="categories-2" class="widget widget_categories"><h3 class="title-border dkgreen title-bg-line"><span>Category</span></h3>		<ul>
+	<li class="cat-item cat-item-3"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/exhibitions" title="피지컬 컴퓨팅 작품들을 소개합니다.">Project</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/pcduino" title="각종 강좌 시리즈">강좌</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/tools" title="3D 프린터, 스캐너 등 공작기계">공작 기계</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/raspi" title="라즈베리파이">라즈베리파이</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/%eb%af%b8%eb%b6%84%eb%a5%98">미분류</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/sensor" title="센서, 모터 및 다양한 장치에 대한 정보를 공유합니다.">센서, 모터, 회로 부품</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/arduinomanual" title="아두이노와 기타 다양한 버전의 보드 활용에 대한 강좌와 팁을 제공합니다.">아두이노, 컨트롤러</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/communication" title="통신 모듈 정보">통신 모듈</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/category/reference" title="팁과 참고자료">팁과 참고자료</a>
+</li>
+		</ul>
+</div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="title-border dkgreen title-bg-line"><span>Recent Post</span></h3>		<ul>
+											<li>
+					<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3457">BLE Beacon 표준들의 데이터 구조</a>
+									</li>
+											<li>
+					<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3441">아빠표 베이스타디움 – 빛의 경기장</a>
+									</li>
+											<li>
+					<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3424">[사물 인터넷 네트워크와 서비스 구축 강좌] #7-5 홈 오토메이션 – 상호 연동 테스트</a>
+									</li>
+											<li>
+					<a href="http://www.hardcopyworld.com/ngine/aduino/index.php/archives/3418">[사물 인터넷 네트워크와 서비스 구축 강좌] #7-4 홈 오토메이션 – 모바일 앱 만들기</a>
+									</li>
+					</ul>
+		</div></aside><!-- #secondary -->
+
+		</div><!-- #content -->
+
+		<footer id="footer" class="footer-inverse" role="contentinfo">
+			<div id="footer-inner">
+				<div class="container">
+					<div class="row">
+
+						<div class="col-md-3 col-sm-12">
+							<div class="islemag-footer-content"><p>&nbsp;&nbsp;&nbsp;(주)하드카피월드<br><br>
+&nbsp;&nbsp;&nbsp;서울시 성북구 화랑로211<br>
+&nbsp;&nbsp;&nbsp;성북구벤처창업지원센터<br>
+&nbsp;&nbsp;&nbsp;+82 10 4242 0157<br>
+&nbsp;&nbsp;&nbsp;csc@hardcopyworld.com<br>
+</p></div>							<div class="footer-social-icons">
+														</div><!-- .footer-social-icons -->
+						</div><!-- .col-md-3.col-sm-6 -->
+
+														<div itemscope="" itemtype="http://schema.org/WPSideBar" class="col-md-3 col-sm-12" id="sidebar-widgets-area-1" aria-label="위젯 영역 1">
+									<div id="search-4" class="widget widget_search"><h3 class="widget-title">Search</h3>
+<form class="navbar-form" role="search" action="http://www.hardcopyworld.com/ngine/aduino/">
+	<span class="screen-reader-text">검색:</span>
+	<input type="search" id="s" name="s" class="form-control" placeholder="여기서 검색..." title="검색:">
+	<button type="submit" title="Search"><i class="fa fa-search"></i></button>
+</form>
+</div>								</div>
+														<div itemscope="" itemtype="http://schema.org/WPSideBar" role="complementary" id="sidebar-widgets-area-2" class="col-md-3 col-sm-12" aria-label="위젯 영역 2">
+									<div id="meta-8" class="widget widget_meta"><h3 class="widget-title">Funtions</h3>			<ul>
+			<li><a href="http://www.hardcopyworld.com/ngine/aduino/wp-login.php?action=register">회원가입</a></li>			<li><a href="http://www.hardcopyworld.com/ngine/aduino/wp-login.php">로그인</a></li>
+			<li><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/feed">글 <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://www.hardcopyworld.com/ngine/aduino/index.php/comments/feed">댓글 <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://wordpress.org/" title="이 블로그는 가장 앞선 개인 발행 도구인 워드프레스로 운영됩니다.">WordPress.org</a></li>			</ul>
+			</div>								</div>
+														<div itemscope="" itemtype="http://schema.org/WPSideBar" role="complementary" id="sidebar-widgets-area-3" class="col-md-3 col-sm-12" aria-label="위젯 영역 3">
+									<div id="custom_html-5" class="widget_text widget widget_custom_html"><h3 class="widget-title">Contact</h3><div class="textwidget custom-html-widget">godstale@hotmail.com</div></div>								</div>
+						
+					</div><!-- End .row -->
+				</div><!-- End .container -->
+			</div><!-- End #footer-inner -->
+			<div id="footer-bottom" class="no-bg">
+				<div class="islemag-footer-container">
+							<div class="col-md-8 col-md-push-4 islemag-footer-menu">
+					</div><!-- End .col-md-6 -->
+		<div class="col-md-4 col-md-pull-8 powerdby">
+			powered by <a href="http://www.hardcopyworld.com/">HardCopyWorld.com</a>		</div><!-- End .col-md-6 -->
+		
+				</div><!-- End .row -->
+			</div><!-- End #footer-bottom -->
+		</footer><!-- End #footer -->
+	</div><!-- #page -->
+<!-- End #wrapper -->
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/islemag-wigdet.js.다운로드"></script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/jquery.form.min.js.다운로드"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var nlf = {"ajaxurl":"http:\/\/www.hardcopyworld.com\/ngine\/aduino\/wp-admin\/admin-ajax.php","plugin_url":"http:\/\/www.hardcopyworld.com\/ngine\/aduino\/wp-content\/plugins\/uploadingdownloading-non-latin-filename\/","upload_baseurl":"http:\/\/www.hardcopyworld.com\/ngine\/aduino\/wp-content\/uploads\/sites\/3\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/non-latin.js.다운로드"></script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/script.single.js.다운로드"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var screenReaderText = {"expand":"<span class=\"screen-reader-text\">\ud558\uc704\uba54\ub274 \ud655\uc7a5<\/span>","collapse":"<span class=\"screen-reader-text\">\ud558\uc704\uba54\ub274 \ucd95\uc18c<\/span>"};
+var stickyMenu = {"disable_sticky":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/script.all.js.다운로드"></script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/owl.carousel.min.js.다운로드"></script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/comment-reply.min.js.다운로드"></script>
+<script type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/wp-embed.min.js.다운로드"></script>
+<script async="async" type="text/javascript" src="./ESP8266 - ARDUINO IDE 예제 (WiFi 통신) _ Hard Copy Arduino_files/form.js.다운로드"></script>
+
+
+
+</body></html>

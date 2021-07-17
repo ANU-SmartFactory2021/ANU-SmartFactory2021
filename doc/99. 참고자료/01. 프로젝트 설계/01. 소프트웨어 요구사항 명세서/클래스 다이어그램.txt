@@ -1,0 +1,145 @@
+
+
+  -- main - UI --
+
+class socket_TCPIP_server
+  server_start( int _port );
+  server_stop();
+  send_data( string _send_data );
+  on_receive( string _recv_data );
+
+class comm_line : socket_TCPIP_server
+class comm_trailer : socket_TCPIP_server
+
+
+class DB ( DB 연결 및 테이블 조회, 삽입 관련 처리 클래스 )
+  
+  
+class main_flow - thread
+  eLineState line_state; ( idle, execute, alarm_stop, resume )
+  
+  sequence(){
+    switch( line_state ){
+      case idle : idle(); break;
+      case execute : execute(); break;
+      case alarm_stop : alarm_stop(); break;
+      case resume : resume(); break;
+    }
+  }
+  
+  idle()
+  execute(){
+    switch( step ){
+      case 0 :{
+        trailer.start();
+	step = 1;
+      }break;
+      case 1 : {
+        if( machine_input.get_sensor_detect() == true ){
+	  trailer.stop();
+	  step = 10;
+	}
+      }break;
+      case 10 :{
+        if( machine_input.get_machine_state() == eMachineState::abnormal ){
+	  trailer.go_back();
+	  break;
+	}else{
+	  //...
+	}
+      }break;
+    }
+  }
+  alarm_stop()
+  resume()
+  
+  
+class machineIF
+  enum eMachineState{
+    normal = 0,
+    abnormal = 1,
+  }
+
+  on_receive()
+  eCommState get_comm_state()                               //( wait_recv, recv_complete )
+  eMachineState get_machine_state( ref double _data )       //( normal, abnormal )
+  bool get_sensor_detect()
+	
+class machine_input : machineIF
+  변수 기준값;
+  on_receive()
+  get_machine_state(){
+    if( 기준값 > recv_data ){
+      alarm;
+    }
+  }
+  
+class machine_manufacture : machineIF
+  변수 기준값;
+  on_receive()
+  
+class machine_assemble : machineIF
+  변수 기준값;
+  on_receive()
+  
+class machine_test : machineIF
+  변수 기준값;
+  on_receive()
+  
+class machine_output : machineIF
+  변수 기준값;
+  on_receive()
+  
+    
+	
+class trailer ( trailer 관련 정보 처리 클래스 )
+  on_receive()
+  start() -> 아두이노에게 이동하라는 명령을 TCPIP 통해 전송 함.
+  {
+    comm_trailer.send_data( "MOVE" );
+  }
+  
+  stop()
+  {
+    comm_trailer.send_data( "STOP" );
+  }
+  
+  go_back()
+  int get_weight()
+  
+  
+  
+ -- arduino line --
+ main thread
+ 
+ input thread
+ manufacture thread
+ assemble thread
+ ...
+ 
+ MES         arduino line
+       <-    1sensor_on_off/2sensor_on_off,data/3sensor_on_off,data/4sensor_on_off,data/5sensor_on_off
+             1/0,123/0,12/0,333/0
+	     0/1,333/0,12/0,333/0
+  
+  
+ -- arduino trailer --
+class socket_TCPIP_client
+class comm_mes : socket_TCPIP_client
+  on_receive()
+  send_data( string _data )
+
+class main_flow
+  sequence()
+
+class motor
+  move()
+  stop()
+
+class load_cell
+  get_weight()
+
+  
+  
+  
+  
