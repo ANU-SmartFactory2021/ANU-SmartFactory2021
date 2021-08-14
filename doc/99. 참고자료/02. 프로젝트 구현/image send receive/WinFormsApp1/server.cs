@@ -105,6 +105,7 @@ namespace console_server_test
 					if( remaind_data.Length > 0 )
 					{
 						recv_str = remaind_data + recv_str;
+						remaind_data = "";
 					}
 
 					int start_index = recv_str.IndexOf( '<' );
