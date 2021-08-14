@@ -124,6 +124,8 @@ namespace console_server_test
 						total_data = split_data[ 0 ];
 						remaind_data = split_data[ 1 ];
 
+						total_data = total_data.Remove( 0, 1 );
+
 						if( image_data.Length <= 0 )
 						{
 							image_data = total_data.Split( '|' )[ 1 ];
