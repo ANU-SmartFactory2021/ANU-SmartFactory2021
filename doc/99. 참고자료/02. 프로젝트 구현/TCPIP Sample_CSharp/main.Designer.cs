@@ -23,209 +23,223 @@
 		/// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
 		/// </summary>
 		private void InitializeComponent() {
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.btn_server_setting_start = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.tb_server_setting_port = new System.Windows.Forms.TextBox();
-			this.rbtn_server = new System.Windows.Forms.RadioButton();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.btn_client_setting_connect = new System.Windows.Forms.Button();
-			this.label3 = new System.Windows.Forms.Label();
-			this.tb_client_setting_port = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.tb_client_setting_ip = new System.Windows.Forms.TextBox();
-			this.rbtn_client = new System.Windows.Forms.RadioButton();
-			this.lbox_dialog = new System.Windows.Forms.ListBox();
-			this.tb_input = new System.Windows.Forms.TextBox();
-			this.btn_send = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.groupBox1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// groupBox1
-			// 
-			this.groupBox1.Controls.Add(this.btn_server_setting_start);
-			this.groupBox1.Controls.Add(this.label1);
-			this.groupBox1.Controls.Add(this.tb_server_setting_port);
-			this.groupBox1.Controls.Add(this.rbtn_server);
-			this.groupBox1.Location = new System.Drawing.Point(12, 12);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-			this.groupBox1.Size = new System.Drawing.Size(172, 108);
-			this.groupBox1.TabIndex = 2;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Server Setting";
-			// 
-			// btn_server_setting_start
-			// 
-			this.btn_server_setting_start.Location = new System.Drawing.Point(10, 76);
-			this.btn_server_setting_start.Name = "btn_server_setting_start";
-			this.btn_server_setting_start.Size = new System.Drawing.Size(150, 23);
-			this.btn_server_setting_start.TabIndex = 4;
-			this.btn_server_setting_start.Text = "Server Start";
-			this.btn_server_setting_start.UseVisualStyleBackColor = true;
-			this.btn_server_setting_start.Click += new System.EventHandler(this.btn_server_setting_start_Click);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(8, 52);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(67, 12);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Server Port";
-			// 
-			// tb_server_setting_port
-			// 
-			this.tb_server_setting_port.Location = new System.Drawing.Point(81, 49);
-			this.tb_server_setting_port.Name = "tb_server_setting_port";
-			this.tb_server_setting_port.Size = new System.Drawing.Size(79, 21);
-			this.tb_server_setting_port.TabIndex = 2;
-			// 
-			// rbtn_server
-			// 
-			this.rbtn_server.AutoSize = true;
-			this.rbtn_server.Checked = true;
-			this.rbtn_server.Location = new System.Drawing.Point(8, 22);
-			this.rbtn_server.Name = "rbtn_server";
-			this.rbtn_server.Size = new System.Drawing.Size(59, 16);
-			this.rbtn_server.TabIndex = 1;
-			this.rbtn_server.TabStop = true;
-			this.rbtn_server.Text = "Server";
-			this.rbtn_server.UseVisualStyleBackColor = true;
-			this.rbtn_server.Click += new System.EventHandler(this.on_click_server_client);
-			// 
-			// groupBox2
-			// 
-			this.groupBox2.Controls.Add(this.btn_client_setting_connect);
-			this.groupBox2.Controls.Add(this.label3);
-			this.groupBox2.Controls.Add(this.tb_client_setting_port);
-			this.groupBox2.Controls.Add(this.label2);
-			this.groupBox2.Controls.Add(this.tb_client_setting_ip);
-			this.groupBox2.Controls.Add(this.rbtn_client);
-			this.groupBox2.Location = new System.Drawing.Point(12, 126);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-			this.groupBox2.Size = new System.Drawing.Size(175, 136);
-			this.groupBox2.TabIndex = 3;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Client Setting";
-			// 
-			// btn_client_setting_connect
-			// 
-			this.btn_client_setting_connect.Enabled = false;
-			this.btn_client_setting_connect.Location = new System.Drawing.Point(10, 103);
-			this.btn_client_setting_connect.Name = "btn_client_setting_connect";
-			this.btn_client_setting_connect.Size = new System.Drawing.Size(153, 23);
-			this.btn_client_setting_connect.TabIndex = 11;
-			this.btn_client_setting_connect.Text = "Connect to server";
-			this.btn_client_setting_connect.UseVisualStyleBackColor = true;
-			this.btn_client_setting_connect.Click += new System.EventHandler(this.btn_client_setting_connect_Click);
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(8, 79);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(67, 12);
-			this.label3.TabIndex = 10;
-			this.label3.Text = "Server Port";
-			// 
-			// tb_client_setting_port
-			// 
-			this.tb_client_setting_port.Enabled = false;
-			this.tb_client_setting_port.Location = new System.Drawing.Point(84, 76);
-			this.tb_client_setting_port.Name = "tb_client_setting_port";
-			this.tb_client_setting_port.Size = new System.Drawing.Size(79, 21);
-			this.tb_client_setting_port.TabIndex = 9;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(8, 52);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(56, 12);
-			this.label2.TabIndex = 8;
-			this.label2.Text = "Server IP";
-			// 
-			// tb_client_setting_ip
-			// 
-			this.tb_client_setting_ip.Enabled = false;
-			this.tb_client_setting_ip.Location = new System.Drawing.Point(84, 49);
-			this.tb_client_setting_ip.Name = "tb_client_setting_ip";
-			this.tb_client_setting_ip.Size = new System.Drawing.Size(79, 21);
-			this.tb_client_setting_ip.TabIndex = 7;
-			// 
-			// rbtn_client
-			// 
-			this.rbtn_client.AutoSize = true;
-			this.rbtn_client.Location = new System.Drawing.Point(8, 22);
-			this.rbtn_client.Name = "rbtn_client";
-			this.rbtn_client.Size = new System.Drawing.Size(55, 16);
-			this.rbtn_client.TabIndex = 1;
-			this.rbtn_client.TabStop = true;
-			this.rbtn_client.Text = "Client";
-			this.rbtn_client.UseVisualStyleBackColor = true;
-			this.rbtn_client.Click += new System.EventHandler(this.on_click_server_client);
-			// 
-			// lbox_dialog
-			// 
-			this.lbox_dialog.FormattingEnabled = true;
-			this.lbox_dialog.ItemHeight = 12;
-			this.lbox_dialog.Location = new System.Drawing.Point(190, 12);
-			this.lbox_dialog.Name = "lbox_dialog";
-			this.lbox_dialog.Size = new System.Drawing.Size(593, 400);
-			this.lbox_dialog.TabIndex = 4;
-			// 
-			// tb_input
-			// 
-			this.tb_input.Location = new System.Drawing.Point(226, 420);
-			this.tb_input.Name = "tb_input";
-			this.tb_input.Size = new System.Drawing.Size(464, 21);
-			this.tb_input.TabIndex = 5;
-			this.tb_input.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_input_KeyPress);
-			// 
-			// btn_send
-			// 
-			this.btn_send.Location = new System.Drawing.Point(696, 418);
-			this.btn_send.Name = "btn_send";
-			this.btn_send.Size = new System.Drawing.Size(87, 23);
-			this.btn_send.TabIndex = 6;
-			this.btn_send.Text = "Send";
-			this.btn_send.UseVisualStyleBackColor = true;
-			this.btn_send.Click += new System.EventHandler(this.btn_send_Click);
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(188, 423);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(32, 12);
-			this.label4.TabIndex = 7;
-			this.label4.Text = "Input";
-			// 
-			// main
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(794, 452);
-			this.Controls.Add(this.label4);
-			this.Controls.Add(this.btn_send);
-			this.Controls.Add(this.tb_input);
-			this.Controls.Add(this.lbox_dialog);
-			this.Controls.Add(this.groupBox2);
-			this.Controls.Add(this.groupBox1);
-			this.Name = "main";
-			this.Text = "TCP/IP Sample";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.main_FormClosing);
-			this.Shown += new System.EventHandler(this.main_Shown);
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
-			this.ResumeLayout(false);
-			this.PerformLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_server_setting_start = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tb_server_setting_port = new System.Windows.Forms.TextBox();
+            this.rbtn_server = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_client_setting_connect = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tb_client_setting_port = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tb_client_setting_ip = new System.Windows.Forms.TextBox();
+            this.rbtn_client = new System.Windows.Forms.RadioButton();
+            this.lbox_dialog = new System.Windows.Forms.ListBox();
+            this.tb_input = new System.Windows.Forms.TextBox();
+            this.btn_send = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btn_server_setting_start);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.tb_server_setting_port);
+            this.groupBox1.Controls.Add(this.rbtn_server);
+            this.groupBox1.Location = new System.Drawing.Point(14, 15);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Size = new System.Drawing.Size(197, 135);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Server Setting";
+            // 
+            // btn_server_setting_start
+            // 
+            this.btn_server_setting_start.Location = new System.Drawing.Point(11, 95);
+            this.btn_server_setting_start.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_server_setting_start.Name = "btn_server_setting_start";
+            this.btn_server_setting_start.Size = new System.Drawing.Size(171, 29);
+            this.btn_server_setting_start.TabIndex = 4;
+            this.btn_server_setting_start.Text = "Server Start";
+            this.btn_server_setting_start.UseVisualStyleBackColor = true;
+            this.btn_server_setting_start.Click += new System.EventHandler(this.btn_server_setting_start_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Server Port";
+            // 
+            // tb_server_setting_port
+            // 
+            this.tb_server_setting_port.Location = new System.Drawing.Point(93, 61);
+            this.tb_server_setting_port.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tb_server_setting_port.Name = "tb_server_setting_port";
+            this.tb_server_setting_port.Size = new System.Drawing.Size(90, 25);
+            this.tb_server_setting_port.TabIndex = 2;
+            this.tb_server_setting_port.TextChanged += new System.EventHandler(this.tb_server_setting_port_TextChanged);
+            // 
+            // rbtn_server
+            // 
+            this.rbtn_server.AutoSize = true;
+            this.rbtn_server.Checked = true;
+            this.rbtn_server.Location = new System.Drawing.Point(9, 28);
+            this.rbtn_server.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbtn_server.Name = "rbtn_server";
+            this.rbtn_server.Size = new System.Drawing.Size(70, 19);
+            this.rbtn_server.TabIndex = 1;
+            this.rbtn_server.TabStop = true;
+            this.rbtn_server.Text = "Server";
+            this.rbtn_server.UseVisualStyleBackColor = true;
+            this.rbtn_server.Click += new System.EventHandler(this.on_click_server_client);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btn_client_setting_connect);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.tb_client_setting_port);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.tb_client_setting_ip);
+            this.groupBox2.Controls.Add(this.rbtn_client);
+            this.groupBox2.Location = new System.Drawing.Point(14, 158);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox2.Size = new System.Drawing.Size(200, 170);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Client Setting";
+            // 
+            // btn_client_setting_connect
+            // 
+            this.btn_client_setting_connect.Enabled = false;
+            this.btn_client_setting_connect.Location = new System.Drawing.Point(11, 129);
+            this.btn_client_setting_connect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_client_setting_connect.Name = "btn_client_setting_connect";
+            this.btn_client_setting_connect.Size = new System.Drawing.Size(175, 29);
+            this.btn_client_setting_connect.TabIndex = 11;
+            this.btn_client_setting_connect.Text = "Connect to server";
+            this.btn_client_setting_connect.UseVisualStyleBackColor = true;
+            this.btn_client_setting_connect.Click += new System.EventHandler(this.btn_client_setting_connect_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 99);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 15);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Server Port";
+            // 
+            // tb_client_setting_port
+            // 
+            this.tb_client_setting_port.Enabled = false;
+            this.tb_client_setting_port.Location = new System.Drawing.Point(96, 95);
+            this.tb_client_setting_port.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tb_client_setting_port.Name = "tb_client_setting_port";
+            this.tb_client_setting_port.Size = new System.Drawing.Size(90, 25);
+            this.tb_client_setting_port.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 15);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Server IP";
+            // 
+            // tb_client_setting_ip
+            // 
+            this.tb_client_setting_ip.Enabled = false;
+            this.tb_client_setting_ip.Location = new System.Drawing.Point(96, 61);
+            this.tb_client_setting_ip.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tb_client_setting_ip.Name = "tb_client_setting_ip";
+            this.tb_client_setting_ip.Size = new System.Drawing.Size(90, 25);
+            this.tb_client_setting_ip.TabIndex = 7;
+            // 
+            // rbtn_client
+            // 
+            this.rbtn_client.AutoSize = true;
+            this.rbtn_client.Location = new System.Drawing.Point(9, 28);
+            this.rbtn_client.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbtn_client.Name = "rbtn_client";
+            this.rbtn_client.Size = new System.Drawing.Size(64, 19);
+            this.rbtn_client.TabIndex = 1;
+            this.rbtn_client.TabStop = true;
+            this.rbtn_client.Text = "Client";
+            this.rbtn_client.UseVisualStyleBackColor = true;
+            this.rbtn_client.Click += new System.EventHandler(this.on_click_server_client);
+            // 
+            // lbox_dialog
+            // 
+            this.lbox_dialog.FormattingEnabled = true;
+            this.lbox_dialog.ItemHeight = 15;
+            this.lbox_dialog.Location = new System.Drawing.Point(217, 15);
+            this.lbox_dialog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbox_dialog.Name = "lbox_dialog";
+            this.lbox_dialog.Size = new System.Drawing.Size(677, 499);
+            this.lbox_dialog.TabIndex = 4;
+            // 
+            // tb_input
+            // 
+            this.tb_input.Location = new System.Drawing.Point(258, 525);
+            this.tb_input.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tb_input.Name = "tb_input";
+            this.tb_input.Size = new System.Drawing.Size(530, 25);
+            this.tb_input.TabIndex = 5;
+            this.tb_input.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_input_KeyPress);
+            // 
+            // btn_send
+            // 
+            this.btn_send.Location = new System.Drawing.Point(795, 522);
+            this.btn_send.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_send.Name = "btn_send";
+            this.btn_send.Size = new System.Drawing.Size(99, 29);
+            this.btn_send.TabIndex = 6;
+            this.btn_send.Text = "Send";
+            this.btn_send.UseVisualStyleBackColor = true;
+            this.btn_send.Click += new System.EventHandler(this.btn_send_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(215, 529);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 15);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Input";
+            // 
+            // main
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(907, 565);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btn_send);
+            this.Controls.Add(this.tb_input);
+            this.Controls.Add(this.lbox_dialog);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "main";
+            this.Text = "TCP/IP Sample";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.main_FormClosing);
+            this.Shown += new System.EventHandler(this.main_Shown);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 

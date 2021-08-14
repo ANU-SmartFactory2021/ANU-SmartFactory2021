@@ -112,5 +112,10 @@ namespace TCPIP_Sample_CSharp {
 				btn_send_Click( sender, null );
 			}
 		}
-	}
+
+        private void tb_server_setting_port_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
