@@ -24,7 +24,10 @@ namespace CanFactoryServer
         Thread accept_thread = null;
         Thread recieve_message_thread = null;
 
-        
+
+
+        string total_data = "";
+        string remaind_data = "";
 
 
         public void server_start()
@@ -79,6 +82,54 @@ namespace CanFactoryServer
         }
 
 
+        string Receive( TcpClient _client )
+		{
+            while( true )
+			{
+                byte[] buff = new byte[ 4096 ];
+                try
+                {
+                    _client.Client.Receive( buff );
+                }
+                catch( Exception ex )
+                {
+                    _client.Close();
+                    return "";
+                }
+
+                string recv_str = Encoding.Default.GetString( buff );
+                recv_str = recv_str.Trim( '\0' );
+
+                if( remaind_data.Length > 0 )
+                {
+                    recv_str = remaind_data + recv_str;
+                    remaind_data = "";
+                }
+
+                int start_index = recv_str.IndexOf( '<' );
+                if( 0 <= start_index )
+                {
+                    total_data = "";
+                    recv_str = recv_str.Remove( 0, start_index );
+                }
+                total_data += recv_str;
+
+                if( total_data.Contains( '>' ) )
+                {
+                    string[] split_data = total_data.Split( '>' );
+                    total_data = split_data[ 0 ];
+                    remaind_data = split_data[ 1 ];
+
+                    total_data = total_data.Remove( 0, 1 ); // 맨 앞 '<' 제거.
+
+                    break;
+                }
+            }
+
+
+            return total_data;
+        }
+
 
         void Recieve_message_thread()
         {
@@ -88,9 +139,10 @@ namespace CanFactoryServer
                 
                 if(inspect_client_connected() == true && inspect_client.Client.Available > 0)             // PI 1 리시브 
                 {
-                    byte[] message = new byte[256];
-                    inspect_client.Client.Receive(message);
-                    string inspect_recv_str = Encoding.Default.GetString(message);
+                    //byte[] message = new byte[256];
+                    //inspect_client.Client.Receive(message);
+                    //string inspect_recv_str = Encoding.Default.GetString(message);
+                    string inspect_recv_str = Receive( inspect_client );
                     inspect_recv_str = inspect_recv_str.Trim('\0');                     
 
                     if (inspect_recv_str.Contains("PI_ONE_STATE"))
@@ -112,9 +164,10 @@ namespace CanFactoryServer
                 }
                 if(control_client_connected() == true && control_client.Client.Available > 0)      // PI2  리시브 
                 {
-                    byte[] message = new byte[256];
-                    control_client.Client.Receive(message);
-                    string control_recv_str = Encoding.Default.GetString(message);
+                    //byte[] message = new byte[256];
+                    //control_client.Client.Receive(message);
+                    //string control_recv_str = Encoding.Default.GetString(message);
+                    string control_recv_str = Receive( control_client );
                     control_recv_str = control_recv_str.Trim('\0');
 
                     if (control_recv_str.Contains("PI_TWO_STATE"))
@@ -181,9 +234,10 @@ namespace CanFactoryServer
 
                 if(winform_client_connected() == true && winform_client.Client.Available > 0 )      // PI3(윈폼)  리시브 
                 {
-                    byte[] message = new byte[256];
-                    winform_client.Client.Receive(message);
-                    string winform_recv_str = Encoding.Default.GetString(message);
+                    //byte[] message = new byte[256];
+                    //winform_client.Client.Receive(message);
+                    //string winform_recv_str = Encoding.Default.GetString(message);
+                    string winform_recv_str = Receive( winform_client );
                     winform_recv_str = winform_recv_str.Trim('\0');
 
                     if (winform_recv_str.Contains("CMD"))
