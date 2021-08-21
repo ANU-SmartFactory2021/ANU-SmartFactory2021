@@ -1,18 +1,30 @@
 import qr
 import soc
-
+import time
 # dummy
+
+print('start')
 check = True
 
-soc.Send('PI_ONE_STATE=READY')
-print('test start')
+soc.send('CLIENT_TYPE=INSPECTION')
+
 while True:
-    recv_data = soc.Recv()
+    time.sleep(1)
+    print('waiting server...')
+    recv_data = soc.recv()
+    print(recv_data)
+    if recv_data == "ack":
+        break
+
+soc.send('PI_ONE_STATE=READY')
+
+while True:
+    recv_data = soc.recv()
     if recv_data == 'REQUEST_START':
         if check:
-            soc.Send('PI_ONE_STATE=START')
+            soc.send('PI_ONE_STATE=START')
         else:
-            soc.Send('PI_ONE_STATE=FAIL')
+            soc.send('PI_ONE_STATE=FAIL')
 
     if recv_data == 'CAPTURE_START':
-        soc.SendQR(qr.decode())
+        soc.send(qr.decode())
