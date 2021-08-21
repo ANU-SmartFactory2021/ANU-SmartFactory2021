@@ -17,17 +17,16 @@ namespace CanFactoryServer
         TcpClient winform_client = new TcpClient();
 
         List<Socket> client_list = new List<Socket>();
- 
-        
-    
+
+
+
 
         Thread accept_thread = null;
         Thread recieve_message_thread = null;
 
-
-
         string total_data = "";
         string remaind_data = "";
+
 
 
         public void server_start()
@@ -39,7 +38,7 @@ namespace CanFactoryServer
 
             recieve_message_thread = new Thread(new ThreadStart(Recieve_message_thread));
             recieve_message_thread.Start();
-        
+
         }
 
         void Accept_thread()
@@ -54,7 +53,7 @@ namespace CanFactoryServer
                 tc.Client.Receive(buff);
                 string recv_str = Encoding.Default.GetString(buff);
                 recv_str = recv_str.Trim('\0');
-               
+
 
                 if (recv_str.Contains("CLIENT_TYPE"))
                 {
@@ -68,59 +67,60 @@ namespace CanFactoryServer
                     if (token[1].ToUpper() == "INSPECTION")
                     {
                         inspect_client = tc;
+                        send_inspect_client("connected");
                     }
                     else if (token[1].ToUpper() == "CONTROL")
                     {
                         control_client = tc;
+                        send_control_client("connected");
                     }
                     else if (token[1].ToUpper() == "WINFORM")
                     {
-                        winform_client = tc; 
+                        winform_client = tc;
                     }
                 }
             }
         }
 
-
-        string Receive( TcpClient _client )
-		{
-            while( true )
-			{
-                byte[] buff = new byte[ 4096 ];
+        string Receive(TcpClient _client)
+        {
+            while (true)
+            {
+                byte[] buff = new byte[4096];
                 try
                 {
-                    _client.Client.Receive( buff );
+                    _client.Client.Receive(buff);
                 }
-                catch( Exception ex )
+                catch (Exception ex)
                 {
                     _client.Close();
                     return "";
                 }
 
-                string recv_str = Encoding.Default.GetString( buff );
-                recv_str = recv_str.Trim( '\0' );
+                string recv_str = Encoding.Default.GetString(buff);
+                recv_str = recv_str.Trim('\0');
 
-                if( remaind_data.Length > 0 )
+                if (remaind_data.Length > 0)   //문자열 일정 길이 이상 계속 받을 때 
                 {
                     recv_str = remaind_data + recv_str;
                     remaind_data = "";
                 }
 
-                int start_index = recv_str.IndexOf( '<' );
-                if( 0 <= start_index )
+                int start_index = recv_str.IndexOf('<');
+                if (0 <= start_index)
                 {
                     total_data = "";
-                    recv_str = recv_str.Remove( 0, start_index );
+                    recv_str = recv_str.Remove(0, start_index);
                 }
                 total_data += recv_str;
 
-                if( total_data.Contains( '>' ) )
+                if (total_data.Contains('>'))
                 {
-                    string[] split_data = total_data.Split( '>' );
-                    total_data = split_data[ 0 ];
-                    remaind_data = split_data[ 1 ];
+                    string[] split_data = total_data.Split('>');
+                    total_data = split_data[0];
+                    remaind_data = split_data[1];
 
-                    total_data = total_data.Remove( 0, 1 ); // 맨 앞 '<' 제거.
+                    total_data = total_data.Remove(0, 1); // 맨 앞 '<' 제거.
 
                     break;
                 }
@@ -131,19 +131,17 @@ namespace CanFactoryServer
         }
 
 
+
         void Recieve_message_thread()
         {
-            while(true)
+            while (true)
             {
                 Thread.Sleep(1);
-                
-                if(inspect_client_connected() == true && inspect_client.Client.Available > 0)             // PI 1 리시브 
+
+                if (inspect_client_connected() == true && inspect_client.Client.Available > 0)             // PI 1 리시브 
                 {
-                    //byte[] message = new byte[256];
-                    //inspect_client.Client.Receive(message);
-                    //string inspect_recv_str = Encoding.Default.GetString(message);
-                    string inspect_recv_str = Receive( inspect_client );
-                    inspect_recv_str = inspect_recv_str.Trim('\0');                     
+                    string inspect_recv_str = Receive(inspect_client);
+                    inspect_recv_str = inspect_recv_str.Trim('\0');
 
                     if (inspect_recv_str.Contains("PI_ONE_STATE"))
                     {
@@ -151,23 +149,25 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "START")
                         {
-                            
+                            send_winform_client("<CMD=READY>");
                         }
-                        
-                        else if (token[1].ToUpper()== "FAIL")
+
+                        else if (token[1].ToUpper() == "FAIL")
                         {
-
+                            send_inspect_client("<CMD=REQUEST_START>");
                         }
+                    }
 
-
+                    if (inspect_recv_str.Contains("ACK"))
+                    {
+                        send_control_client("<CMD=BELT_START>");
                     }
                 }
-                if(control_client_connected() == true && control_client.Client.Available > 0)      // PI2  리시브 
+
+                if (control_client_connected() == true && control_client.Client.Available > 0)      // PI2  리시브 
                 {
-                    //byte[] message = new byte[256];
-                    //control_client.Client.Receive(message);
-                    //string control_recv_str = Encoding.Default.GetString(message);
-                    string control_recv_str = Receive( control_client );
+
+                    string control_recv_str = Receive(control_client);
                     control_recv_str = control_recv_str.Trim('\0');
 
                     if (control_recv_str.Contains("PI_TWO_STATE"))
@@ -176,12 +176,13 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "START")
                         {
-                            
+                            send_winform_client("<CMD=READY>");
+                            send_control_client("<CMD=REQUEST_SENSOR_STATE>");
                         }
 
                         else if (token[1].ToUpper() == "FAIL")
                         {
-
+                            send_control_client("<CMD=REQUEST_START>");
                         }
                     }
 
@@ -191,12 +192,13 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "ON")
                         {
-
+                            send_winform_client("<CMD=IS>");
+                            send_inspect_client("<CMD=CAPTURE_START>");
                         }
 
-                        else if(token[1].ToUpper() == "OFF")
+                        else if (token[1].ToUpper() == "OFF")
                         {
-
+                            send_control_client("<CMD=REQUEST_SENSOR_STATE>");
                         }
                     }
 
@@ -206,12 +208,18 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "RUNNING")
                         {
-
+                            send_winform_client("<CMD=RUN>");
                         }
 
                         else if (token[1].ToUpper() == "PASSING")
                         {
+                            send_winform_client("<CMD=REMOVE>");
+                        }
 
+                        else if (token[1].ToUpper() == "CLASSIFYING")
+                        {
+                            send_control_client("<ACK>");
+                            send_winform_client("<CMD=LAST>");
                         }
 
                         else if (token[1].ToUpper() == "STOP")
@@ -221,23 +229,22 @@ namespace CanFactoryServer
 
                         else if (token[1].ToUpper() == "WORKING")
                         {
-
+                            send_winform_client("<CMD=CLASSIFY>");
                         }
 
                         else if (token[1].ToUpper() == "COMPLETE")
                         {
-
+                            //DB에 제품 정보 갱신 
+                            send_winform_client("<CMD=FINISH>");
                         }
 
                     }
                 }
 
-                if(winform_client_connected() == true && winform_client.Client.Available > 0 )      // PI3(윈폼)  리시브 
+                if (winform_client_connected() == true && winform_client.Client.Available > 0)      // PI_3(윈폼) 리시브
                 {
-                    //byte[] message = new byte[256];
-                    //winform_client.Client.Receive(message);
-                    //string winform_recv_str = Encoding.Default.GetString(message);
-                    string winform_recv_str = Receive( winform_client );
+
+                    string winform_recv_str = Receive(winform_client);
                     winform_recv_str = winform_recv_str.Trim('\0');
 
                     if (winform_recv_str.Contains("CMD"))
@@ -246,11 +253,12 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "START")
                         {
-
+                            send_inspect_client("<CMD=REQUEST_START>");
+                            send_control_client("<CMD=REQUEST_START>");
                         }
                     }
                 }
-               
+
 
             }
         }
@@ -260,24 +268,36 @@ namespace CanFactoryServer
 
         public bool winform_client_connected()
         {
-            return winform_client.Client.Connected;
+            if (winform_client.Client != null)
+            {
+                return winform_client.Client.Connected;
+            }
+            return false;
         }
 
         public bool inspect_client_connected()
         {
-            return inspect_client.Client.Connected;
+            if (inspect_client.Client != null)
+            {
+                return inspect_client.Client.Connected;
+            }
+            return false;
         }
 
         public bool control_client_connected()
         {
-            return control_client.Client.Connected;
+            if (control_client.Client != null)
+            {
+                return control_client.Client.Connected;
+            }
+            return false;
         }
 
-       
 
-        public void send_winform_client( string _cmd )
+
+        public void send_winform_client(string _cmd)
         {
-            winform_client.Client.Send(Encoding.UTF8.GetBytes( _cmd ));
+            winform_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
         }
 
         public void send_inspect_client(string _cmd)
@@ -290,7 +310,7 @@ namespace CanFactoryServer
             control_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
         }
 
-        
+
 
     }
 }
