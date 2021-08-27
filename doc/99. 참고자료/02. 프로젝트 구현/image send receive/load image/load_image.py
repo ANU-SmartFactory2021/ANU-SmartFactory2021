@@ -4,7 +4,7 @@ import time
 import base64
 
 
-img = cv2.imread('test.bmp', cv2.IMREAD_UNCHANGED)
+img = cv2.imread('test.jpg', cv2.IMREAD_UNCHANGED)
 
 cv2.imshow('image', img)
 cv2.waitKey(0)
@@ -13,7 +13,7 @@ cv2.destroyAllWindows()
 
 
 host_ip = '127.0.0.1'
-port_num = 9999
+port_num = 12345
 
 client_socket = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
 client_socket.connect( ( host_ip, port_num ) )
@@ -27,10 +27,10 @@ while True :
         break
 
 
-with open("test.bmp", "rb") as img_file:
+with open("test.jpg", "rb") as img_file:
     converted_string = base64.b64encode(img_file.read())
 
 
-data = '<' + 'QR:1234567890|' + converted_string.decode('utf-8') + '>'
+data = '<' + 'QRCODE=1234567890|' + converted_string.decode('utf-8') + '>'
 client_socket.sendall( data.encode() )
 client_socket.close()

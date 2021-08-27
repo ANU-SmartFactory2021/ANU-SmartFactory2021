@@ -11,7 +11,7 @@ namespace console_server_test
 {
 	class server
 	{
-		TcpListener m_server_socket = new( IPAddress.Any, 9999 );
+		TcpListener m_server_socket = new( IPAddress.Any, 1234 );
 		TcpClient m_inspection_client = new();
 		TcpClient m_classifying_client = new();
 
@@ -100,7 +100,7 @@ namespace console_server_test
 					}
 					
 					string recv_str = Encoding.Default.GetString( buff );
-					recv_str = recv_str.Trim( '\0' );
+					recv_str = recv_str.Trim( '\0' );                               //이까지 확인 
 
 					if( remaind_data.Length > 0 )
 					{
@@ -140,6 +140,7 @@ namespace console_server_test
 		{
 			if( m_inspection_client.Client != null )
 			{
+
 				return m_inspection_client.Client.Connected;
 			}
 
