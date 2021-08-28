@@ -1,11 +1,10 @@
+# -*- coding: utf-8 -*-
 import qr
 import soc
 import time
-# dummy
 
 print('start')
-check = True
-
+soc.connect()
 soc.send('CLIENT_TYPE=INSPECTION')
 
 while True:
@@ -21,7 +20,7 @@ soc.send('PI_ONE_STATE=READY')
 while True:
     recv_data = soc.recv()
     if recv_data == 'REQUEST_START':
-        if check:
+        if qr.check:
             soc.send('PI_ONE_STATE=START')
         else:
             soc.send('PI_ONE_STATE=FAIL')
