@@ -24,8 +24,6 @@ namespace CanFactoryServer
         Thread accept_thread = null;
         Thread recieve_message_thread = null;
 
-        string total_data = "";
-        string remaind_data = "";
 
 
 
@@ -82,6 +80,11 @@ namespace CanFactoryServer
             }
         }
 
+        string total_data = "";
+        string remaind_data = "";
+        public string image_data;
+
+
         string Receive(TcpClient _client)
         {
             while (true)
@@ -110,6 +113,7 @@ namespace CanFactoryServer
                 if (0 <= start_index)
                 {
                     total_data = "";
+                    image_data = "";
                     recv_str = recv_str.Remove(0, start_index);
                 }
                 total_data += recv_str;
@@ -122,8 +126,24 @@ namespace CanFactoryServer
 
                     total_data = total_data.Remove(0, 1); // 맨 앞 '<' 제거.
 
+                    if (image_data.Length <= 0)
+                    {
+                        try
+                        {
+                            image_data = total_data.Split('|')[1];
+                        }
+                        catch
+                        {
+
+                        }
+
+                    }
+
+
+
                     break;
                 }
+
             }
 
 
@@ -162,6 +182,27 @@ namespace CanFactoryServer
                     {
                         send_control_client("<CMD=BELT_START>");
                     }
+
+                    if (inspect_recv_str.Contains("QRCODE"))
+                    {
+                        send_winform_client(image_data);
+                        if (inspect_recv_str.Contains("1234567890"))
+                        {
+                            string[] token = inspect_recv_str.Split('|');
+                            send_winform_client("QRCODE=1234567890|");
+                            send_winform_client(token[1]);
+
+                        }
+
+                        /* if(token[1].ToUpper() == "1234567890")
+                         {
+                             send_winform_client("QRCODE=1234567890");
+                             send_winform_client("IMG=" + abc[1]);
+                             //image_data = total_data.Split('|')[1];
+                         }*/
+                    }
+
+
                 }
 
                 if (control_client_connected() == true && control_client.Client.Available > 0)      // PI2  리시브 
@@ -314,3 +355,5 @@ namespace CanFactoryServer
 
     }
 }
+
+
