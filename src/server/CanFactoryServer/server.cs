@@ -82,8 +82,6 @@ namespace CanFactoryServer
 
         string total_data = "";
         string remaind_data = "";
-        public string image_data;
-
 
         string Receive(TcpClient _client)
         {
@@ -103,7 +101,7 @@ namespace CanFactoryServer
                 string recv_str = Encoding.Default.GetString(buff);
                 recv_str = recv_str.Trim('\0');
 
-                if (remaind_data.Length > 0)   //문자열 일정 길이 이상 계속 받을 때 
+                if (remaind_data.Length > 0)
                 {
                     recv_str = remaind_data + recv_str;
                     remaind_data = "";
@@ -113,7 +111,6 @@ namespace CanFactoryServer
                 if (0 <= start_index)
                 {
                     total_data = "";
-                    image_data = "";
                     recv_str = recv_str.Remove(0, start_index);
                 }
                 total_data += recv_str;
@@ -125,9 +122,11 @@ namespace CanFactoryServer
                     remaind_data = split_data[1];
 
                     total_data = total_data.Remove(0, 1); // 맨 앞 '<' 제거.
+                    Console.WriteLine("RECIEVE DATA = " + total_data);
                     return total_data;
                 }
             }
+
         }
 
 
@@ -149,7 +148,7 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "START")
                         {
-                            send_winform_client("<CMD=READY>");
+                            send_winform_client("<CMD=PI_ONE_READY>");
                         }
 
                         else if (token[1].ToUpper() == "FAIL")
@@ -165,28 +164,29 @@ namespace CanFactoryServer
 
                     if (inspect_recv_str.Contains("QRCODE"))
                     {
-                        if( image_data.Length <= 0 )
+                        var recv_data = inspect_recv_str.Split('|');
+                        string image_data = recv_data[2];
+                        string state_result = recv_data[1];
+                        string qrcode_num = recv_data[0];
+
+                        send_winform_client('<' + qrcode_num + '|' + state_result + '|' + image_data + '>');  //윈폼에 정보 전송 
+
+                        //DB에 제품 정보 저장 
+
+                        string[] token = state_result.Split('=');
+
+                        if (token[1].ToUpper() == "PASS")
                         {
-                            image_data = inspect_recv_str.Split( '|' )[ 1 ];
+                            send_control_client("<CMD=CLASSIFY_LEFT>");
                         }
 
-                        send_winform_client(image_data);
-                        image_data = "";
-
-                        if (inspect_recv_str.Contains("1234567890"))
+                        else if (token[1].ToUpper() == "FAIL")
                         {
-                            string[] token = inspect_recv_str.Split('|');
-                            send_winform_client("QRCODE=1234567890|");
-                            send_winform_client(token[1]);
-
+                            send_control_client("<CMD=CLASSIFY_RIGHT>");
                         }
 
-                        /* if(token[1].ToUpper() == "1234567890")
-                         {
-                             send_winform_client("QRCODE=1234567890");
-                             send_winform_client("IMG=" + abc[1]);
-                             //image_data = total_data.Split('|')[1];
-                         }*/
+
+
                     }
 
 
@@ -204,7 +204,7 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "START")
                         {
-                            send_winform_client("<CMD=READY>");
+                            send_winform_client("<CMD=PI_TWO_READY>");
                             send_control_client("<CMD=REQUEST_SENSOR_STATE>");
                         }
 
@@ -330,12 +330,23 @@ namespace CanFactoryServer
 
         public void send_inspect_client(string _cmd)
         {
-            inspect_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
+            if (inspect_client_connected() == true)
+            {
+                inspect_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
+            }
+            else if (inspect_client_connected() == false)
+                Console.WriteLine("INSPECTION_CLIENT is not connected");
         }
 
         public void send_control_client(string _cmd)
         {
-            control_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
+            if (control_client_connected() == true)
+            {
+                control_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
+            }
+            else if (control_client_connected() == false)
+                Console.WriteLine("CONTROL_CLIENT is not connected");
+
         }
 
 
