@@ -87,7 +87,7 @@ namespace CanFactoryServer
         {
             while (true)
             {
-                byte[] buff = new byte[32];
+                byte[] buff = new byte[4096];
                 try
                 {
                     _client.Client.Receive(buff);
@@ -123,6 +123,7 @@ namespace CanFactoryServer
 
                     total_data = total_data.Remove(0, 1); // 맨 앞 '<' 제거.
                     Console.WriteLine("RECIEVE DATA = " + total_data);
+                    Console.WriteLine("");
                     return total_data;
                 }
             }
@@ -325,7 +326,16 @@ namespace CanFactoryServer
 
         public void send_winform_client(string _cmd)
         {
-            winform_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
+            if (winform_client_connected() == true)
+            {
+                winform_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
+            }
+            else if (winform_client_connected() == false)
+            {
+                Console.WriteLine("WINFORM_CLIENT is not connected !");                
+            }
+                
+            
         }
 
         public void send_inspect_client(string _cmd)
@@ -334,8 +344,10 @@ namespace CanFactoryServer
             {
                 inspect_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
             }
-            else if (inspect_client_connected() == false)
-                Console.WriteLine("INSPECTION_CLIENT is not connected");
+            else if (inspect_client_connected() == false)            
+                Console.WriteLine("INSPECTION_CLIENT is not connected !");
+                
+            
         }
 
         public void send_control_client(string _cmd)
@@ -345,8 +357,7 @@ namespace CanFactoryServer
                 control_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
             }
             else if (control_client_connected() == false)
-                Console.WriteLine("CONTROL_CLIENT is not connected");
-
+                Console.WriteLine("CONTROL_CLIENT is not connected !");                                        
         }
 
 
