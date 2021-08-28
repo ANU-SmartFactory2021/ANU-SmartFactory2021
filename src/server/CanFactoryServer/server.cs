@@ -89,7 +89,7 @@ namespace CanFactoryServer
         {
             while (true)
             {
-                byte[] buff = new byte[4096];
+                byte[] buff = new byte[32];
                 try
                 {
                     _client.Client.Receive(buff);
@@ -125,29 +125,9 @@ namespace CanFactoryServer
                     remaind_data = split_data[1];
 
                     total_data = total_data.Remove(0, 1); // 맨 앞 '<' 제거.
-
-                    if (image_data.Length <= 0)
-                    {
-                        try
-                        {
-                            image_data = total_data.Split('|')[1];
-                        }
-                        catch
-                        {
-
-                        }
-
-                    }
-
-
-
-                    break;
+                    return total_data;
                 }
-
             }
-
-
-            return total_data;
         }
 
 
@@ -185,7 +165,14 @@ namespace CanFactoryServer
 
                     if (inspect_recv_str.Contains("QRCODE"))
                     {
+                        if( image_data.Length <= 0 )
+                        {
+                            image_data = inspect_recv_str.Split( '|' )[ 1 ];
+                        }
+
                         send_winform_client(image_data);
+                        image_data = "";
+
                         if (inspect_recv_str.Contains("1234567890"))
                         {
                             string[] token = inspect_recv_str.Split('|');
