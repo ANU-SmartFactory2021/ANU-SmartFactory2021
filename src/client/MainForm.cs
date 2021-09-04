@@ -25,13 +25,16 @@ namespace Client
         public static socket_client sc = new socket_client();
         int state;
         
+        
         public MainForm()
         {
             InitializeComponent();           
             start_pan.DataPassEvent += new panel.Start_panel.DataPassEventHandler(factory_state);
             sc.connect("127.0.0.1", 5451);
             sc.send("<CLIENT_TYPE=WINFORM>");
+            
         }
+        
 
         private void Menu_btn_Click(object sender, EventArgs e)
         {

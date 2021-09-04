@@ -40,8 +40,6 @@ namespace Client.panel
             this.M_Serialnum_txt = new System.Windows.Forms.TextBox();
             this.M_Company_txt = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Good_txt = new System.Windows.Forms.TextBox();
-            this.bad_txt = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,9 +49,12 @@ namespace Client.panel
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.good_txt = new System.Windows.Forms.Label();
+            this.bad_txt = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -130,31 +131,9 @@ namespace Client.panel
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // Good_txt
-            // 
-            this.Good_txt.BackColor = System.Drawing.SystemColors.Control;
-            this.Good_txt.Location = new System.Drawing.Point(349, 285);
-            this.Good_txt.Name = "Good_txt";
-            this.Good_txt.ReadOnly = true;
-            this.Good_txt.Size = new System.Drawing.Size(73, 21);
-            this.Good_txt.TabIndex = 10;
-            this.Good_txt.Text = "양품";
-            this.Good_txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // bad_txt
-            // 
-            this.bad_txt.BackColor = System.Drawing.SystemColors.Control;
-            this.bad_txt.Location = new System.Drawing.Point(458, 285);
-            this.bad_txt.Name = "bad_txt";
-            this.bad_txt.ReadOnly = true;
-            this.bad_txt.Size = new System.Drawing.Size(73, 21);
-            this.bad_txt.TabIndex = 11;
-            this.bad_txt.Text = "불량품";
-            this.bad_txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox2.BackColor = System.Drawing.Color.Red;
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(204, 245);
@@ -166,7 +145,7 @@ namespace Client.panel
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox3.BackColor = System.Drawing.Color.Red;
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(50, 245);
@@ -214,6 +193,8 @@ namespace Client.panel
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.bad_txt);
+            this.groupBox1.Controls.Add(this.good_txt);
             this.groupBox1.Location = new System.Drawing.Point(332, 256);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(225, 67);
@@ -230,9 +211,29 @@ namespace Client.panel
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "제품 정보";
             // 
-            // timer1
+            // good_txt
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.good_txt.AutoSize = true;
+            this.good_txt.BackColor = System.Drawing.Color.White;
+            this.good_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.good_txt.Font = new System.Drawing.Font("굴림", 11F);
+            this.good_txt.Location = new System.Drawing.Point(24, 32);
+            this.good_txt.Name = "good_txt";
+            this.good_txt.Size = new System.Drawing.Size(39, 17);
+            this.good_txt.TabIndex = 0;
+            this.good_txt.Text = "정상";
+            // 
+            // bad_txt
+            // 
+            this.bad_txt.AutoSize = true;
+            this.bad_txt.BackColor = System.Drawing.Color.White;
+            this.bad_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bad_txt.Font = new System.Drawing.Font("굴림", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.bad_txt.Location = new System.Drawing.Point(145, 32);
+            this.bad_txt.Name = "bad_txt";
+            this.bad_txt.Size = new System.Drawing.Size(39, 17);
+            this.bad_txt.TabIndex = 1;
+            this.bad_txt.Text = "불량";
             // 
             // Monitor_panel
             // 
@@ -245,8 +246,6 @@ namespace Client.panel
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.bad_txt);
-            this.Controls.Add(this.Good_txt);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.M_Company_txt);
             this.Controls.Add(this.M_Serialnum_txt);
@@ -263,6 +262,8 @@ namespace Client.panel
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,8 +279,6 @@ namespace Client.panel
         private System.Windows.Forms.TextBox M_Product_txt;
         public System.Windows.Forms.TextBox M_Serialnum_txt;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox Good_txt;
-        private System.Windows.Forms.TextBox bad_txt;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label1;
@@ -289,5 +288,7 @@ namespace Client.panel
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label good_txt;
+        private System.Windows.Forms.Label bad_txt;
     }
 }
