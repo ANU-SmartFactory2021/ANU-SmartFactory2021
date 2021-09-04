@@ -9,19 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using TCPIP_Sample_CSharp;
 
 namespace Client
 {
-    public class CircularButton : Button
-    {
-        protected override void OnPaint(PaintEventArgs pevent)
-        {
-            GraphicsPath g = new GraphicsPath();
-            g.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
-            this.Region = new System.Drawing.Region(g);
-            base.OnPaint(pevent);
-        }
-    }
+    
     public partial class MainForm : Form
     {
         
@@ -30,14 +22,15 @@ namespace Client
         panel.Monitor_panel monitor_pan = new panel.Monitor_panel();
         panel.Fairqual_panel fairqual_pan = new panel.Fairqual_panel();
         panel.Def_panel def_pan = new panel.Def_panel();
-
+        public static socket_client sc = new socket_client();
         int state;
         
         public MainForm()
         {
             InitializeComponent();           
             start_pan.DataPassEvent += new panel.Start_panel.DataPassEventHandler(factory_state);
-            
+            sc.connect("127.0.0.1", 5451);
+            sc.send("<CLIENT_TYPE=WINFORM>");
         }
 
         private void Menu_btn_Click(object sender, EventArgs e)
