@@ -41,7 +41,7 @@ namespace TCPIP_Sample_CSharp {
 				m_thread = new Thread( ts );
 				m_thread.Start();
 			}
-		}
+		} 
 
 		public void disconnect() {
 
