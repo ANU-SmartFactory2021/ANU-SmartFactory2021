@@ -53,9 +53,14 @@ namespace TCPIP_Sample_CSharp {
 			m_thread?.Abort();
 		}
 
-		private static async void thread_proc_on_recv() {
+		string total_data;
+		string remaind_data;
+
+		private  void thread_proc_on_recv() {
 			NetworkStream stream = null;
-			while( true ) {
+			total_data = "";
+			remaind_data = "";
+			while ( true ) {
 				try {
 					if( m_tc.Connected == false ) {
 						Thread.Sleep( 100 );
@@ -64,15 +69,60 @@ namespace TCPIP_Sample_CSharp {
 
 					stream = m_tc.GetStream();
 
-					// (4) 스트림으로부터 바이트 데이타 읽기
-					byte[] outbuf = new byte[ 1024 ];
-					int nbytes = await stream.ReadAsync( outbuf, 0, outbuf.Length );
-					if( nbytes > 0 ) {
-						string msg = Encoding.ASCII.GetString( outbuf, 0, nbytes );
-						m_recv_callback?.Invoke( string.Format( "[Recv] : " + msg ) );
-					} else {
-						m_tc.Close();
+
+					byte[] buff = new byte[4096];
+					try
+					{
+						m_tc.Client.Receive(buff);
 					}
+					catch (Exception ex)
+					{
+						m_tc.Close();
+						continue;
+					}
+
+					string recv_str = Encoding.Default.GetString(buff);
+					recv_str = recv_str.Trim('\0');                               //이까지 확인 
+
+					if (remaind_data.Length > 0)
+					{
+						recv_str = remaind_data + recv_str;
+						remaind_data = "";
+					}
+
+					int start_index = recv_str.IndexOf('<');
+					if (0 <= start_index)
+					{
+						total_data = "";
+						recv_str = recv_str.Remove(0, start_index);
+					}
+					total_data += recv_str;
+
+					if (total_data.Contains('>'))
+					{
+						//int end_index = total_data.IndexOf( '>' );
+						string[] split_data = total_data.Split('>');
+						total_data = split_data[0];
+						remaind_data = split_data[1];
+
+						total_data = total_data.Remove(0, 1);
+
+						m_recv_callback?.Invoke(string.Format(total_data));
+					}
+					
+
+
+
+
+					//// (4) 스트림으로부터 바이트 데이타 읽기
+					//byte[] outbuf = new byte[ 1024 ];
+					//int nbytes = await stream.ReadAsync( outbuf, 0, outbuf.Length );
+					//if( nbytes > 0 ) {
+					//	string msg = Encoding.ASCII.GetString( outbuf, 0, nbytes );
+					//	m_recv_callback?.Invoke( string.Format( "[Recv] : " + msg ) );
+					//} else {
+					//	m_tc.Close();
+					//}
 				} catch( Exception ) {
 					stream.Close();
 				}

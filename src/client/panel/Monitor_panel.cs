@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Client.panel
 {
@@ -65,14 +66,30 @@ namespace Client.panel
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            
-        }
 
         void recv_callback(string _msg)
         {
-            MessageBox.Show(_msg);
+            //MessageBox.Show(_msg);
+            
+            Console.WriteLine(_msg);
+            string[] result = _msg.Split(new char[] { '|' });
+            if (result.Length > 1)
+            {                
+                byte[] imageBytes = Convert.FromBase64String(result[2]);
+                System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
+                Image img = (Image)converter.ConvertFrom(imageBytes);
+                pictureBox1.Image = img;
+                if(result[1]=="QUALITY=PASS")
+                {
+                    good_txt.BackColor = Color.Green;
+                    Thread.Sleep(1000);
+                    good_txt.BackColor = Color.Red;
+                }
+            }            
+            else if(_msg== "CMD=PI_ONE_READY")
+            {
+                pictureBox3.BackColor = Color.Green;
+            }
         }
     }
 }

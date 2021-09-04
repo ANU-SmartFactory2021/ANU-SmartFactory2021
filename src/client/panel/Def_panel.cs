@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OracleClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace Client.panel
 {
     public partial class Def_panel : UserControl
     {
+        
+
         public Def_panel()
         {
             InitializeComponent();

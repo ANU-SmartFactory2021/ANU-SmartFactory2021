@@ -31,10 +31,10 @@ namespace Client.panel
         {
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.no_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.num_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.time_com = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.name_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
@@ -50,10 +50,10 @@ namespace Client.panel
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
+            this.no_col,
+            this.num_col,
+            this.time_com,
+            this.name_col,
             this.columnHeader5});
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
@@ -64,24 +64,24 @@ namespace Client.panel
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // no_col
             // 
-            this.columnHeader1.Text = "No.";
+            this.no_col.Text = "No.";
             // 
-            // columnHeader2
+            // num_col
             // 
-            this.columnHeader2.Text = "제품 번호";
-            this.columnHeader2.Width = 80;
+            this.num_col.Text = "제품 번호";
+            this.num_col.Width = 80;
             // 
-            // columnHeader3
+            // time_com
             // 
-            this.columnHeader3.Text = "시간";
-            this.columnHeader3.Width = 110;
+            this.time_com.Text = "시간";
+            this.time_com.Width = 110;
             // 
-            // columnHeader4
+            // name_col
             // 
-            this.columnHeader4.Text = "제품 명";
-            this.columnHeader4.Width = 80;
+            this.name_col.Text = "제품 명";
+            this.name_col.Width = 80;
             // 
             // columnHeader5
             // 
@@ -106,10 +106,10 @@ namespace Client.panel
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader no_col;
+        private System.Windows.Forms.ColumnHeader num_col;
+        private System.Windows.Forms.ColumnHeader time_com;
+        private System.Windows.Forms.ColumnHeader name_col;
         private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }
