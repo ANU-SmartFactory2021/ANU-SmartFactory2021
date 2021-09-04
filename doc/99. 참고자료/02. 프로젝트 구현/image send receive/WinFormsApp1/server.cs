@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using WinFormsApp1;
+using System.Windows.Forms;
 
 namespace console_server_test
 {
@@ -15,7 +17,7 @@ namespace console_server_test
 		TcpClient m_inspection_client = new();
 		TcpClient m_classifying_client = new();
 
-		List<Socket> client_list = new();
+		List<TcpClient> client_list = new();
 
 		Thread accept_thread = null;
 		Thread recv_thread = null;
@@ -62,6 +64,8 @@ namespace console_server_test
 						continue;
 					}
 
+					client_list.Add( tc );
+
 					if( token[ 1 ].ToUpper() == "INSPECTION" )
 					{
 						m_inspection_client = tc;
@@ -71,6 +75,7 @@ namespace console_server_test
 					{
 						m_classifying_client = tc;
 					}
+
 				}
 			}
 		}
@@ -86,19 +91,22 @@ namespace console_server_test
 			{
 				Thread.Sleep( 1 );
 
-				if( inspection_client_connected() )
+				for( int i = 0; i < client_list.Count; i++ )
 				{
+					if( client_list[ i ].Connected != true )
+						continue;
+
 					byte[] buff = new byte[ 4096 ];
 					try
 					{
-						m_inspection_client.Client.Receive( buff );
+						client_list[ i ].Client.Receive( buff );
 					}
 					catch( Exception ex )
 					{
-						m_inspection_client.Close();
+						client_list[ i ].Close();
 						continue;
 					}
-					
+
 					string recv_str = Encoding.Default.GetString( buff );
 					recv_str = recv_str.Trim( '\0' );                               //이까지 확인 
 
@@ -128,10 +136,19 @@ namespace console_server_test
 
 						if( image_data.Length <= 0 )
 						{
-							image_data = total_data.Split( '|' )[ 1 ];
+							if( total_data.Split( '|' ).Length >= 3 )
+								image_data = total_data.Split( '|' )[ 2 ];
 						}
 					}
 					Console.WriteLine( total_data );
+
+					if( Program.MainForm.InvokeRequired )
+					{
+						Program.MainForm.Invoke( new MethodInvoker( delegate ()
+						{
+							Program.MainForm.print_log( total_data );
+						} ) );
+					}
 				}
 			}
 		}
@@ -150,6 +167,14 @@ namespace console_server_test
 		public void send_inspection_client( string _cmd )
 		{
 			m_inspection_client.Client.Send( Encoding.UTF8.GetBytes( _cmd ) );
+		}
+
+		public void send_clients( string _cmd )
+		{
+			for( int i = 0; i < client_list.Count; i++ )
+			{
+				client_list[ i ].Client.Send( Encoding.UTF8.GetBytes( _cmd ) );
+			}
 		}
 	}
 }

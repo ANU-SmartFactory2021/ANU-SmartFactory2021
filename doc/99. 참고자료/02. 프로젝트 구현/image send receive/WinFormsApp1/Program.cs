@@ -6,8 +6,10 @@ using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
-	static class Program
+	public static class Program
 	{
+		public static Form1 MainForm = new Form1();
+
 		/// <summary>
 		///  The main entry point for the application.
 		/// </summary>
@@ -17,7 +19,7 @@ namespace WinFormsApp1
 			Application.SetHighDpiMode( HighDpiMode.SystemAware );
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault( false );
-			Application.Run( new Form1() );
+			Application.Run( MainForm );
 		}
 	}
 }
