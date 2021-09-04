@@ -253,7 +253,7 @@ namespace CanFactoryServer
 
                         else if (token[1].ToUpper() == "STOP")
                         {
-
+                            send_winform_client("<CMD=EMERGENCY>");
                         }
 
                         else if (token[1].ToUpper() == "WORKING")
@@ -284,6 +284,11 @@ namespace CanFactoryServer
                         {
                             send_inspect_client("<CMD=REQUEST_START>");
                             send_control_client("<CMD=REQUEST_START>");
+                        }
+
+                        if (token[1].ToUpper() == "STOP")
+                        {                           
+                            send_control_client("<CMD=BELT_STOP>"); //추가 
                         }
                     }
                 }
