@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from socket import SocketIO
-
 from cv2 import QRCodeDetector
 import qr
 import soc
 import time
-# dummy
+
 
 print('start')
 soc.connect()
 soc.send('CLIENT_TYPE=INSPECTION')
+
 
 while True:
     time.sleep(1)
@@ -19,8 +19,10 @@ while True:
     if recv_data == 'ack\n':
         break
 
+
 soc.send('PI_ONE_STATE=READY')
 print('pi ready')
+
 
 while True:
     time.sleep(1)
@@ -39,12 +41,10 @@ while True:
                     continue
                 else:
                     temp = str(qrdata).split('|')[0]
-                    print(temp)
-                    if temp not in qr.decode() and qr.decode != "QR_READ_ERROR":
+                    if temp not in str(qr.decode()).split('|')[0]:
                         print("ok")
                         soc.send(qrdata)
                     else:
                         continue
-
     except BlockingIOError as e:
         print(e)
