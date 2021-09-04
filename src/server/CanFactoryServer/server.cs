@@ -332,10 +332,10 @@ namespace CanFactoryServer
             }
             else if (winform_client_connected() == false)
             {
-                Console.WriteLine("WINFORM_CLIENT is not connected !");                
+                Console.WriteLine("WINFORM_CLIENT is not connected !");
             }
-                
-            
+
+
         }
 
         public void send_inspect_client(string _cmd)
@@ -344,10 +344,10 @@ namespace CanFactoryServer
             {
                 inspect_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
             }
-            else if (inspect_client_connected() == false)            
+            else if (inspect_client_connected() == false)
                 Console.WriteLine("INSPECTION_CLIENT is not connected !");
-                
-            
+
+
         }
 
         public void send_control_client(string _cmd)
@@ -357,7 +357,7 @@ namespace CanFactoryServer
                 control_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
             }
             else if (control_client_connected() == false)
-                Console.WriteLine("CONTROL_CLIENT is not connected !");                                        
+                Console.WriteLine("CONTROL_CLIENT is not connected !");
         }
 
 
