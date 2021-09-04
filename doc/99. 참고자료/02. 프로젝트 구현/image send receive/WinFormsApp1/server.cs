@@ -13,7 +13,7 @@ namespace console_server_test
 {
 	class server
 	{
-		TcpListener m_server_socket = new( IPAddress.Any, 1234 );
+		TcpListener m_server_socket = new( IPAddress.Any, 5451 );
 		TcpClient m_inspection_client = new();
 		TcpClient m_classifying_client = new();
 
