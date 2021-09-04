@@ -1,5 +1,5 @@
 ﻿
-namespace ClientTest01
+namespace Client
 {
     partial class MainForm
     {
@@ -37,6 +37,7 @@ namespace ClientTest01
             this.Stop_btn = new System.Windows.Forms.Button();
             this.Main_panel = new System.Windows.Forms.Panel();
             this.Time_label = new System.Windows.Forms.Label();
+            this.State_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Menu_btn
@@ -124,11 +125,21 @@ namespace ClientTest01
             this.Time_label.TabIndex = 8;
             this.Time_label.Text = "time";
             // 
+            // State_label
+            // 
+            this.State_label.AutoSize = true;
+            this.State_label.Location = new System.Drawing.Point(185, 41);
+            this.State_label.Name = "State_label";
+            this.State_label.Size = new System.Drawing.Size(32, 12);
+            this.State_label.TabIndex = 9;
+            this.State_label.Text = "state";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.State_label);
             this.Controls.Add(this.Time_label);
             this.Controls.Add(this.Main_panel);
             this.Controls.Add(this.Stop_btn);
@@ -154,6 +165,7 @@ namespace ClientTest01
         private System.Windows.Forms.Button Stop_btn;
         private System.Windows.Forms.Panel Main_panel;
         private System.Windows.Forms.Label Time_label;
+        private System.Windows.Forms.Label State_label;
     }
 }
 

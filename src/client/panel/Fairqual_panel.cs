@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClientTest01.panel
+namespace Client.panel
 {
     public partial class Fairqual_panel : UserControl
     {
