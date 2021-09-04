@@ -288,7 +288,7 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "STOP")
                         {                           
-                            send_control_client("<CMD=BELT_STOP>");
+                            send_control_client("<CMD=BELT_STOP>"); //추가 
                         }
                     }
                 }
