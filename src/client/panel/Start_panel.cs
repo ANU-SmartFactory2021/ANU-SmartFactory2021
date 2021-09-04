@@ -3,8 +3,9 @@ using System;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ClientTest01.panel
+namespace Client.panel
 {
+    
     public partial class Start_panel : UserControl
     {
         string strConn = "Data Source=(DESCRIPTION=" +
@@ -15,12 +16,17 @@ namespace ClientTest01.panel
                 ";User Id=hr;Password=hr;";
 
         OracleConnection conn;
-        OracleCommand cmd;
+        OracleCommand cmd;       
 
+        public delegate void DataPassEventHandler(object sender);
+        public event DataPassEventHandler DataPassEvent;
+        public int state;
+        
         public Start_panel()
-        {
+        {            
             InitializeComponent();
             fillCombo();
+           
         }     
         public void FieldClear()
         {
@@ -36,7 +42,9 @@ namespace ClientTest01.panel
 
         private void Cancel_btn_Click(object sender, EventArgs e)
         {
-            FieldClear();            
+            FieldClear();
+            state = 0;
+            DataPassEvent(state);
         }
 
         public void fillCombo()
@@ -64,7 +72,7 @@ namespace ClientTest01.panel
             
         }
 
-        private void Product_combo_SelectedIndexChanged(object sender, EventArgs e)
+        void Product_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Product_combo.SelectedIndex != -1)
             {
@@ -72,25 +80,26 @@ namespace ClientTest01.panel
 
                 cmd.CommandText = $"select PRODUCT_ID, COMPANY from product where PRODUCT_NAME = '{selected}'";
                 OracleDataReader rdr = cmd.ExecuteReader();
-                StringBuilder sb = new StringBuilder();
 
                 while (rdr.Read())
                 {
                     string company = rdr["COMPANY"].ToString();
-                    sb.Append(company);
-                    Company_txt.Text = sb.ToString();
-                    sb.Clear();
+                    Company_txt.Text = company;
                     string product_id = rdr["PRODUCT_ID"].ToString();
-                    sb.Append(product_id);
-                    Serialnum_txt.Text = sb.ToString();
-                    sb.Clear();
-
+                    Serialnum_txt.Text = product_id;
+                    
                     product_png.Load(@"C:\Users\Admin\source\repos\ClientTest01\img\" + selected + ".png");
+                    
                 }
-
+               
             }
+            
         }
 
-
+        private void Start_btn_Click(object sender, EventArgs e)
+        {                           
+            state = 1;           
+            DataPassEvent(state);            
+        }        
     }
 }
