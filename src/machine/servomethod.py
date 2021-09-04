@@ -14,13 +14,9 @@ GPIO.setup(servo_pin, GPIO.OUT)
 pwm = GPIO.PWM(servo_pin ,50)
 
 
-def servo_main():
-    print("서보 함수를 호출 했습니다")
-    while True:
-       
-        print("왼쪽: 1 \n오른쪽: 2 \n다른 함수 호출:3 ")
-        num = 0
-        num = input()
+def servo_main( btn ):
+    
+        num = btn
         if num == '1' :
             print("1 입력")
 
@@ -38,15 +34,6 @@ def servo_main():
             
             #break
 
-        elif num == '3':
-            
-            break
+        #GPIO.cleanup()
+        #print("GPIO cleanup...!!!")
         
-try:
-    servo_main()  
-              
-
-finally:
-    GPIO.cleanup()
-    print("GPIO cleanup...!!!")
-

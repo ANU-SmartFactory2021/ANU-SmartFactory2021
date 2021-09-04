@@ -26,7 +26,8 @@ namespace Client.panel
 
         public Monitor_panel()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            MainForm.sc.set_recv_callback(recv_callback);
         }
 
         public void FieldClear()
@@ -36,7 +37,7 @@ namespace Client.panel
             M_Product_txt.Text = " ";
             M_Serialnum_txt.Text = " ";
         }
-
+                
         private void M_Serialnum_txt_TextChanged(object sender, EventArgs e)
         {
             conn = new OracleConnection(strConn);
@@ -64,6 +65,14 @@ namespace Client.panel
             }
         }
 
-        
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        void recv_callback(string _msg)
+        {
+            MessageBox.Show(_msg);
+        }
     }
 }

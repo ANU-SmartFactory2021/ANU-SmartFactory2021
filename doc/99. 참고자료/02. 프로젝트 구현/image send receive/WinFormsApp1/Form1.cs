@@ -42,5 +42,62 @@ namespace WinFormsApp1
 				svr.image_data = "";
 			}
 		}
+
+		private void textBox1_TextChanged( object sender, EventArgs e )
+		{
+
+		}
+
+		private void btnLoadImage_Click( object sender, EventArgs e )
+		{
+			OpenFileDialog ofd = new OpenFileDialog();
+			DialogResult dr = ofd.ShowDialog();
+			if( dr == DialogResult.OK )
+			{
+				load_image.Image = Image.FromFile( ofd.FileName );
+			}
+		}
+
+		private void btnSendImage_Click( object sender, EventArgs e )
+		{
+			using( MemoryStream m = new MemoryStream() )
+			{
+				load_image.Image.Save( m, load_image.Image.RawFormat );
+				byte[] imageBytes = m.ToArray();
+				string base64String = Convert.ToBase64String( imageBytes );
+
+				//svr.send_clients( string.Format( "<QRCODE=1234567890|QUALITY=PASS|{0}>", "test" ) );
+				svr.send_clients( string.Format( "<QRCODE=1234567890|QUALITY=PASS|{0}>", base64String ) );
+			}
+		}
+
+		private void btnSendText_Click( object sender, EventArgs e )
+		{
+			send_text();
+		}
+
+		private void send_text()
+		{
+			string text = textBox1.Text;
+			svr.send_clients( text );
+
+			print_log( text );
+
+			textBox1.Text = "";
+		}
+
+		private void textBox1_KeyDown( object sender, KeyEventArgs e )
+		{
+			if( e.KeyCode == Keys.Enter )
+			{
+				send_text();
+			}
+		}
+
+		public void print_log( string _text )
+		{
+			DateTime time = DateTime.Now;
+			listBox1.Items.Add( string.Format( "[{0}] : {1}", time.ToString(), _text ) );
+		}
 	}
 }

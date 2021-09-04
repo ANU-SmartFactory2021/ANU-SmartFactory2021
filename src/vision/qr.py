@@ -5,6 +5,7 @@ import os
 import numpy as np
 from pyzbar import pyzbar
 
+
 cap = cv2.VideoCapture(0)
 
 
@@ -20,16 +21,10 @@ def check():
 
 
 def decode():
-    # 카메라 주소
     retval, frame = cap.read()
-
-    cv2.imwrite('image.jpg', frame)
+    retval, buffer = cv2.imencode('.jpg', frame)
     decoded_objects = pyzbar.decode(frame)
-
-    with open('image.jpg', 'rb') as img_file:
-        converted_string = base64.b64encode(img_file.read())
-
-    os.remove('image.jpg')
+    converted_string = base64.b64encode(buffer)
 
     if not decoded_objects:
         print(decoded_objects)

@@ -99,7 +99,8 @@ namespace Client.panel
         private void Start_btn_Click(object sender, EventArgs e)
         {                           
             state = 1;           
-            DataPassEvent(state);            
+            DataPassEvent(state);
+            MainForm.sc.send("<CMD=START>");
         }        
     }
 }
