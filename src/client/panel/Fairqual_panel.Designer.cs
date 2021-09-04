@@ -1,5 +1,5 @@
 ﻿
-namespace ClientTest01.panel
+namespace Client.panel
 {
     partial class Fairqual_panel
     {
