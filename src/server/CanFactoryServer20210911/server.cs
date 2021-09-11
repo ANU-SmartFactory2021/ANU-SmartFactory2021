@@ -11,7 +11,7 @@ namespace CanFactoryServer
 {
     class server
     {
-        TcpListener server_socket = new TcpListener(IPAddress.Any, 12345);
+        TcpListener server_socket = new TcpListener(IPAddress.Any, 9999);
         TcpClient inspect_client = new TcpClient();
         TcpClient control_client = new TcpClient();
         TcpClient winform_client = new TcpClient();
@@ -50,12 +50,17 @@ namespace CanFactoryServer
                 Thread.Sleep(1);
 
                 TcpClient tc = server_socket.AcceptTcpClient();
+                Console.WriteLine("Accept "+ tc.Client.AddressFamily.ToString());
 
-                byte[] buff = new byte[256];
-                tc.Client.Receive(buff);
-                string recv_str = Encoding.Default.GetString(buff);
+
+                //byte[] buff = new byte[256];
+                //tc.Client.Receive(buff);
+                //string recv_str = Encoding.Default.GetString(buff);
+                //recv_str = recv_str.Trim('\0');
+                string recv_str = Receive(tc);
                 recv_str = recv_str.Trim('\0');
-
+                recv_str = recv_str.Trim('\n'); 
+                recv_str = recv_str.Trim('\r');
 
                 if (recv_str.Contains("CLIENT_TYPE"))
                 {
@@ -68,6 +73,7 @@ namespace CanFactoryServer
 
                     if (token[1].ToUpper() == "INSPECTION")
                     {
+                        Console.WriteLine(recv_str);
                         inspect_client = tc;
                         send_inspect_client("connected");
                     }
@@ -169,33 +175,20 @@ namespace CanFactoryServer
 
                     if (inspect_recv_str.Contains("QRCODE"))
                     {
+                        //   <QRCODE=1234567890|QUALITY=PASS|이미지 데이터>
+
                         var recv_data = inspect_recv_str.Split('|');
                         string image_data = recv_data[2];
                         string state_result = recv_data[1];
                         string qrcode_num = recv_data[0];
-
-                        string[] num = qrcode_num.Split('=');
-                        
-
-                        //send_winform_client('<' + qrcode_num + '|' + state_result + '|' + image_data + '>');  //윈폼에 정보 전송 
+                                          
                         send_winform_client("<"+inspect_recv_str+">"); 
 
-                        if(num[1] == "1234567890" && state_result == "QUALITY=PASS")
-                        {
-                            database.insert_data_coke();
-                        } 
+                        string[] QR_VALUE = qrcode_num.Split('=');
 
-                        else if (num[1] == "1234567891" && state_result == "QUALITY=PASS")
-                        {
-                            database.insert_data_cider();
-                        }
 
-                        else if (num[1] == "1234567892" && state_result == "QUALITY=PASS")
-                        {
-                            database.insert_data_hwanta();
-                        } 
 
-                        
+                  
 
 
                         //DB에 제품 정보 저장 
@@ -375,6 +368,7 @@ namespace CanFactoryServer
             if (inspect_client_connected() == true)
             {
                 inspect_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
+                Console.WriteLine("INSPECTION_CLIENT send : "+ _cmd);
             }
             else if (inspect_client_connected() == false)
                 Console.WriteLine("INSPECTION_CLIENT is not connected !");
