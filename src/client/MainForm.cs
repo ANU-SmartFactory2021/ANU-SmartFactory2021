@@ -22,6 +22,8 @@ namespace Client
         panel.Monitor_panel monitor_pan = new panel.Monitor_panel();
         panel.Fairqual_panel fairqual_pan = new panel.Fairqual_panel();
         panel.Def_panel def_pan = new panel.Def_panel();
+       
+
         public static socket_client sc = new socket_client();
         int state;
         
@@ -38,7 +40,8 @@ namespace Client
 
         private void Menu_btn_Click(object sender, EventArgs e)
         {
-            Main_panel.Controls.Clear();           
+            Main_panel.Controls.Clear();
+            
         }
 
         private void Start_btn_Click(object sender, EventArgs e)

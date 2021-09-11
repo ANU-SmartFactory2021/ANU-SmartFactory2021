@@ -14,7 +14,8 @@ using System.Threading;
 namespace Client.panel
 {
     public partial class Monitor_panel : UserControl
-    {
+    {       
+
         string strConn = "Data Source=(DESCRIPTION=" +
                 "(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)" +
                 "(HOST=localhost)(PORT=1521)))" +
@@ -83,12 +84,15 @@ namespace Client.panel
                 {
                     good_txt.BackColor = Color.Green;
                     Thread.Sleep(1000);
-                    good_txt.BackColor = Color.Red;
+                    good_txt.BackColor = Color.White;
                 }
-            }            
-            else if(_msg== "CMD=PI_ONE_READY")
+            }
+            else
             {
-                pictureBox3.BackColor = Color.Green;
+                if (_msg == "PI_TWO_READY")
+                {
+                    pictureBox2.BackColor = Color.Green;
+                }
             }
         }
     }
