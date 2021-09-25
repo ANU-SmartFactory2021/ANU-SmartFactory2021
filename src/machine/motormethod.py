@@ -6,17 +6,26 @@ GPIO_RP = 24
 GPIO_RN = 25
 GPIO_EN = 12
 
-GPIO.setup(GPIO_RP, GPIO.OUT)
-GPIO.setup(GPIO_RN, GPIO.OUT)
-GPIO.setup(GPIO_EN, GPIO.OUT)
 
 def motor_main( btn2 ):
     
-        num = btn2
-        if num1 == '1' :
-            prin("forward")
+        
+        if btn2 == '4\n' :
+        #if btn2 == '<LINE_STATE=RUNNING>' :
+            print("forward")
+            GPIO.setup(GPIO_RP, GPIO.OUT)
+            GPIO.setup(GPIO_RN, GPIO.OUT)
+            GPIO.setup(GPIO_EN, GPIO.OUT)
             
             GPIO.output(GPIO_RP, GPIO.HIGH)
             GPIO.output(GPIO_RN, GPIO.LOW)
-            GPIO.output(GPIO.EN, GPIO.HIGH)
-      
+            GPIO.output(GPIO_EN, GPIO.HIGH)
+            
+        if btn2 =='5\n' :
+        #if btn2 =='<LINE_STATE=STOP>' :
+            print("STOP")
+            GPIO.output(GPIO_RP, GPIO.LOW)
+            GPIO.output(GPIO_RN, GPIO.LOW)
+            GPIO.output(GPIO_EN, GPIO.LOW)
+         
+       
