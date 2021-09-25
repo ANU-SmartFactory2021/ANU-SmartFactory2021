@@ -67,7 +67,7 @@ namespace WinFormsApp1
 				string base64String = Convert.ToBase64String( imageBytes );
 
 				//svr.send_clients( string.Format( "<QRCODE=1234567890|QUALITY=PASS|{0}>", "test" ) );
-				svr.send_clients( string.Format( "<QRCODE=1234567890|QUALITY=PASS|{0}>", base64String ) );
+				svr.send_clients( string.Format("<QRCODE=1234567890|QUALITY=PASS|{0}>", base64String ) );
 			}
 		}
 

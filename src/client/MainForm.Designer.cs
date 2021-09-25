@@ -29,6 +29,7 @@ namespace Client
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Menu_btn = new System.Windows.Forms.Button();
             this.Start_btn = new System.Windows.Forms.Button();
             this.Monitor_btn = new System.Windows.Forms.Button();
@@ -38,6 +39,7 @@ namespace Client
             this.Main_panel = new System.Windows.Forms.Panel();
             this.Time_label = new System.Windows.Forms.Label();
             this.State_label = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // Menu_btn
@@ -133,6 +135,11 @@ namespace Client
             this.State_label.Size = new System.Drawing.Size(32, 12);
             this.State_label.TabIndex = 9;
             this.State_label.Text = "state";
+            this.State_label.TextChanged += new System.EventHandler(this.State_label_TextChanged);
+            // 
+            // timer1
+            // 
+            
             // 
             // MainForm
             // 
@@ -166,6 +173,7 @@ namespace Client
         private System.Windows.Forms.Panel Main_panel;
         private System.Windows.Forms.Label Time_label;
         private System.Windows.Forms.Label State_label;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

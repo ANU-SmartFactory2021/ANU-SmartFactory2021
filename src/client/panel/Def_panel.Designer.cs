@@ -30,12 +30,9 @@ namespace Client.panel
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.no_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.num_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.time_com = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.name_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btn_update = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,56 +44,35 @@ namespace Client.panel
             this.label1.TabIndex = 0;
             this.label1.Text = "불량 현황";
             // 
-            // listView1
+            // dataGridView1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.no_col,
-            this.num_col,
-            this.time_com,
-            this.name_col,
-            this.columnHeader5});
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(25, 65);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(535, 274);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(20, 52);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(442, 282);
+            this.dataGridView1.TabIndex = 1;
             // 
-            // no_col
+            // btn_update
             // 
-            this.no_col.Text = "No.";
-            // 
-            // num_col
-            // 
-            this.num_col.Text = "제품 번호";
-            this.num_col.Width = 80;
-            // 
-            // time_com
-            // 
-            this.time_com.Text = "시간";
-            this.time_com.Width = 110;
-            // 
-            // name_col
-            // 
-            this.name_col.Text = "제품 명";
-            this.name_col.Width = 80;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "비고";
-            this.columnHeader5.Width = 200;
+            this.btn_update.Location = new System.Drawing.Point(490, 300);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(75, 23);
+            this.btn_update.TabIndex = 3;
+            this.btn_update.Text = "update";
+            this.btn_update.UseVisualStyleBackColor = true;
             // 
             // Def_panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.btn_update);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Name = "Def_panel";
             this.Size = new System.Drawing.Size(589, 352);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,11 +81,7 @@ namespace Client.panel
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader no_col;
-        private System.Windows.Forms.ColumnHeader num_col;
-        private System.Windows.Forms.ColumnHeader time_com;
-        private System.Windows.Forms.ColumnHeader name_col;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btn_update;
     }
 }

@@ -123,7 +123,8 @@ namespace TCPIP_Sample_CSharp {
 					//} else {
 					//	m_tc.Close();
 					//}
-				} catch( Exception ) {
+				} catch( Exception ex ) {
+					Console.WriteLine(ex.Message);
 					stream.Close();
 				}
 			}

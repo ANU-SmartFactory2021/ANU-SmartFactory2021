@@ -10,13 +10,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using TCPIP_Sample_CSharp;
+using System.Threading;
 
 namespace Client
 {
     
     public partial class MainForm : Form
     {
+
         
+
         //각 panel 선언
         panel.Start_panel start_pan = new panel.Start_panel();
         panel.Monitor_panel monitor_pan = new panel.Monitor_panel();
@@ -25,14 +28,15 @@ namespace Client
        
 
         public static socket_client sc = new socket_client();
-        int state;
+        int state;        
         
         
         public MainForm()
         {
             InitializeComponent();           
             start_pan.DataPassEvent += new panel.Start_panel.DataPassEventHandler(factory_state);
-            sc.connect("127.0.0.1", 5451);
+            
+            sc.connect("192.168.40.135", 5451);
             sc.send("<CLIENT_TYPE=WINFORM>");
             
         }
@@ -63,12 +67,10 @@ namespace Client
             {
                 monitor_pan.FieldClear();
             }
-            else
-            {
-                monitor_pan.M_Serialnum_txt.Text = start_pan.Serialnum_txt.Text;
-            }
 
         }
+
+        
 
         private void Def_btn_Click(object sender, EventArgs e)
         {
@@ -80,6 +82,8 @@ namespace Client
         {
             Main_panel.Controls.Clear();
             Main_panel.Controls.Add(fairqual_pan);
+
+            fairqual_pan.read();
         }
 
         private void Stop_btn_Click(object sender, EventArgs e)
@@ -91,6 +95,12 @@ namespace Client
         {
             state = (int)sender;
             State_label.Text = state.ToString();
+        }
+
+        private void State_label_TextChanged(object sender, EventArgs e)
+        {
+            monitor_pan.M_Serialnum_txt.Text = start_pan.Serialnum_txt.Text;
+            
         }
 
         
