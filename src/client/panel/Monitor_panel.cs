@@ -1,15 +1,8 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Client.panel
 {
@@ -26,10 +19,18 @@ namespace Client.panel
         OracleConnection conn;
         OracleCommand cmd;
 
+        string qual = " ";
+        int product_num = 0;
+        int qr_num = 0;
+
         public Monitor_panel()
         {
             InitializeComponent();
-            MainForm.sc.set_recv_callback(recv_callback);
+            conn = new OracleConnection(strConn);
+            conn.Open();
+            cmd = new OracleCommand();
+            cmd.Connection = conn;
+            MainForm.sc.set_recv_callback(recv_callback);            
         }
 
         public void FieldClear()
@@ -41,15 +42,10 @@ namespace Client.panel
         }
                 
         private void M_Serialnum_txt_TextChanged(object sender, EventArgs e)
-        {
-            conn = new OracleConnection(strConn);
-
-            cmd = new OracleCommand();
-            cmd.Connection = conn;
-
+        {            
             if (M_Serialnum_txt.Text != " ")
             {
-                conn.Open();
+                
                 string m_serialnum = M_Serialnum_txt.Text;
 
                 cmd.CommandText = $"select PRODUCT_NAME, KCAL, COMPANY from product where PRODUCT_ID = '{m_serialnum}'";
@@ -67,33 +63,66 @@ namespace Client.panel
             }
         }
 
-
-        void recv_callback(string _msg)
+        delegate void del_draw_view(string _msg);
+        private void draw_view( string _msg )
         {
+
             //MessageBox.Show(_msg);
-            
+
             Console.WriteLine(_msg);
             string[] result = _msg.Split(new char[] { '|' });
-            if (result.Length > 1)
-            {                
+
+            if (result.Length > 2)
+            {
+
                 byte[] imageBytes = Convert.FromBase64String(result[2]);
                 System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
                 Image img = (Image)converter.ConvertFrom(imageBytes);
                 pictureBox1.Image = img;
-                if(result[1]=="QUALITY=PASS")
+
+                qual = result[1].Substring(8);
+                Console.WriteLine(qual);
+                product_num = Convert.ToInt32(M_Serialnum_txt.Text);
+                Console.WriteLine(product_num);
+                qr_num = Convert.ToInt32(result[0].Substring(7));
+                Console.WriteLine(qr_num);
+
+                if (result[1] == "QUALITY=PASS")
                 {
                     good_txt.BackColor = Color.Green;
                     Thread.Sleep(1000);
                     good_txt.BackColor = Color.White;
                 }
+
+                save();
             }
             else
             {
-                if (_msg == "PI_TWO_READY")
+                if (_msg == "CMD=PI_ONE_READY")
                 {
-                    pictureBox2.BackColor = Color.Green;
+                    cam_off.BackColor = Color.White;
+                    cam_on.BackColor = Color.Green;
                 }
             }
         }
+
+        public void recv_callback(string _msg)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new del_draw_view(draw_view), _msg);
+            }
+            else
+            {
+                draw_view(_msg);
+            }
+        }
+
+        public void save()
+        {
+            cmd.CommandText = $"INSERT INTO QR_VAL VALUES({product_num},{qr_num},SYSDATE,'{qual}')";
+            cmd.ExecuteNonQuery();                      
+        }
+
     }
 }
