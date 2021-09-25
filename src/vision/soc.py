@@ -28,7 +28,7 @@ def connect():
     try:
         client_socket.connect((ip, port))
         client_socket.setblocking(False)
-        print("connected")
+        #print("connected")
     except socket.error as e:
         print(f"error while connecting : {e}")
         return False
@@ -38,7 +38,8 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #client_socket.setblocking(False)
 
 # 서버
-ip = '192.168.0.2'
+# ip = '127.0.0.1'
+ip = '192.168.0.57'
 port = 9999
 
 # recv_thread = threading.Thread(target=recv, args=(client_socket,))
