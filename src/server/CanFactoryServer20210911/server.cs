@@ -75,12 +75,12 @@ namespace CanFactoryServer
                     {
                         Console.WriteLine(recv_str);
                         inspect_client = tc;
-                        send_inspect_client("connected");
+                        send_inspect_client("ack");
                     }
                     else if (token[1].ToUpper() == "CONTROL")
                     {
                         control_client = tc;
-                        send_control_client("connected");
+                        send_control_client("ack");
                     }
                     else if (token[1].ToUpper() == "WINFORM")
                     {
@@ -159,7 +159,8 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "START")
                         {
-                            send_winform_client("<CMD=PI_ONE_READY>");                          
+                            send_winform_client("<CMD=PI_ONE_READY>");
+                            send_inspect_client("<CMD=CAPTURE_START>");
                         }
 
                         else if (token[1].ToUpper() == "FAIL")
@@ -184,10 +185,10 @@ namespace CanFactoryServer
                                           
                         send_winform_client("<"+inspect_recv_str+">"); 
 
-                        string[] QR_VALUE = qrcode_num.Split('=');
+                       string[] QR_VALUE = qrcode_num.Split('=');
 
 
-
+                        //예외 처리 나서 잠시 주석 해놨음 문제 없을 듯  
                   
 
 
@@ -203,7 +204,7 @@ namespace CanFactoryServer
                         else if (token[1].ToUpper() == "FAIL")
                         {
                             send_control_client("<CMD=CLASSIFY_RIGHT>");
-                        }
+                        }   
 
 
 
@@ -242,7 +243,7 @@ namespace CanFactoryServer
                         if (token[1].ToUpper() == "ON")
                         {
                             send_winform_client("<CMD=IS>");
-                            send_inspect_client("<CMD=CAPTURE_START>");
+                            
                         }
 
                         else if (token[1].ToUpper() == "OFF")
