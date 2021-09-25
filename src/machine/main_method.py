@@ -29,22 +29,35 @@ def main_method():
         if recv_data == '1\n':
         #if recv_data == '<CMD=CLASSIFY_LEFT>':    
             sf.servo_main(recv_data)
-           
+            soc.send('<RECV_ACK>')
+
         elif recv_data == '2\n':
         #elif recv_data == '<CMD=CLASSIFY_RIGHT>':         
             sf.servo_main(recv_data)
-                
+            soc.send('<RECV_ACK>')
+
         elif recv_data == '3\n':
-        #elif recv_data == '<SENSOR_STATE=ON>':
+        #elif recv_data == '<CMD=REQUEST_SENSOR_STATE>':
             sensor_state = tf.read_sensor()
             print( "센서 상태 : ", sensor_state )
-            
-        elif recv_data == '4\n' or recv_data == '5\n':
-        #elif recv_data == '<LINE_STATE=RUNNING>' or recv_data == '<LINE_STATE=STOP>':    
+            if sensor_state == True:
+                soc.send('<SENSOR_STATE=ON>')
+            elif sensor_state == False:
+                soc.send('<SENSOR_STATE=OFF>')
+
+                
+        elif recv_data == '4\n' :
+        # elif recv_data == '<CMD=BELT_START>'
             mf.motor_main(recv_data)
+            soc.send('<LINE_STATE=RUNNING>')
+
+
+        elif recv_data == '5\n' :
+        # elif recv_data == '<CMD=BELT_STOP>'
+            mf.motor_main(recv_data)
+            soc.send('<LINE_STATE=STOP>')
         
-        
-        
+    
         elif recv_data == 'x\n':
             break
         
