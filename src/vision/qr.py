@@ -35,7 +35,7 @@ def decode():
     else:
         for obj in decoded_objects:
             print(obj.data)
-            return f'<QR:{obj.data}|{converted_string.decode("utf-8")}>'
+            return f'<QRCODE:{obj.data}|QUALITY=PASS|{converted_string.decode("utf-8")}>'
 
 # raspistill -v -o test.jpg
 # vcgencmd get_camera
