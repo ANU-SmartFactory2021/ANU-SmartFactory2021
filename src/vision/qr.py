@@ -37,7 +37,7 @@ def qc(data):
 
     circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 260, param1=30, param2=65, minRadius=0, maxRadius=0)
 
-    if circles is not None:
+    if circles is None:
         return False
     else:
         return True
@@ -55,10 +55,12 @@ def decode():
     else:
         for obj in decoded_objects:
             print(obj.data)
-            
+
             if qc(buffer):
+                print('qc : pass')
                 return f'<QRCODE:{obj.data}|QUALITY=PASS|{converted_string.decode("utf-8")}>'
             else:
+                print('qc : fail')
                 return f'<QRCODE:{obj.data}|QUALITY=FAIL|{converted_string.decode("utf-8")}>'
 
 
