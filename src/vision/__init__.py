@@ -38,6 +38,7 @@ while True:
         if recv_data == '<CMD=CAPTURE_START>':
             soc.send('<RECV_ACK>')
             while True:
+                time.sleep(1)
                 recv_data = soc.recv()
                 qrdata = qr.decode()
                 if qrdata != "QR_CODE_ERROR":
