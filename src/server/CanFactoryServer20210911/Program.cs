@@ -25,7 +25,8 @@ namespace CanFactoryServer
 				Thread.Sleep( 1000 );
 				if (server.winform_client_connected())
                 {
-					Console.Write("WINFORM_CLIENT is connected");				
+					Console.Write("WINFORM_CLIENT is connected");
+					Console.WriteLine(""); 
 					break;
 				}
           									

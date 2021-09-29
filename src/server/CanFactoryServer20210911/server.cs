@@ -133,6 +133,7 @@ namespace CanFactoryServer
 
                     total_data = total_data.Remove(0, 1); // 맨 앞 '<' 제거.
                     Console.WriteLine("RECIEVE DATA = " + total_data);
+                    Console.WriteLine("@@@@@@@@@@@"); 
                     Console.WriteLine("");
                     return total_data;
                 }
@@ -166,6 +167,11 @@ namespace CanFactoryServer
                         else if (token[1].ToUpper() == "FAIL")
                         {
                             send_inspect_client("<CMD=REQUEST_START>");
+                        }
+
+                        else if (token[1].ToUpper() == "STOP")
+                        {
+                            send_winform_client("<CMD=CHANGE>");
                         }
                     }
 
@@ -310,6 +316,7 @@ namespace CanFactoryServer
                         if (token[1].ToUpper() == "STOP")
                         {
                             send_control_client("<CMD=BELT_STOP>");
+                            send_inspect_client("<CMD=CAPTURE_STOP>");
                         }
                     }
                 }
