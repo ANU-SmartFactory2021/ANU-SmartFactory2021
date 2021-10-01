@@ -34,7 +34,7 @@ namespace Client.panel
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.M_Product_txt = new System.Windows.Forms.TextBox();
-            this.M_Kcal_txt = new System.Windows.Forms.TextBox();
+            this.output_num_txt = new System.Windows.Forms.TextBox();
             this.M_Serialnum_txt = new System.Windows.Forms.TextBox();
             this.M_Company_txt = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -49,10 +49,14 @@ namespace Client.panel
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cam_off = new System.Windows.Forms.TextBox();
             this.cam_on = new System.Windows.Forms.TextBox();
+            this.belt_off = new System.Windows.Forms.TextBox();
+            this.belt_on = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -87,9 +91,9 @@ namespace Client.panel
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(66, 174);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 12);
+            this.label5.Size = new System.Drawing.Size(45, 12);
             this.label5.TabIndex = 4;
-            this.label5.Text = "칼 로 리";
+            this.label5.Text = "수    량";
             // 
             // M_Product_txt
             // 
@@ -99,12 +103,12 @@ namespace Client.panel
             this.M_Product_txt.TabIndex = 5;
             this.M_Product_txt.Text = "  ";
             // 
-            // M_Kcal_txt
+            // output_num_txt
             // 
-            this.M_Kcal_txt.Location = new System.Drawing.Point(141, 171);
-            this.M_Kcal_txt.Name = "M_Kcal_txt";
-            this.M_Kcal_txt.Size = new System.Drawing.Size(121, 21);
-            this.M_Kcal_txt.TabIndex = 6;
+            this.output_num_txt.Location = new System.Drawing.Point(141, 171);
+            this.output_num_txt.Name = "output_num_txt";
+            this.output_num_txt.Size = new System.Drawing.Size(121, 21);
+            this.output_num_txt.TabIndex = 6;
             // 
             // M_Serialnum_txt
             // 
@@ -144,9 +148,9 @@ namespace Client.panel
             // 
             this.groupBox1.Controls.Add(this.bad_txt);
             this.groupBox1.Controls.Add(this.good_txt);
-            this.groupBox1.Location = new System.Drawing.Point(332, 256);
+            this.groupBox1.Location = new System.Drawing.Point(347, 256);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(225, 67);
+            this.groupBox1.Size = new System.Drawing.Size(201, 67);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "제품 상태";
@@ -157,7 +161,7 @@ namespace Client.panel
             this.bad_txt.BackColor = System.Drawing.Color.White;
             this.bad_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bad_txt.Font = new System.Drawing.Font("굴림", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.bad_txt.Location = new System.Drawing.Point(145, 32);
+            this.bad_txt.Location = new System.Drawing.Point(129, 32);
             this.bad_txt.Name = "bad_txt";
             this.bad_txt.Size = new System.Drawing.Size(39, 17);
             this.bad_txt.TabIndex = 1;
@@ -188,7 +192,7 @@ namespace Client.panel
             // 
             this.groupBox3.Controls.Add(this.sensor_off);
             this.groupBox3.Controls.Add(this.sensor_on);
-            this.groupBox3.Location = new System.Drawing.Point(50, 240);
+            this.groupBox3.Location = new System.Drawing.Point(14, 240);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(105, 83);
             this.groupBox3.TabIndex = 20;
@@ -218,7 +222,7 @@ namespace Client.panel
             // 
             this.groupBox4.Controls.Add(this.cam_off);
             this.groupBox4.Controls.Add(this.cam_on);
-            this.groupBox4.Location = new System.Drawing.Point(182, 240);
+            this.groupBox4.Location = new System.Drawing.Point(125, 240);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(105, 83);
             this.groupBox4.TabIndex = 21;
@@ -245,18 +249,50 @@ namespace Client.panel
             this.cam_on.Text = "ON";
             this.cam_on.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // belt_off
+            // 
+            this.belt_off.BackColor = System.Drawing.Color.Red;
+            this.belt_off.Location = new System.Drawing.Point(21, 53);
+            this.belt_off.Name = "belt_off";
+            this.belt_off.Size = new System.Drawing.Size(66, 21);
+            this.belt_off.TabIndex = 3;
+            this.belt_off.Text = "OFF";
+            this.belt_off.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // belt_on
+            // 
+            this.belt_on.BackColor = System.Drawing.Color.White;
+            this.belt_on.Location = new System.Drawing.Point(21, 28);
+            this.belt_on.Name = "belt_on";
+            this.belt_on.Size = new System.Drawing.Size(66, 21);
+            this.belt_on.TabIndex = 2;
+            this.belt_on.Text = "ON";
+            this.belt_on.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.belt_off);
+            this.groupBox5.Controls.Add(this.belt_on);
+            this.groupBox5.Location = new System.Drawing.Point(236, 240);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(105, 83);
+            this.groupBox5.TabIndex = 22;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "컨베이어 벨트";
+            // 
             // Monitor_panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.M_Company_txt);
             this.Controls.Add(this.M_Serialnum_txt);
-            this.Controls.Add(this.M_Kcal_txt);
+            this.Controls.Add(this.output_num_txt);
             this.Controls.Add(this.M_Product_txt);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -273,6 +309,8 @@ namespace Client.panel
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,7 +321,7 @@ namespace Client.panel
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox M_Kcal_txt;
+        private System.Windows.Forms.TextBox output_num_txt;
         private System.Windows.Forms.TextBox M_Company_txt;
         private System.Windows.Forms.TextBox M_Product_txt;
         public System.Windows.Forms.TextBox M_Serialnum_txt;
@@ -291,7 +329,6 @@ namespace Client.panel
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label good_txt;
         private System.Windows.Forms.Label bad_txt;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -299,5 +336,9 @@ namespace Client.panel
         private System.Windows.Forms.TextBox sensor_on;
         public System.Windows.Forms.TextBox cam_off;
         public System.Windows.Forms.TextBox cam_on;
+        public System.Windows.Forms.TextBox belt_off;
+        public System.Windows.Forms.TextBox belt_on;
+        private System.Windows.Forms.GroupBox groupBox5;
+        public System.Windows.Forms.Label good_txt;
     }
 }

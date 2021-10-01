@@ -20,8 +20,8 @@ namespace Client.panel
 
         public delegate void DataPassEventHandler(object sender);
         public event DataPassEventHandler DataPassEvent;
-        public int state;
-        
+        public int state;        
+
         public Start_panel()
         {            
             InitializeComponent();
@@ -35,16 +35,19 @@ namespace Client.panel
             //텍스트
             Company_txt.Text = " ";
             Serialnum_txt.Text = " ";
-            Outputnum_txt.Text = " ";
+            Kcal_txt.Text = " ";
             //이미지
             product_png.Image = null;
         }
 
+        //완료버튼 클릭
         private void Cancel_btn_Click(object sender, EventArgs e)
         {
             FieldClear();
             state = 0;
             DataPassEvent(state);
+
+            MainForm.sc.send("<CMD=STOP>");
         }
 
         public void fillCombo()
@@ -78,7 +81,7 @@ namespace Client.panel
             {
                 string selected = Product_combo.SelectedItem.ToString();
 
-                cmd.CommandText = $"select PRODUCT_ID, COMPANY from product where PRODUCT_NAME = '{selected}'";
+                cmd.CommandText = $"select PRODUCT_ID, KCAL, COMPANY from product where PRODUCT_NAME = '{selected}'";
                 OracleDataReader rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
@@ -87,6 +90,9 @@ namespace Client.panel
                     Company_txt.Text = company;
                     string product_id = rdr["PRODUCT_ID"].ToString();
                     Serialnum_txt.Text = product_id;
+                    string kcal = rdr["KCAL"].ToString();
+                    Kcal_txt.Text = kcal;
+
                     
                     product_png.Load(@"C:\Users\Admin\source\repos\ClientTest01\img\" + selected + ".png");
                     
@@ -101,6 +107,7 @@ namespace Client.panel
             state = 1;           
             DataPassEvent(state);
             MainForm.sc.send("<CMD=START>");
+
         }        
     }
 }

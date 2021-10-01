@@ -39,7 +39,13 @@ namespace Client
             this.Main_panel = new System.Windows.Forms.Panel();
             this.Time_label = new System.Windows.Forms.Label();
             this.State_label = new System.Windows.Forms.Label();
+            this.st_start = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.st_stop = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.st_finish = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Menu_btn
@@ -130,22 +136,86 @@ namespace Client
             // State_label
             // 
             this.State_label.AutoSize = true;
-            this.State_label.Location = new System.Drawing.Point(185, 41);
+            this.State_label.Location = new System.Drawing.Point(12, 41);
             this.State_label.Name = "State_label";
             this.State_label.Size = new System.Drawing.Size(32, 12);
             this.State_label.TabIndex = 9;
             this.State_label.Text = "state";
             this.State_label.TextChanged += new System.EventHandler(this.State_label_TextChanged);
             // 
+            // st_start
+            // 
+            this.st_start.BackColor = System.Drawing.Color.White;
+            this.st_start.Location = new System.Drawing.Point(250, 28);
+            this.st_start.Multiline = true;
+            this.st_start.Name = "st_start";
+            this.st_start.Size = new System.Drawing.Size(35, 35);
+            this.st_start.TabIndex = 10;
+            this.st_start.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(333, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 12);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "정지 / 대기";
+            // 
+            // st_stop
+            // 
+            this.st_stop.BackColor = System.Drawing.Color.Red;
+            this.st_stop.Location = new System.Drawing.Point(410, 28);
+            this.st_stop.Multiline = true;
+            this.st_stop.Name = "st_stop";
+            this.st_stop.Size = new System.Drawing.Size(35, 35);
+            this.st_stop.TabIndex = 13;
+            this.st_stop.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(195, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 12);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "작업 중";
+            // 
             // timer1
             // 
-            
+            this.timer1.Interval = 200;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // st_finish
+            // 
+            this.st_finish.BackColor = System.Drawing.Color.White;
+            this.st_finish.Location = new System.Drawing.Point(591, 28);
+            this.st_finish.Multiline = true;
+            this.st_finish.Name = "st_finish";
+            this.st_finish.Size = new System.Drawing.Size(35, 35);
+            this.st_finish.TabIndex = 17;
+            this.st_finish.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(556, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "완료";
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.st_finish);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.st_stop);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.st_start);
             this.Controls.Add(this.State_label);
             this.Controls.Add(this.Time_label);
             this.Controls.Add(this.Main_panel);
@@ -172,8 +242,14 @@ namespace Client
         private System.Windows.Forms.Button Stop_btn;
         private System.Windows.Forms.Panel Main_panel;
         private System.Windows.Forms.Label Time_label;
-        private System.Windows.Forms.Label State_label;
+        private System.Windows.Forms.TextBox st_start;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox st_stop;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox st_finish;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label State_label;
     }
 }
 
