@@ -66,5 +66,6 @@ def decode():
                 return f'<QRCODE:{1234567812}|QUALITY=FAIL|{converted_string.decode("utf-8")}>'
                 # return f'<QRCODE:{obj.data}|QUALITY=FAIL|{converted_string.decode("utf-8")}>'
 
+
 # raspistill -v -o test.jpg
 # vcgencmd get_camera

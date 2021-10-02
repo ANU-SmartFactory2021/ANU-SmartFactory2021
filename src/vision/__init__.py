@@ -21,9 +21,11 @@ soc.send('<PI_ONE_STATE=READY>')
 print('pi ready')
 
 
+capture_start = False
 while True:
     time.sleep(1)
     print('waiting...')
+
     try:
         recv_data = soc.recv()
         if recv_data == '<CMD=REQUEST_START>':
@@ -34,20 +36,34 @@ while True:
 
         if recv_data == '<CMD=CAPTURE_START>':
             soc.send('<RECV_ACK>')
+            capture_start = True
 
-            while True:
+        if recv_data == '<CMD=CAPTURE_STOP>':
+            soc.send('PI_ONE_STATE=STOP')
+            capture_start = False
+
+        if capture_start == True:
+            qrdata = qr.decode()
+
+            if qrdata != "QR_CODE_ERROR":
+                soc.send(qrdata)
+                capture_start = False
+                print('img send')
+
+            """while True:
                 recv_data = soc.recv()
                 qrdata = qr.decode()
+
                 if qrdata != "QR_CODE_ERROR":
                     temp = qrdata.split('|')[0]
                     temp1 = qr.decode().split('|')[0]
-
                     if temp != temp1 and temp1 is not None:
                         print('img send')
                         soc.send(qrdata)
+
                 if recv_data == '<CMD=CAPTURE_STOP>':
                     soc.send('PI_ONE_STATE=STOP')
-                    break
+                    break"""
 
     except BlockingIOError as e:
         print(e)
