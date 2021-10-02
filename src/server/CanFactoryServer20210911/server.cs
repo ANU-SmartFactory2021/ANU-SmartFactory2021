@@ -264,6 +264,7 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "RUNNING")
                         {
+                            Thread.Sleep(1000);
                             send_winform_client("<CMD=RUN>");
                         }
 
@@ -317,6 +318,11 @@ namespace CanFactoryServer
                         {
                             send_control_client("<CMD=BELT_STOP>");
                             send_inspect_client("<CMD=CAPTURE_STOP>");
+                        }
+
+                        if (token[1].ToUpper() == "RESET")
+                        {
+                            send_control_client("<CMD=REQUEST_SENSOR_STATE>");
                         }
                     }
                 }
