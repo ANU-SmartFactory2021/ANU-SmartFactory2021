@@ -26,7 +26,7 @@ namespace CanFactoryServer
 
         database database = new database();
 
-       
+
 
 
 
@@ -50,7 +50,7 @@ namespace CanFactoryServer
                 Thread.Sleep(1);
 
                 TcpClient tc = server_socket.AcceptTcpClient();
-                Console.WriteLine("Accept "+ tc.Client.AddressFamily.ToString());
+                Console.WriteLine("Accept " + tc.Client.AddressFamily.ToString());
 
 
                 //byte[] buff = new byte[256];
@@ -59,7 +59,7 @@ namespace CanFactoryServer
                 //recv_str = recv_str.Trim('\0');
                 string recv_str = Receive(tc);
                 recv_str = recv_str.Trim('\0');
-                recv_str = recv_str.Trim('\n'); 
+                recv_str = recv_str.Trim('\n');
                 recv_str = recv_str.Trim('\r');
 
                 if (recv_str.Contains("CLIENT_TYPE"))
@@ -133,7 +133,7 @@ namespace CanFactoryServer
 
                     total_data = total_data.Remove(0, 1); // 맨 앞 '<' 제거.
                     Console.WriteLine("RECIEVE DATA = " + total_data);
-                    Console.WriteLine("@@@@@@@@@@@"); 
+                    Console.WriteLine("@@@@@@@@@@@");
                     Console.WriteLine("");
                     return total_data;
                 }
@@ -161,7 +161,6 @@ namespace CanFactoryServer
                         if (token[1].ToUpper() == "START")
                         {
                             send_winform_client("<CMD=PI_ONE_READY>");
-                            send_inspect_client("<CMD=CAPTURE_START>");
                         }
 
                         else if (token[1].ToUpper() == "FAIL")
@@ -175,7 +174,7 @@ namespace CanFactoryServer
                         }
                     }
 
-                    if (inspect_recv_str.Contains("ACK"))
+                    if (inspect_recv_str.Contains("RECV_ACK"))
                     {
                         send_control_client("<CMD=BELT_START>");
                     }
@@ -188,14 +187,14 @@ namespace CanFactoryServer
                         string image_data = recv_data[2];
                         string state_result = recv_data[1];
                         string qrcode_num = recv_data[0];
-                                          
-                        send_winform_client("<"+inspect_recv_str+">"); 
 
-                       string[] QR_VALUE = qrcode_num.Split('=');
+                        send_winform_client("<" + inspect_recv_str + ">");
+
+                        string[] QR_VALUE = qrcode_num.Split('=');
 
 
                         //예외 처리 나서 잠시 주석 해놨음 문제 없을 듯  
-                  
+
 
 
                         //DB에 제품 정보 저장 
@@ -210,7 +209,7 @@ namespace CanFactoryServer
                         else if (token[1].ToUpper() == "FAIL")
                         {
                             send_control_client("<CMD=CLASSIFY_RIGHT>");
-                        }   
+                        }
 
 
 
@@ -233,7 +232,7 @@ namespace CanFactoryServer
                         {
                             send_winform_client("<CMD=PI_TWO_READY>");
                             send_control_client("<CMD=REQUEST_SENSOR_STATE>");
-                           
+
                         }
 
                         else if (token[1].ToUpper() == "FAIL")
@@ -249,7 +248,10 @@ namespace CanFactoryServer
                         if (token[1].ToUpper() == "ON")
                         {
                             send_winform_client("<CMD=IS>");
-                            
+
+                            send_inspect_client("<CMD=CAPTURE_START>");
+                            // send_control_client("<CMD=BELT_START>");      //  10 01 추가한 거 
+
                         }
 
                         else if (token[1].ToUpper() == "OFF")
@@ -264,6 +266,7 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "RUNNING")
                         {
+                            Thread.Sleep(1000);
                             send_winform_client("<CMD=RUN>");
                         }
 
@@ -318,6 +321,8 @@ namespace CanFactoryServer
                             send_control_client("<CMD=BELT_STOP>");
                             send_inspect_client("<CMD=CAPTURE_STOP>");
                         }
+
+
                     }
                 }
 
@@ -376,7 +381,7 @@ namespace CanFactoryServer
             if (inspect_client_connected() == true)
             {
                 inspect_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
-                Console.WriteLine("INSPECTION_CLIENT send : "+ _cmd);
+                Console.WriteLine("INSPECTION_CLIENT send : " + _cmd);
             }
             else if (inspect_client_connected() == false)
                 Console.WriteLine("INSPECTION_CLIENT is not connected !");
