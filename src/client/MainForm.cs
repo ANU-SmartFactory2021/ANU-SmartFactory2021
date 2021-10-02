@@ -17,9 +17,7 @@ namespace Client
 {
     
     public partial class MainForm : Form
-    {
-
-        
+    {        
 
         //각 panel 선언
         panel.Start_panel start_pan = new panel.Start_panel();
@@ -40,10 +38,10 @@ namespace Client
             start_pan.DataPassEvent += new panel.Start_panel.DataPassEventHandler(factory_state);
             monitor_pan.DataPassEvent += new panel.Monitor_panel.DataPassEventHandler(factory_state);
 
-            sc.connect("192.168.40.135", 5451);
+            sc.connect("192.168.41.92", 5451);
             sc.send("<CLIENT_TYPE=WINFORM>");
 
-            
+            this.FormClosed += Form_Closing;
         }
         
 
@@ -186,6 +184,13 @@ namespace Client
             }
 
             return DateTime.Now;
+        }
+
+        public void Form_Closing(object sender, FormClosedEventArgs e)
+        {
+            
+            sc.disconnect();
+            MessageBox.Show("폼이 닫힙니다.");
         }
     }
 }

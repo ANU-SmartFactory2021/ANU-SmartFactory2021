@@ -44,6 +44,7 @@ namespace Client.panel
 
         private void btn_update_Click(object sender, EventArgs e)
         {
+            cmd.CommandText = $"commit";
             read();
         }
     }
