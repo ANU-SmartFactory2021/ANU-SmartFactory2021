@@ -121,7 +121,7 @@ namespace Client
             this.Main_panel.BackColor = System.Drawing.SystemColors.Control;
             this.Main_panel.Location = new System.Drawing.Point(185, 74);
             this.Main_panel.Name = "Main_panel";
-            this.Main_panel.Size = new System.Drawing.Size(726, 474);
+            this.Main_panel.Size = new System.Drawing.Size(589, 352);
             this.Main_panel.TabIndex = 7;
             // 
             // Time_label
@@ -209,7 +209,7 @@ namespace Client
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(933, 560);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.st_finish);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);

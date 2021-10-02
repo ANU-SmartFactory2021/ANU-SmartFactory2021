@@ -33,7 +33,9 @@ while True:
 
     if qc(frame):
         print('qc:pass')
+        for obj in decoded_objects:
+            printf({obj.data})
     else:
         print('qc:fail')
-    for obj in decoded_objects:
-        print(obj.data)
+        for obj in decoded_objects:
+            printf({obj.data})

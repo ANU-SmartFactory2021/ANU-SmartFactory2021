@@ -52,17 +52,6 @@ namespace Client.panel
             this.belt_off = new System.Windows.Forms.TextBox();
             this.belt_on = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.step_2 = new System.Windows.Forms.TextBox();
-            this.step_4 = new System.Windows.Forms.TextBox();
-            this.step_3 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.step_1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -73,7 +62,7 @@ namespace Client.panel
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(59, 157);
+            this.label2.Location = new System.Drawing.Point(66, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 12);
             this.label2.TabIndex = 1;
@@ -82,7 +71,7 @@ namespace Client.panel
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 197);
+            this.label3.Location = new System.Drawing.Point(66, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 2;
@@ -91,7 +80,7 @@ namespace Client.panel
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(59, 233);
+            this.label4.Location = new System.Drawing.Point(66, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 3;
@@ -100,7 +89,7 @@ namespace Client.panel
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(59, 271);
+            this.label5.Location = new System.Drawing.Point(66, 174);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 12);
             this.label5.TabIndex = 4;
@@ -108,7 +97,7 @@ namespace Client.panel
             // 
             // M_Product_txt
             // 
-            this.M_Product_txt.Location = new System.Drawing.Point(134, 154);
+            this.M_Product_txt.Location = new System.Drawing.Point(141, 57);
             this.M_Product_txt.Name = "M_Product_txt";
             this.M_Product_txt.Size = new System.Drawing.Size(121, 21);
             this.M_Product_txt.TabIndex = 5;
@@ -116,14 +105,14 @@ namespace Client.panel
             // 
             // output_num_txt
             // 
-            this.output_num_txt.Location = new System.Drawing.Point(134, 268);
+            this.output_num_txt.Location = new System.Drawing.Point(141, 171);
             this.output_num_txt.Name = "output_num_txt";
             this.output_num_txt.Size = new System.Drawing.Size(121, 21);
             this.output_num_txt.TabIndex = 6;
             // 
             // M_Serialnum_txt
             // 
-            this.M_Serialnum_txt.Location = new System.Drawing.Point(134, 230);
+            this.M_Serialnum_txt.Location = new System.Drawing.Point(141, 133);
             this.M_Serialnum_txt.Name = "M_Serialnum_txt";
             this.M_Serialnum_txt.Size = new System.Drawing.Size(121, 21);
             this.M_Serialnum_txt.TabIndex = 7;
@@ -132,7 +121,7 @@ namespace Client.panel
             // 
             // M_Company_txt
             // 
-            this.M_Company_txt.Location = new System.Drawing.Point(134, 194);
+            this.M_Company_txt.Location = new System.Drawing.Point(141, 97);
             this.M_Company_txt.Name = "M_Company_txt";
             this.M_Company_txt.Size = new System.Drawing.Size(121, 21);
             this.M_Company_txt.TabIndex = 8;
@@ -140,7 +129,7 @@ namespace Client.panel
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(311, 124);
+            this.pictureBox1.Location = new System.Drawing.Point(332, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(216, 188);
             this.pictureBox1.TabIndex = 9;
@@ -149,19 +138,19 @@ namespace Client.panel
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(397, 322);
+            this.label8.Location = new System.Drawing.Point(406, 227);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 12);
+            this.label8.Size = new System.Drawing.Size(62, 12);
             this.label8.TabIndex = 17;
-            this.label8.Text = "이미지";
+            this.label8.Text = "QR 이미지";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.bad_txt);
             this.groupBox1.Controls.Add(this.good_txt);
-            this.groupBox1.Location = new System.Drawing.Point(567, 124);
+            this.groupBox1.Location = new System.Drawing.Point(347, 256);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(85, 188);
+            this.groupBox1.Size = new System.Drawing.Size(201, 67);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "제품 상태";
@@ -172,7 +161,7 @@ namespace Client.panel
             this.bad_txt.BackColor = System.Drawing.Color.White;
             this.bad_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bad_txt.Font = new System.Drawing.Font("굴림", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.bad_txt.Location = new System.Drawing.Point(24, 125);
+            this.bad_txt.Location = new System.Drawing.Point(129, 32);
             this.bad_txt.Name = "bad_txt";
             this.bad_txt.Size = new System.Drawing.Size(39, 17);
             this.bad_txt.TabIndex = 1;
@@ -184,7 +173,7 @@ namespace Client.panel
             this.good_txt.BackColor = System.Drawing.Color.White;
             this.good_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.good_txt.Font = new System.Drawing.Font("굴림", 11F);
-            this.good_txt.Location = new System.Drawing.Point(24, 55);
+            this.good_txt.Location = new System.Drawing.Point(24, 32);
             this.good_txt.Name = "good_txt";
             this.good_txt.Size = new System.Drawing.Size(39, 17);
             this.good_txt.TabIndex = 0;
@@ -192,7 +181,7 @@ namespace Client.panel
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(43, 124);
+            this.groupBox2.Location = new System.Drawing.Point(50, 27);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(237, 188);
             this.groupBox2.TabIndex = 19;
@@ -203,7 +192,7 @@ namespace Client.panel
             // 
             this.groupBox3.Controls.Add(this.sensor_off);
             this.groupBox3.Controls.Add(this.sensor_on);
-            this.groupBox3.Location = new System.Drawing.Point(187, 20);
+            this.groupBox3.Location = new System.Drawing.Point(14, 240);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(105, 83);
             this.groupBox3.TabIndex = 20;
@@ -233,7 +222,7 @@ namespace Client.panel
             // 
             this.groupBox4.Controls.Add(this.cam_off);
             this.groupBox4.Controls.Add(this.cam_on);
-            this.groupBox4.Location = new System.Drawing.Point(298, 20);
+            this.groupBox4.Location = new System.Drawing.Point(125, 240);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(105, 83);
             this.groupBox4.TabIndex = 21;
@@ -284,132 +273,18 @@ namespace Client.panel
             // 
             this.groupBox5.Controls.Add(this.belt_off);
             this.groupBox5.Controls.Add(this.belt_on);
-            this.groupBox5.Location = new System.Drawing.Point(409, 20);
+            this.groupBox5.Location = new System.Drawing.Point(236, 240);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(105, 83);
             this.groupBox5.TabIndex = 22;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "컨베이어 벨트";
             // 
-            // step_2
-            // 
-            this.step_2.BackColor = System.Drawing.Color.White;
-            this.step_2.Location = new System.Drawing.Point(229, 353);
-            this.step_2.Multiline = true;
-            this.step_2.Name = "step_2";
-            this.step_2.Size = new System.Drawing.Size(86, 82);
-            this.step_2.TabIndex = 11;
-            this.step_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // step_4
-            // 
-            this.step_4.BackColor = System.Drawing.Color.White;
-            this.step_4.Location = new System.Drawing.Point(511, 353);
-            this.step_4.Multiline = true;
-            this.step_4.Name = "step_4";
-            this.step_4.Size = new System.Drawing.Size(86, 82);
-            this.step_4.TabIndex = 23;
-            this.step_4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // step_3
-            // 
-            this.step_3.BackColor = System.Drawing.Color.White;
-            this.step_3.Location = new System.Drawing.Point(364, 353);
-            this.step_3.Multiline = true;
-            this.step_3.Name = "step_3";
-            this.step_3.Size = new System.Drawing.Size(86, 82);
-            this.step_3.TabIndex = 24;
-            this.step_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(321, 389);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 12);
-            this.label9.TabIndex = 28;
-            this.label9.Text = ">>>";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(467, 389);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 12);
-            this.label10.TabIndex = 29;
-            this.label10.Text = ">>>";
-            // 
-            // step_1
-            // 
-            this.step_1.BackColor = System.Drawing.Color.White;
-            this.step_1.Location = new System.Drawing.Point(95, 353);
-            this.step_1.Multiline = true;
-            this.step_1.Name = "step_1";
-            this.step_1.Size = new System.Drawing.Size(86, 82);
-            this.step_1.TabIndex = 30;
-            this.step_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(194, 389);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
-            this.label1.TabIndex = 31;
-            this.label1.Text = ">>>";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(120, 447);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(11, 12);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "1";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(536, 438);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(11, 12);
-            this.label7.TabIndex = 33;
-            this.label7.Text = "4";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(385, 438);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(11, 12);
-            this.label11.TabIndex = 34;
-            this.label11.Text = "3";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(263, 447);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(11, 12);
-            this.label12.TabIndex = 35;
-            this.label12.Text = "2";
-            // 
             // Monitor_panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.step_1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.step_3);
-            this.Controls.Add(this.step_4);
-            this.Controls.Add(this.step_2);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -426,7 +301,7 @@ namespace Client.panel
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "Monitor_panel";
-            this.Size = new System.Drawing.Size(726, 474);
+            this.Size = new System.Drawing.Size(589, 352);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -465,16 +340,5 @@ namespace Client.panel
         public System.Windows.Forms.TextBox belt_on;
         private System.Windows.Forms.GroupBox groupBox5;
         public System.Windows.Forms.Label good_txt;
-        private System.Windows.Forms.TextBox step_2;
-        private System.Windows.Forms.TextBox step_4;
-        private System.Windows.Forms.TextBox step_3;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox step_1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
     }
 }

@@ -128,7 +128,7 @@ namespace Client.panel
             this.Cancel_btn.Name = "Cancel_btn";
             this.Cancel_btn.Size = new System.Drawing.Size(114, 44);
             this.Cancel_btn.TabIndex = 10;
-            this.Cancel_btn.Text = "중지";
+            this.Cancel_btn.Text = "완   료";
             this.Cancel_btn.UseVisualStyleBackColor = true;
             this.Cancel_btn.Click += new System.EventHandler(this.Cancel_btn_Click);
             // 

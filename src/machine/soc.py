@@ -38,8 +38,8 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #client_socket.setblocking(False)
 
 # 서버
-ip = '127.0.0.1'
-# ip = '192.168.0.57'
+#ip = '127.0.0.1'
+ip = '192.168.0.8'
 port = 9999
 
 # recv_thread = threading.Thread(target=recv, args=(client_socket,))
