@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from socket import SocketIO
-from cv2 import QRCodeDetector
 import qr
 import soc
 import time
@@ -9,7 +7,6 @@ import time
 print('start')
 soc.connect()
 soc.send('<CLIENT_TYPE=INSPECTION>')
-
 
 while True:
     time.sleep(1)
@@ -24,31 +21,49 @@ soc.send('<PI_ONE_STATE=READY>')
 print('pi ready')
 
 
+capture_start = False
 while True:
     time.sleep(1)
     print('waiting...')
+
     try:
         recv_data = soc.recv()
         if recv_data == '<CMD=REQUEST_START>':
             if qr.check():
                 soc.send('<PI_ONE_STATE=START>')
             else:
-                soc.send('<PI_ONE_STATE=FAIL>')
+                soc.send('<PI_ONE_STATE=FAIL')
 
         if recv_data == '<CMD=CAPTURE_START>':
             soc.send('<RECV_ACK>')
-            while True:
-                time.sleep(1)
+            capture_start = True
+
+        if recv_data == '<CMD=CAPTURE_STOP>':
+            soc.send('PI_ONE_STATE=STOP')
+            capture_start = False
+
+        if capture_start == True:
+            qrdata = qr.decode()
+
+            if qrdata != "QR_CODE_ERROR":
+                soc.send(qrdata)
+                capture_start = False
+                print('img send')
+
+            """while True:
                 recv_data = soc.recv()
                 qrdata = qr.decode()
+
                 if qrdata != "QR_CODE_ERROR":
-                    temp1 = qrdata.split('|')[0]
-                    temp = qr.decode().split('|')[0]
+                    temp = qrdata.split('|')[0]
+                    temp1 = qr.decode().split('|')[0]
                     if temp != temp1 and temp1 is not None:
-                        print('changed')
+                        print('img send')
                         soc.send(qrdata)
-                if recv_data == '<CAPTURE_STOP>':
-                    break
+
+                if recv_data == '<CMD=CAPTURE_STOP>':
+                    soc.send('PI_ONE_STATE=STOP')
+                    break"""
 
     except BlockingIOError as e:
         print(e)
