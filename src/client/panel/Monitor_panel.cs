@@ -97,7 +97,7 @@ namespace Client.panel
                 else if(result[1] == "QUALITY=FAIL")
                 {
                     bad_txt.BackColor = Color.Red;
-                    Thread.Sleep(1000);
+                    Delay(1000);
                     bad_txt.BackColor = Color.White;
                 }
 
@@ -107,6 +107,11 @@ namespace Client.panel
                 Console.WriteLine(product_num);
                 qr_num = Convert.ToInt32(result[0].Substring(7));
                 Console.WriteLine(qr_num);
+
+                step_1.BackColor = Color.White;
+                step_2.BackColor = Color.Green;
+                step_3.BackColor = Color.White;
+                step_4.BackColor = Color.White;
 
                 save();
             }
@@ -118,17 +123,28 @@ namespace Client.panel
                     cam_off.BackColor = Color.White;
                     cam_on.BackColor = Color.Green;
                 }
+                else if (_msg == "CMD=CHANGE")
+                {
+                    cam_off.BackColor = Color.Red;
+                    cam_on.BackColor = Color.White;
+                }
                 //적외선 센서 켜짐
                 else if(_msg == "CMD=IS")
                 {
                     sensor_off.BackColor = Color.White;
                     sensor_on.BackColor = Color.Green;
+                    
+                    step_1.BackColor = Color.Green;
+                    step_2.BackColor = Color.White;
+                    step_3.BackColor = Color.White;
+                    step_4.BackColor = Color.White;
                 }
                 //컨베이어 벨트 작동
                 else if(_msg == "CMD=RUN")
                 {
                     belt_off.BackColor = Color.White;
                     belt_on.BackColor = Color.Green;
+                    
                 }
                 //적외선 센서 꺼짐
                 else if(_msg == "CMD=REMOVE")
@@ -140,13 +156,25 @@ namespace Client.panel
                 else if (_msg == "CMD=LAST")
                 {
                     st_num++;
-                    output_num_txt.Text = st_num.ToString();                                      
+                    output_num_txt.Text = st_num.ToString();
+                    step_1.BackColor = Color.White;
+                    step_2.BackColor = Color.White;
+                    step_3.BackColor = Color.Green;
+                    step_4.BackColor = Color.White;
                 }
 
                 else if(_msg == "CMD=FINISH")
                 {
                     state = 3;
                     DataPassEvent(state);
+                    step_1.BackColor = Color.White;
+                    step_2.BackColor = Color.White;
+                    step_3.BackColor = Color.White;
+                    step_4.BackColor = Color.Green;
+
+                    Delay(3000);
+
+                    MainForm.sc.send("<CMD=RESET>");
                 }
                 
                 else if (_msg == "CMD=EMERGENCY")
