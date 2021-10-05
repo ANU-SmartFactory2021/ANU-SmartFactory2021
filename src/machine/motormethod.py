@@ -3,9 +3,9 @@ import time
 
 GPIO.setmode(GPIO.BCM)
 
-GPIO_RP = 24
-GPIO_RN = 25
-GPIO_EN = 12
+GPIO_RP = 20
+GPIO_RN = 21
+GPIO_EN = 16
 
 
 def motor_main( btn2 ):

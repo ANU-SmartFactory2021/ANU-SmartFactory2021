@@ -3,8 +3,8 @@ import time
 import soc
 
 GPIO.setmode(GPIO.BCM)
-DIGIT1=22
-DIGIT2=17
+DIGIT1=23
+DIGIT2=24
 
 GPIO.setup(DIGIT1, GPIO.IN)
 GPIO.setup(DIGIT2, GPIO.IN)
