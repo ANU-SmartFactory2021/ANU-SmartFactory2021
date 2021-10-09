@@ -7,8 +7,6 @@ import time
 from pyzbar import pyzbar
 
 cap = cv2.VideoCapture(0)
-cap.set(3, 320)
-cap.set(4, 320)
 
 
 def check():
@@ -36,7 +34,7 @@ def qc(data):
     gray = cv2.dilate(gray, kernel, iterations=1)
 
     circles = cv2.HoughCircles(
-        gray, cv2.HOUGH_GRADIENT, 1, 260, param1=30, param2=65, minRadius=0, maxRadius=0)
+        gray, cv2.HOUGH_GRADIENT, 1, 100, param1=30, param2=50, minRadius=5, maxRadius=200)
 
     if circles is None:
         return False
@@ -44,28 +42,40 @@ def qc(data):
         return True
 
 
+def init():
+
+    global cap
+    cap = cv2.VideoCapture(0)
+    cap.set(3, 320)
+    cap.set(4, 320)
+
+
+def final():
+    cap.release()
+
+
 def decode():
+    print('decode start')
     retval, frame = cap.read()
     decoded_objects = pyzbar.decode(frame)
     retval, buffer = cv2.imencode('.jpg', frame)
     converted_string = base64.b64encode(buffer)
+    print(decoded_objects)
 
     if not decoded_objects:
         print(decoded_objects)
-        return "QR_READ_ERROR"
+        return "QR_CODE_ERROR"
     else:
         for obj in decoded_objects:
             print(obj.data)
-            time.sleep(1)
             if qc(frame):
                 print('qc : pass')
-                return f'<QRCODE:{1234567812}|QUALITY=PASS|{converted_string.decode("utf-8")}>'
+                return f'<QRCODE={1234567812}|QUALITY=PASS|{converted_string.decode("utf-8")}>'
                 # return f'<QRCODE:{obj.data}|QUALITY=PASS|{converted_string.decode("utf-8")}>'
             else:
                 print('qc : fail')
-                return f'<QRCODE:{1234567812}|QUALITY=FAIL|{converted_string.decode("utf-8")}>'
+                return f'<QRCODE={1234567812}|QUALITY=FAIL|{converted_string.decode("utf-8")}>'
                 # return f'<QRCODE:{obj.data}|QUALITY=FAIL|{converted_string.decode("utf-8")}>'
-
 
 # raspistill -v -o test.jpg
 # vcgencmd get_camera
