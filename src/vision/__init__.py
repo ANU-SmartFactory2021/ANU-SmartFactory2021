@@ -19,36 +19,45 @@ while True:
 
 soc.send('<PI_ONE_STATE=READY>')
 print('pi ready')
-
+qr.final()
 
 capture_start = False
 while True:
-    time.sleep(1)
-    print('waiting...')
 
     try:
         recv_data = soc.recv()
         if recv_data == '<CMD=REQUEST_START>':
+            qr.init()
             if qr.check():
                 soc.send('<PI_ONE_STATE=START>')
+                qr.final()
             else:
                 soc.send('<PI_ONE_STATE=FAIL')
+                qr.final()
 
         if recv_data == '<CMD=CAPTURE_START>':
+            # if recv_data == 'aa\n':
             soc.send('<RECV_ACK>')
             capture_start = True
+            qr.init()
 
         if recv_data == '<CMD=CAPTURE_STOP>':
+            # if recv_data == 'bb\n':
             soc.send('PI_ONE_STATE=STOP')
             capture_start = False
+            print(capture_start)
+            qrdata = None
+            qr.final()
 
         if capture_start == True:
             qrdata = qr.decode()
 
-            if qrdata != "QR_CODE_ERROR":
+            if qrdata != "QR_CODE_ERROR" and qrdata != None:
                 soc.send(qrdata)
                 capture_start = False
                 print('img send')
+                qrdata = None
+                qr.final()
 
             """while True:
                 recv_data = soc.recv()
