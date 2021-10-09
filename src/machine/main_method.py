@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-import servomethod as sf  #서보모터
+import servomethod2 as sf  #서보모터
 import motormethod as mf  #모터
 import trctmethod as tf   #센서1
 import trctmethod2 as tf2 #좌우 센서
