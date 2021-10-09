@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
-DIGIT1=23
+DIGIT1=25
 
 GPIO.setup(DIGIT1, GPIO.IN)
 

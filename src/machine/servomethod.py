@@ -17,19 +17,23 @@ pwm = GPIO.PWM(servo_pin ,50)
 def servo_main( btn ):
     
         num = btn
-        ## 왼쪽 서보모터##
-        if num == '<CMD=CLASSIFY_LEFT>' :
-            print("양품")
+        if num == '1' :
+            print("1 입력")
 
             pwm.start(11.0)
             time.sleep(2.0)
             pwm.ChangeDutyCycle(0.0)
             
-           
+            #break
 
-        ##오른쪽 서보모터##
-        elif num == '<CMD=CLASSIFY_RIGHT>' :
-            print("불량")
+        elif num == '2' :
+            print("2 입력")
             pwm.start(2.0)
             time.sleep(2.0)
             pwm.ChangeDutyCycle(0.0)
+            
+            #break
+
+        #GPIO.cleanup()
+        #print("GPIO cleanup...!!!")
+        

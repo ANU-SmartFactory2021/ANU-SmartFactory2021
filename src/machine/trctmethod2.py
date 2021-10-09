@@ -3,8 +3,8 @@ import time
 import soc
 
 GPIO.setmode(GPIO.BCM)
-DIGIT1=22
-DIGIT2=17
+DIGIT1=23
+DIGIT2=24
 
 GPIO.setup(DIGIT1, GPIO.IN)
 GPIO.setup(DIGIT2, GPIO.IN)
@@ -24,12 +24,12 @@ def read_sensor() :
             
             ##왼쪽 오른쪽 감지 센서##
             if digit1_val == True:
-                print("불량")
+                print("불량센서감지")
                 break
             
         
             elif digit2_val == True:
-                print("양품")
+                print("양품센서감지")
                 break
 
 
