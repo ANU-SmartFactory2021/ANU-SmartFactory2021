@@ -8,19 +8,14 @@ namespace CanFactoryServer
        
         static void Main(string[] args)
 		{
-			Console.WriteLine("START SERVER...");
+			Console.WriteLine("START SERVER...");   //서버 시작 메시지 출력 
 
-			server server = new server();
-			server.server_start();
+			server server = new server();      
+			server.server_start();           //서버 시작
 
-			database database = new database();
-			
 
-			
-			
-			
 
-			while( true )
+			while ( true )
             {
 				Thread.Sleep( 1000 );
 				if (server.winform_client_connected())
