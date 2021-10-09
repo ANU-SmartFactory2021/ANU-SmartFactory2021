@@ -9,8 +9,11 @@ using System.Threading;
 
 namespace CanFactoryServer
 {
-    class server
+    class server  
     {
+
+        //서버 세팅
+
         TcpListener server_socket = new TcpListener(IPAddress.Any, 9999);
         TcpClient inspect_client = new TcpClient();
         TcpClient control_client = new TcpClient();
@@ -18,20 +21,14 @@ namespace CanFactoryServer
 
         List<Socket> client_list = new List<Socket>();
 
-
-
-
         Thread accept_thread = null;
         Thread recieve_message_thread = null;
-
-        database database = new database();
 
        
 
 
 
-
-        public void server_start()
+        public void server_start()  //서버 시작 함수 
         {
             server_socket.Start();
 
@@ -43,15 +40,14 @@ namespace CanFactoryServer
 
         }
 
-        void Accept_thread()
+        void Accept_thread()   //서버 수용 쓰레드 함수 
         {
             while (true)
             {
                 Thread.Sleep(1);
 
                 TcpClient tc = server_socket.AcceptTcpClient();
-                Console.WriteLine("Accept "+ tc.Client.AddressFamily.ToString());
-
+                Console.WriteLine("Accept " + tc.Client.AddressFamily.ToString());
 
                 //byte[] buff = new byte[256];
                 //tc.Client.Receive(buff);
@@ -59,10 +55,10 @@ namespace CanFactoryServer
                 //recv_str = recv_str.Trim('\0');
                 string recv_str = Receive(tc);
                 recv_str = recv_str.Trim('\0');
-                recv_str = recv_str.Trim('\n'); 
+                recv_str = recv_str.Trim('\n');
                 recv_str = recv_str.Trim('\r');
 
-                if (recv_str.Contains("CLIENT_TYPE"))
+                if (recv_str.Contains("CLIENT_TYPE"))   //서버 수신 시 클라이언트 타입 별로 상태메시지 출력 
                 {
                     string[] token = recv_str.Split('=');
                     if (token.Length < 2)
@@ -93,7 +89,7 @@ namespace CanFactoryServer
         string total_data = "";
         string remaind_data = "";
 
-        string Receive(TcpClient _client)
+        string Receive(TcpClient _client)   //데이터 수신 메소드  
         {
             while (true)
             {
@@ -131,9 +127,9 @@ namespace CanFactoryServer
                     total_data = split_data[0];
                     remaind_data = split_data[1];
 
-                    total_data = total_data.Remove(0, 1); // 맨 앞 '<' 제거.
+                    total_data = total_data.Remove(0, 1);    // 맨 앞 '<' 제거.
                     Console.WriteLine("RECIEVE DATA = " + total_data);
-                    Console.WriteLine("@@@@@@@@@@@"); 
+                    Console.WriteLine("@@@@@@@@@@@");
                     Console.WriteLine("");
                     return total_data;
                 }
@@ -143,13 +139,13 @@ namespace CanFactoryServer
 
 
 
-        void Recieve_message_thread()
+        void Recieve_message_thread()  //메시지 수신 쓰레드 
         {
             while (true)
             {
                 Thread.Sleep(1);
 
-                if (inspect_client_connected() == true && inspect_client.Client.Available > 0)             // PI 1 리시브 
+                if (inspect_client_connected() == true && inspect_client.Client.Available > 0)             // PI_1 리시브 시
                 {
                     string inspect_recv_str = Receive(inspect_client);
                     inspect_recv_str = inspect_recv_str.Trim('\0');
@@ -161,7 +157,6 @@ namespace CanFactoryServer
                         if (token[1].ToUpper() == "START")
                         {
                             send_winform_client("<CMD=PI_ONE_READY>");
-                            send_inspect_client("<CMD=CAPTURE_START>");
                         }
 
                         else if (token[1].ToUpper() == "FAIL")
@@ -175,7 +170,7 @@ namespace CanFactoryServer
                         }
                     }
 
-                    if (inspect_recv_str.Contains("ACK"))
+                    if (inspect_recv_str.Contains("RECV_ACK"))
                     {
                         send_control_client("<CMD=BELT_START>");
                     }
@@ -188,17 +183,10 @@ namespace CanFactoryServer
                         string image_data = recv_data[2];
                         string state_result = recv_data[1];
                         string qrcode_num = recv_data[0];
-                                          
-                        send_winform_client("<"+inspect_recv_str+">"); 
 
-                       string[] QR_VALUE = qrcode_num.Split('=');
+                        send_winform_client("<" + inspect_recv_str + ">");
 
-
-                        //예외 처리 나서 잠시 주석 해놨음 문제 없을 듯  
-                  
-
-
-                        //DB에 제품 정보 저장 
+                        string[] QR_VALUE = qrcode_num.Split('=');
 
                         string[] token = state_result.Split('=');
 
@@ -210,18 +198,14 @@ namespace CanFactoryServer
                         else if (token[1].ToUpper() == "FAIL")
                         {
                             send_control_client("<CMD=CLASSIFY_RIGHT>");
-                        }   
-
-
+                        }
 
                     }
 
-
                 }
 
-                if (control_client_connected() == true && control_client.Client.Available > 0)      // PI2  리시브 
+                if (control_client_connected() == true && control_client.Client.Available > 0)      // PI_2  리시브 시
                 {
-
                     string control_recv_str = Receive(control_client);
                     control_recv_str = control_recv_str.Trim('\0');
 
@@ -233,7 +217,6 @@ namespace CanFactoryServer
                         {
                             send_winform_client("<CMD=PI_TWO_READY>");
                             send_control_client("<CMD=REQUEST_SENSOR_STATE>");
-                           
                         }
 
                         else if (token[1].ToUpper() == "FAIL")
@@ -249,7 +232,9 @@ namespace CanFactoryServer
                         if (token[1].ToUpper() == "ON")
                         {
                             send_winform_client("<CMD=IS>");
-                            
+
+                            send_inspect_client("<CMD=CAPTURE_START>");
+
                         }
 
                         else if (token[1].ToUpper() == "OFF")
@@ -264,6 +249,7 @@ namespace CanFactoryServer
 
                         if (token[1].ToUpper() == "RUNNING")
                         {
+                            Thread.Sleep(1000);
                             send_winform_client("<CMD=RUN>");
                         }
 
@@ -289,8 +275,7 @@ namespace CanFactoryServer
                         }
 
                         else if (token[1].ToUpper() == "COMPLETE")
-                        {
-                            database.update_data();//DB에 제품 정보 갱신 
+                        {                         
                             send_winform_client("<CMD=FINISH>");
                         }
 
@@ -299,7 +284,6 @@ namespace CanFactoryServer
 
                 if (winform_client_connected() == true && winform_client.Client.Available > 0)      // PI_3(윈폼) 리시브
                 {
-
                     string winform_recv_str = Receive(winform_client);
                     winform_recv_str = winform_recv_str.Trim('\0');
 
@@ -328,7 +312,7 @@ namespace CanFactoryServer
 
 
 
-        public bool winform_client_connected()
+        public bool winform_client_connected()   //PI_3 연결 확인 
         {
             if (winform_client.Client != null)
             {
@@ -337,7 +321,7 @@ namespace CanFactoryServer
             return false;
         }
 
-        public bool inspect_client_connected()
+        public bool inspect_client_connected()  //PI_1 연결 확인 
         {
             if (inspect_client.Client != null)
             {
@@ -346,7 +330,7 @@ namespace CanFactoryServer
             return false;
         }
 
-        public bool control_client_connected()
+        public bool control_client_connected() //PI_2 연결 확인 
         {
             if (control_client.Client != null)
             {
@@ -357,7 +341,7 @@ namespace CanFactoryServer
 
 
 
-        public void send_winform_client(string _cmd)
+        public void send_winform_client(string _cmd)    //  PI_3 메시지 전송 함수 
         {
             if (winform_client_connected() == true)
             {
@@ -371,12 +355,12 @@ namespace CanFactoryServer
 
         }
 
-        public void send_inspect_client(string _cmd)
+        public void send_inspect_client(string _cmd)    //  PI_1 메시지 전송 함수 
         {
             if (inspect_client_connected() == true)
             {
                 inspect_client.Client.Send(Encoding.UTF8.GetBytes(_cmd));
-                Console.WriteLine("INSPECTION_CLIENT send : "+ _cmd);
+                Console.WriteLine("INSPECTION_CLIENT send : " + _cmd);
             }
             else if (inspect_client_connected() == false)
                 Console.WriteLine("INSPECTION_CLIENT is not connected !");
@@ -384,7 +368,7 @@ namespace CanFactoryServer
 
         }
 
-        public void send_control_client(string _cmd)
+        public void send_control_client(string _cmd)   //  PI_2 메시지 전송 함수 
         {
             if (control_client_connected() == true)
             {

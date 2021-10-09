@@ -57,7 +57,7 @@ namespace Client
             this.Menu_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.Menu_btn.Location = new System.Drawing.Point(14, 74);
             this.Menu_btn.Name = "Menu_btn";
-            this.Menu_btn.Size = new System.Drawing.Size(144, 45);
+            this.Menu_btn.Size = new System.Drawing.Size(165, 45);
             this.Menu_btn.TabIndex = 0;
             this.Menu_btn.Text = "메뉴";
             this.Menu_btn.UseVisualStyleBackColor = false;
@@ -67,7 +67,7 @@ namespace Client
             // 
             this.Start_btn.Location = new System.Drawing.Point(14, 134);
             this.Start_btn.Name = "Start_btn";
-            this.Start_btn.Size = new System.Drawing.Size(144, 45);
+            this.Start_btn.Size = new System.Drawing.Size(165, 45);
             this.Start_btn.TabIndex = 1;
             this.Start_btn.Text = "구별 작업 시작";
             this.Start_btn.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@ namespace Client
             // 
             this.Monitor_btn.Location = new System.Drawing.Point(14, 195);
             this.Monitor_btn.Name = "Monitor_btn";
-            this.Monitor_btn.Size = new System.Drawing.Size(144, 45);
+            this.Monitor_btn.Size = new System.Drawing.Size(165, 45);
             this.Monitor_btn.TabIndex = 2;
             this.Monitor_btn.Text = "라인 모니터링";
             this.Monitor_btn.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@ namespace Client
             // 
             this.Def_btn.Location = new System.Drawing.Point(14, 258);
             this.Def_btn.Name = "Def_btn";
-            this.Def_btn.Size = new System.Drawing.Size(144, 45);
+            this.Def_btn.Size = new System.Drawing.Size(165, 45);
             this.Def_btn.TabIndex = 3;
             this.Def_btn.Text = "불량품 현황";
             this.Def_btn.UseVisualStyleBackColor = true;
@@ -97,7 +97,7 @@ namespace Client
             // 
             this.Fairqual_btn.Location = new System.Drawing.Point(14, 320);
             this.Fairqual_btn.Name = "Fairqual_btn";
-            this.Fairqual_btn.Size = new System.Drawing.Size(144, 45);
+            this.Fairqual_btn.Size = new System.Drawing.Size(165, 45);
             this.Fairqual_btn.TabIndex = 4;
             this.Fairqual_btn.Text = "양품 현황";
             this.Fairqual_btn.UseVisualStyleBackColor = true;
@@ -110,7 +110,7 @@ namespace Client
             this.Stop_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Stop_btn.Location = new System.Drawing.Point(14, 382);
             this.Stop_btn.Name = "Stop_btn";
-            this.Stop_btn.Size = new System.Drawing.Size(144, 45);
+            this.Stop_btn.Size = new System.Drawing.Size(165, 45);
             this.Stop_btn.TabIndex = 5;
             this.Stop_btn.Text = "라인 긴급 중지";
             this.Stop_btn.UseVisualStyleBackColor = false;
@@ -121,7 +121,7 @@ namespace Client
             this.Main_panel.BackColor = System.Drawing.SystemColors.Control;
             this.Main_panel.Location = new System.Drawing.Point(185, 74);
             this.Main_panel.Name = "Main_panel";
-            this.Main_panel.Size = new System.Drawing.Size(589, 352);
+            this.Main_panel.Size = new System.Drawing.Size(726, 474);
             this.Main_panel.TabIndex = 7;
             // 
             // Time_label
@@ -209,7 +209,7 @@ namespace Client
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(933, 560);
             this.Controls.Add(this.st_finish);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
