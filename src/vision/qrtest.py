@@ -16,8 +16,8 @@ def qc(data):
     kernel = np.ones((2, 3), np.uint8)
     gray = cv2.erode(gray, kernel, iterations=1)
     gray = cv2.dilate(gray, kernel, iterations=1)
-
-    circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 200, param1=50, param2=200, minRadius=30, maxRadius=0)
+    circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=25, minRadius=50, maxRadius=90)
+    
     if circles is None:
         return False
     else:
@@ -29,9 +29,9 @@ while True:
     cap.set(3, 320)
     cap.set(4, 320)
     
+
     retval, frame = cap.read()
     obj = pyzbar.decode(frame)
-
     if qc(frame):
         print(obj)
         print('circle')

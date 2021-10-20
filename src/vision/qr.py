@@ -34,7 +34,7 @@ def qc(data):
     gray = cv2.dilate(gray, kernel, iterations=1)
 
     circles = cv2.HoughCircles(
-        gray, cv2.HOUGH_GRADIENT, 1, 100, param1=30, param2=50, minRadius=5, maxRadius=200)
+        gray, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=25, minRadius=50, maxRadius=90)
 
     if circles is None:
         return False
